@@ -46,8 +46,7 @@
 		- [ ] top product sales
 		- [ ] worst product sales
 
-[[tech stack]]
-
+- tech stack
 		- [ ] most bought category
 		- [ ] no sales category
 		- [ ] 
