@@ -1,0 +1,55 @@
+- [ ] User side
+	- [ ] Products
+	- [ ] Find a Store
+	- [ ] Catalogs
+	- [ ] Filters / Sorting
+		- [ ] Price Min - Max
+		- [ ] Brand
+		- [ ] Discounts / Offers
+	- [ ] Recomendation system
+	- [ ] Email Verifcation
+	- [ ] My account
+		- [ ] Login / Register
+		- [ ] Cart
+		- [ ] Check Out page
+		- [ ] Tracking
+		- [ ] Profile details
+		- [ ] Wishlist
+		- [ ] Gift Cards / Vouchers / Coupons
+	- [ ] Customer Care
+		- [ ] Chat bot
+		- [ ] Helpline Numbers
+		- [ ] FAQs
+		- [ ]  
+- [ ] Seller side
+	- [ ] Sign up / Login
+	- [ ] Add stocks  
+	- [ ] Accept Orders / delivery
+	- [ ] Dispatch packages with DTDC
+	- [ ] Invoice generate
+	- [ ] Update Shipment details
+	- [ ] Accept and review Returns
+- [ ] Admin side
+	- [ ] Sellers Verification
+	- [ ] Add products
+		- [ ] Title
+		- [ ] Specifications
+		- [ ] Mrp Price
+		- [ ] Selling price
+		- [ ] Photos / Videos
+		- [ ] Offers
+		- [ ]  
+	- [ ] Add offers / Vouchers / coupons
+	- [ ] Data Analysis page
+		- [ ] Top Seller
+		- [ ] fkd seller
+		- [ ] top product sales
+		- [ ] worst product sales
+
+[[tech stack]]
+
+		- [ ] most bought category
+		- [ ] no sales category
+		- [ ] 
+	- [ ] Allocate Shipment / Delivery
+	- [ ] 
