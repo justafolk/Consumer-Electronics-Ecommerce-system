@@ -1,0 +1,33 @@
+- Make databases
+  - Product 
+  - Seller
+  - Customer
+  - Order 
+  - Promotions
+  - Payments
+  - Marketing
+  - Reviews
+  - Seller Inventory
+
+- Attach Forms to dbs 
+  - Add Products
+  - Update Products 
+  - Add Promotions
+  - update Promotions
+  - Instore Purchase form 
+  - Request Inventory form 
+
+- Attach data to pages 
+  - Admin Home Page 
+    - DB needed - OrderDB
+                - CustomerDB
+                - - Product 
+                - Seller
+                - Customer
+                - Order 
+                - Promotions
+                - Payments
+               - Marketing
+               - Reviews
+    - 
+

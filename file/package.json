@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "firebase": "^9.8.3",
+    "mysql": "^2.18.1"
+  },
+  "name": "file",
+  "version": "1.0.0",
+  "description": "Final proj",
+  "main": "tempCodeRunnerFile.js",
+  "scripts": {
+    "test": "console.log(\"Hello\");"
+  },
+  "author": "",
+  "license": "ISC"
+}

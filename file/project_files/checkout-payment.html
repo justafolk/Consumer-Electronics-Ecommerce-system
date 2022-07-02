@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--favicon-->
+	<link rel="icon" href="assets/images/favicon-32x32.png" type="image/png" />
+	<!--plugins-->
+	<link href="assets/plugins/OwlCarousel/css/owl.carousel.min.css" rel="stylesheet" />
+	<link href="assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
+	<link href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
+	<link href="assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
+	<link href="assets/plugins/nouislider/nouislider.min.css" rel="stylesheet" />
+	<!-- loader-->
+	<link href="assets/css/pace.min.css" rel="stylesheet" />
+	<script src="assets/js/pace.min.js"></script>
+	<!-- Bootstrap CSS -->
+	<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+	<link href="assets/css/app.css" rel="stylesheet">
+	<link href="assets/css/icons.css" rel="stylesheet">
+	<title>EcommerceWeb</title>
+
+	<style>
+		@import url("https://fonts.googleapis.com/css2?family=Poppins:weight@100;200;300;400;500;600;700;800&display=swap");
+
+
+
+
+		.card {
+
+			border: none;
+		}
+
+		.card-header {
+			margin-bottom: 0;
+			background-color: rgba(0, 0, 0, .03);
+			border-bottom: none;
+		}
+
+		.btn-light:focus {
+			color: #212529;
+			background-color: #e2e6ea;
+			border-color: #dae0e5;
+			box-shadow: 0 0 0 0.2rem rgba(216, 217, 219, .5);
+		}
+
+		.form-control {
+
+			height: 50px;
+			border: 2px solid #eee;
+			border-radius: 6px;
+			font-size: 14px;
+		}
+
+		.form-control:focus {
+			color: #495057;
+			background-color: #fff;
+			border-color: #039be5;
+			outline: 0;
+			box-shadow: none;
+
+		}
+
+		.input {
+
+			position: relative;
+		}
+
+		.input i {
+
+			position: absolute;
+			top: 16px;
+			left: 11px;
+			color: #989898;
+		}
+
+		.input input {
+
+			text-indent: 25px;
+		}
+
+		.card-text {
+
+			font-size: 13px;
+			margin-left: 6px;
+		}
+
+		.certificate-text {
+
+			font-size: 12px;
+		}
+
+
+		.billing {
+			font-size: 11px;
+		}
+
+		.super-price {
+
+			top: 0px;
+			font-size: 22px;
+		}
+
+		.super-month {
+
+			font-size: 11px;
+		}
+
+
+		.line {
+			color: #bfbdbd;
+		}
+
+		.free-button {
+
+			background: #1565c0;
+			height: 52px;
+			font-size: 15px;
+			border-radius: 8px;
+		}
+
+
+		.payment-card-body {
+
+			flex: 1 1 auto;
+			padding: 24px 1rem !important;
+
+		}
+	</style>
+</head>
+
+<body>
+	<div include-html="header.php" id="header_file"></div>
+	<!--end top header wrapper-->
+	<!--start page wrapper -->
+	<div class="page-wrapper">
+		<div class="page-content">
+			<!--start breadcrumb-->
+			<section class="py-3 border-bottom border-top d-none d-md-flex bg-light">
+				<div class="container">
+					<div class="page-breadcrumb d-flex align-items-center">
+						<h3 class="breadcrumb-title pe-3">Checkout</h3>
+						<div class="ms-auto">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb mb-0 p-0">
+									<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i>
+											Home</a>
+									</li>
+									<li class="breadcrumb-item"><a href="javascript:;">Shop</a>
+									</li>
+									<li class="breadcrumb-item active" aria-current="page">Checkout</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!--end breadcrumb-->
+			<!--start shop cart-->
+			<section class="py-4">
+				<div class="container">
+					<div class="shop-cart">
+						<div class="row">
+							<div class="col-12 col-xl-8">
+								<div class="checkout-payment">
+									<div class="card bg-transparent rounded-0 shadow-none">
+										<div class="card-body">
+											<div class="steps steps-light">
+												<a class="step-item active" href="shop-cart.html">
+													<div class="step-progress"><span class="step-count">1</span>
+													</div>
+													<div class="step-label"><i class='bx bx-cart'></i>Cart</div>
+												</a>
+												<a class="step-item active" href="checkout-details.html">
+													<div class="step-progress"><span class="step-count">2</span>
+													</div>
+													<div class="step-label"><i class='bx bx-user-circle'></i>Details
+													</div>
+												</a>
+												<a class="step-item active" href="checkout-shipping.html">
+													<div class="step-progress"><span class="step-count">3</span>
+													</div>
+													<div class="step-label"><i class='bx bx-cube'></i>Shipping</div>
+												</a>
+												<a class="step-item active current" href="checkout-payment.html">
+													<div class="step-progress"><span class="step-count">4</span>
+													</div>
+													<div class="step-label"><i class='bx bx-credit-card'></i>Payment
+													</div>
+												</a>
+												<a class="step-item" href="checkout-review.html">
+													<div class="step-progress"><span class="step-count">5</span>
+													</div>
+													<div class="step-label"><i class='bx bx-check-circle'></i>Review
+													</div>
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="card rounded-0 shadow-none">
+										<div class="card-header border-bottom">
+											<h2 class="h5 my-2">Choose Payment Method</h2>
+										</div>
+										<div class="card-body">
+											<div class="container d-flex justify-content-center mt-5 mb-5">
+
+
+
+												<div class="row ">
+
+													<div class="col-md-12">
+
+														<span>Payment Method</span>
+														<div class="card">
+
+															<div class="accordion" id="accordionExample">
+
+																<div class="card">
+																	<div class="card-header p-0" id="headingTwo">
+																		<h2 class="mb-0">
+																			<button
+																				class="btn btn-light btn-block text-left collapsed p-3 rounded-0 border-bottom-custom"
+																				type="button" data-toggle="collapse"
+																				data-target="#collapseTwo"
+																				aria-expanded="false"
+																				aria-controls="collapseTwo">
+																				<div
+																					class="d-flex align-items-center justify-content-between">
+
+																					<span>Paypal</span>
+																					<img src="https://i.imgur.com/7kQEsHU.png"
+																						width="30">
+
+																				</div>
+																			</button>
+																		</h2>
+																	</div>
+																	<div id="collapseTwo" class="collapse"
+																		aria-labelledby="headingTwo"
+																		data-parent="#accordionExample">
+																		<div class="card-body">
+																			<input type="text" class="form-control"
+																				placeholder="Paypal email">
+																		</div>
+																	</div>
+																</div>
+
+																<div class="card">
+																	<div class="card-header p-0">
+																		<h2 class="mb-0">
+																			<button
+																				class="btn btn-light btn-block text-left p-3 rounded-0"
+																				data-toggle="collapse"
+																				data-target="#collapseOne"
+																				aria-expanded="true"
+																				aria-controls="collapseOne">
+																				<div
+																					class="d-flex align-items-center justify-content-between">
+
+																					<span>Credit card</span>
+																					<div class="icons">
+																						<img src="https://i.imgur.com/2ISgYja.png"
+																							width="30">
+																						<img src="https://i.imgur.com/W1vtnOV.png"
+																							width="30">
+																						<img src="https://i.imgur.com/35tC99g.png"
+																							width="30">
+																						<img src="https://i.imgur.com/2ISgYja.png"
+																							width="30">
+																					</div>
+
+																				</div>
+																			</button>
+																		</h2>
+																	</div>
+
+																	<div id="collapseOne" class="collapse show"
+																		aria-labelledby="headingOne"
+																		data-parent="#accordionExample">
+																		<div class="card-body payment-card-body">
+
+																			<span
+																				class="font-weight-normal card-text">Card
+																				Number</span>
+																			<div class="input">
+
+																				<i class="fa fa-credit-card"></i>
+																				<input type="text" class="form-control"
+																					placeholder="0000 0000 0000 0000">
+
+																			</div>
+
+																			<div class="row mt-3 mb-3">
+
+																				<div class="col-md-6">
+
+																					<span
+																						class="font-weight-normal card-text">Expiry
+																						Date</span>
+																					<div class="input">
+
+																						<i class="fa fa-calendar"></i>
+																						<input type="text"
+																							class="form-control"
+																							placeholder="MM/YY">
+
+																					</div>
+
+																				</div>
+
+
+																				<div class="col-md-6">
+
+																					<span
+																						class="font-weight-normal card-text">CVC/CVV</span>
+																					<div class="input">
+
+																						<i class="fa fa-lock"></i>
+																						<input type="text"
+																							class="form-control"
+																							placeholder="000">
+
+																					</div>
+
+																				</div>
+
+
+																			</div>
+
+																			<span class="text-muted certificate-text"><i
+																					class="fa fa-lock"></i> Your
+																				transaction is secured with ssl
+																				certificate</span>
+
+																		</div>
+																	</div>
+																</div>
+
+															</div>
+
+														</div>
+
+													</div>
+
+
+
+												</div>
+
+
+											</div>
+										</div>
+									</div>
+									<div class="card rounded-0 shadow-none">
+										<div class="card-body">
+											<div class="row">
+												<div class="col-md-6">
+													<div class="d-grid"> <a href="checkout-shipping.html"
+															class="btn btn-light btn-ecomm"><i
+																class="bx bx-chevron-left"></i>Back to Shipping</a>
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="d-grid"> <a href="checkout-review.html"
+															class="btn btn-white btn-ecomm">Review Your Order<i
+																class="bx bx-chevron-right"></i></a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-12 col-xl-4">
+								<div class="order-summary">
+									<div class="card rounded-0">
+										<div class="card-body">
+											<div class="card rounded-0 border bg-transparent shadow-none">
+												<div class="card-body">
+													<p class="fs-5">Apply Discount Code</p>
+													<div class="input-group">
+														<input type="text" class="form-control rounded-0"
+															placeholder="Enter discount code">
+														<button class="btn btn-dark btn-ecomm" type="button">Apply
+															Discount</button>
+													</div>
+												</div>
+											</div>
+											<div class="card rounded-0 border bg-transparent shadow-none">
+												<div class="card-body">
+													<p class="fs-5">Order summary</p>
+													<div class="my-3 border-top"></div>
+													<div class="d-flex align-items-center">
+														<a class="d-block flex-shrink-0" href="javascript:;">
+															<img src="assets/images/products/07.png" width="75"
+																alt="Product">
+														</a>
+														<div class="ps-2">
+															<h6 class="mb-1"><a href="javascript:;"
+																	class="text-dark">White Polo T-Shirt</a></h6>
+															<div class="widget-product-meta"><span class="me-2">Rs.
+																	18,999.<small>00</small></span><span class="">x
+																	1</span>
+															</div>
+														</div>
+													</div>
+													<div class="my-3 border-top"></div>
+													<div class="d-flex align-items-center">
+														<a class="d-block flex-shrink-0" href="javascript:;">
+															<img src="assets/images/products/10.png" width="75"
+																alt="Product">
+														</a>
+														<div class="ps-2">
+															<h6 class="mb-1"><a href="javascript:;"
+																	class="text-dark">Fancy Red Sneakers</a></h6>
+															<div class="widget-product-meta"><span class="me-2">Rs.
+																	18,999.<small>00</small></span><span class="">x
+																	2</span>
+															</div>
+														</div>
+													</div>
+													<div class="my-3 border-top"></div>
+													<div class="d-flex align-items-center">
+														<a class="d-block flex-shrink-0" href="javascript:;">
+															<img src="assets/images/products/30.png" width="75"
+																alt="Product">
+														</a>
+														<div class="ps-2">
+															<h6 class="mb-1"><a href="javascript:;"
+																	class="text-dark">Yellow Shine Blazer</a></h6>
+															<div class="widget-product-meta"><span class="me-2">Rs.
+																	18,999.<small>00</small></span><span class="">x
+																	1</span>
+															</div>
+														</div>
+													</div>
+													<div class="my-3 border-top"></div>
+													<div class="d-flex align-items-center">
+														<a class="d-block flex-shrink-0" href="javascript:;">
+															<img src="assets/images/products/29.png" width="75"
+																alt="Product">
+														</a>
+														<div class="ps-2">
+															<h6 class="mb-1"><a href="javascript:;"
+																	class="text-dark">Men Black Hat Cap</a></h6>
+															<div class="widget-product-meta"><span class="me-2">Rs.
+																	18,999.<small>00</small></span><span class="">x
+																	1</span>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="card rounded-0 border bg-transparent mb-0 shadow-none">
+												<div class="card-body">
+													<p class="mb-2">Subtotal: <span class="float-end">Rs.
+															57,997.00</span>
+													</p>
+													<p class="mb-2">Shipping: <span class="float-end">--</span>
+													</p>
+													<p class="mb-2">Taxes: <span class="float-end">Rs. 1003.00</span>
+													</p>
+													<p class="mb-0">Discount: <span class="float-end">--</span>
+													</p>
+													<div class="my-3 border-top"></div>
+													<h5 class="mb-0">Order Total: <span
+															class="float-end">59,000.00</span></h5>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--end row-->
+					</div>
+				</div>
+			</section>
+			<!--end shop cart-->
+		</div>
+	</div>
+	<!--end page wrapper -->
+	<!--start footer section-->
+	<div include-html="footer.html" id="footer_file"></div>
+	<!--end footer section-->
+	<!--Start Back To Top Button--> <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
+	<!--End Back To Top Button-->
+	</div>
+	<!--end wrapper-->
+
+	<!-- Bootstrap JS -->
+	<script src="assets/js/bootstrap.bundle.min.js"></script>
+	<!--plugins-->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/include-html.min.js"></script>
+	<script src="assets/plugins/simplebar/js/simplebar.min.js"></script>
+	<script src="assets/plugins/OwlCarousel/js/owl.carousel.min.js"></script>
+	<script src="assets/plugins/OwlCarousel/js/owl.carousel2.thumbs.min.js"></script>
+	<script src="assets/plugins/metismenu/js/metisMenu.min.js"></script>
+	<script src="assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+	<!--app JS-->
+	<script src="assets/js/app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Seller Home </title>
+
+
+  <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+
+    .sidebartabs {}
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 30px 10%;
+      background-color: #24252a;
+    }
+
+    .logo {
+      cursor: pointer;
+      order: 3;
+      margin-left: auto;
+    }
+
+    nav {
+      order: 1;
+    }
+
+    .nav__links a,
+    .cta,
+    .overlay__content a {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 500;
+      color: #edf0f1;
+      text-decoration: none;
+    }
+
+    .nav__links {
+      list-style: none;
+      display: flex;
+      font-size: 16px;
+    }
+
+    .nav__links li {
+      padding: 0px 20px;
+    }
+
+    .nav__links li:nth-child(1) {
+      padding: 0 20px 0 0;
+    }
+
+    .nav__links li a {
+      transition: all 0.3s ease 0s;
+    }
+
+    .nav__links li a:hover {
+      color: #0088a9;
+    }
+
+    .cta {
+      order: 2;
+      margin-left: 20px;
+      padding: 9px 25px;
+      background-color: rgba(0, 136, 169, 1);
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease 0s;
+    }
+
+    .cta:hover {
+      background-color: rgba(0, 136, 169, 0.8);
+    }
+
+    /* Mobile Nav */
+
+    .menu {
+      display: none;
+    }
+
+    .overlay {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      background-color: #24252a;
+      overflow-x: hidden;
+      transition: all 0.5s ease 0s;
+    }
+
+    .overlay--active {
+      width: 100%;
+    }
+
+    .overlay__content {
+      display: flex;
+      height: 100%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .overlay a {
+      padding: 15px;
+      font-size: 36px;
+      display: block;
+      transition: all 0.3s ease 0s;
+    }
+
+    .overlay a:hover,
+    .overlay a:focus {
+      color: #0088a9;
+    }
+
+    .overlay .close {
+      position: absolute;
+      top: 20px;
+      right: 45px;
+      font-size: 60px;
+      color: #edf0f1;
+    }
+
+    @media screen and (max-height: 450px) {
+      .overlay a {
+        font-size: 20px;
+      }
+
+      .overlay .close {
+        font-size: 40px;
+        top: 15px;
+        right: 35px;
+      }
+    }
+
+    @media only screen and (max-width: 800px) {
+
+      .nav__links,
+      .cta {
+        display: none;
+      }
+
+      .menu {
+        display: initial;
+      }
+    }
+
+    .form-inputs {
+      position: relative;
+    }
+
+    .form-inputs .form-control {
+      height: 45px;
+    }
+
+    .form-inputs .form-control:focus {
+      box-shadow: none;
+      border: 1px solid #000;
+    }
+
+    .form-inputs i {
+      position: absolute;
+      right: 10px;
+      top: 15px;
+    }
+  </style>
+
+  <link href="../dashboard.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0 px-2" style="" href="#">Idk logo ig</a>
+    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+    <ul class="navbar-nav px-3">
+      <li class="nav-item text-nowrap">
+        <a class="nav-link" href="#">Sign out</a>
+      </li>
+    </ul>
+  </nav>
+  <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+      data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </header>
+
+  <div class="container-fluid">
+
+  </div>
+  <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block  sidebar collapse">
+    <div class="position-sticky pt-3">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link  " aria-current="page" href="index.html">
+                <span data-feather="home"></span> Home
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="customers.html">
+                <span data-feather="file"></span> Customers Analysis
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="sellers.html">
+                <span data-feather="bar-chart"></span> Sellers Analysis
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="marketing.html">
+                <span data-feather="users"></span> Marketing Management
+            </a>
+        </li>
+        
+        <li class="nav-item ">
+            <a class="nav-link active" href="Inventory.html">
+                <span data-feather="layers"></span> Inventory Analysis
+                
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="revenue.html">
+                <span data-feather="home"></span> Revenue Analytics
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="promotions.html">
+                <span data-feather="file"></span> Promotions
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="predictions.html">
+                <span data-feather="bar-chart"></span> Predictive Analytics
+            </a>
+        </li>
+     
+        <li class="nav-item">
+            <a class="nav-link" href="profile.html">
+                <span data-feather="users"></span> My Profile
+            </a>
+        </li>
+        <li class="nav-item ">
+            <a class="nav-link " href="statics.html">
+                <span data-feather="layers"></span> Edit Static Content
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="logout.php">
+                <button type="button" class="btn btn-primary"
+                    style="color: #e9e9fe; background-color: #312e65; border-color: #e9e9fe; margin-top: 10px; width: 100%;">
+                    Log out
+                </button>
+            </a>
+        </li>
+    </ul>
+
+
+
+
+    </div>
+  </nav>
+
+  <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="background-color: #f5f3ff;">
+    <div
+      class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+      <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="feather feather-calendar" aria-hidden="true">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        Sort by / Filter
+      </button>
+      <h1 class="h2">Inventory Analysis </h1>
+      <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group me-2">
+          <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+
+        </div>
+        <div class="btn-group me-2">
+          <button type="button" class="btn btn-sm btn-outline-secondary">Date by</button>
+
+        </div>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="card border-left-primary shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Visitor Count
+                </div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                  2563
+                </div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card border-left-success shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Purchasers Count </div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">23</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card border-left-success shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Abandoned Carts Count</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                  13
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card border-left-success shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Average Customer
+                  Rating</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">4.7</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type='text/javascript' src='https://www.google.com/jsapi'></script>
+
+    <div align="center">
+
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-4">
+
+        <div class="card">
+          <div class="card-body">
+            <h5>Customers Across Country</h5>
+            <script src="https://www.amcharts.com/lib/4/core.js"></script>
+            <script src="https://www.amcharts.com/lib/4/maps.js"></script>
+            <script src="https://www.amcharts.com/lib/4/geodata/india2019High.js"></script>
+            <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+            <div id="chartdiv" style=" width: 100%;align-items: center; justify-content: center;
+           height: 500px;"></div>
+          </div>
+        </div>
+      </div>
+
+    
+
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-body">
+            <h5>Customers Online vs Offline</h5>
+            <div class="chart-area">
+              <canvas id="myChart3"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+  </main>
+
+
+  <script>
+
+
+
+
+
+
+
+
+      // here theme begins
+      am4core.useTheme(am4themes_animated);
+      // Themes end here
+
+      // creating map instance
+      let chart = am4core.create("chartdiv", am4maps.MapChart);
+
+      // setting definition of map
+      chart.geodata = am4geodata_india2019High;
+
+
+      // this is map polygon 
+      let polygonSeries = chart.series.push(new am4maps.MapPolygonSeries());
+
+      //Set min/max fill color for each area
+      polygonSeries.heatRules.push({
+        property: "fill",
+        target: polygonSeries.mapPolygons.template,
+        min: chart.colors.getIndex(1).brighten(-0.3),
+        max: chart.colors.getIndex(1).brighten(-0.3)
+      });
+
+      // Make map load polygon data (state shapes and names) from GeoJSON
+      polygonSeries.useGeodata = true;
+
+      // Set values for each state
+      polygonSeries.data = [
+        {
+          id: "IN-JK",
+          value: 0
+        },
+        {
+          id: "IN-MH",
+          value: 4243
+        },
+        {
+          id: "IN-UP",
+          value: 0
+        },
+        {
+          id: "US-AR",
+          value: 0
+        },
+        {
+          id: "IN-RJ",
+          value: 0
+        },
+        {
+          id: "IN-AP",
+          value: 0
+        },
+        {
+          id: "IN-MP",
+          value: 0
+        },
+        {
+          id: "IN-TN",
+          value: 0
+        },
+        {
+          id: "IN-JH",
+          value: 0
+        },
+        {
+          id: "IN-WB",
+          value: 0
+        },
+        {
+          id: "IN-GJ",
+          value: 0
+        },
+        {
+          id: "IN-BR",
+          value: 0
+        },
+        {
+          id: "IN-TG",
+          value: 0
+        },
+        {
+          id: "IN-GA",
+          value: 0
+        },
+        {
+          id: "IN-DN",
+          value: 0
+        },
+        {
+          id: "IN-DL",
+          value: 0
+        },
+        {
+          id: "IN-DD",
+          value: 0
+        },
+        {
+          id: "IN-CH",
+          value: 0
+        },
+        {
+          id: "IN-CT",
+          value: 0
+        },
+        {
+          id: "IN-AS",
+          value: 0
+        },
+        {
+          id: "IN-AR",
+          value: 0
+        },
+        {
+          id: "IN-AN",
+          value: 0
+        },
+        {
+          id: "IN-KA",
+          value: 0
+        },
+        {
+          id: "IN-KL",
+          value: 0
+        },
+        {
+          id: "IN-OR",
+          value: 0
+        },
+        {
+          id: "IN-SK",
+          value: 0
+        },
+        {
+          id: "IN-HP",
+          value: 0
+        },
+        {
+          id: "IN-PB",
+          value: 0
+        },
+        {
+          id: "IN-HR",
+          value: 0
+        },
+        {
+          id: "IN-UT",
+          value: 0
+        },
+        {
+          id: "IN-LK",
+          value: 0
+        },
+        {
+          id: "IN-MN",
+          value: 0
+        },
+        {
+          id: "IN-TR",
+          value: 0
+        },
+        {
+          id: "IN-MZ",
+          value: 0
+        },
+        {
+          id: "IN-NL",
+          value: 0
+        },
+        {
+          id: "IN-ML",
+          value: 0
+        }
+      ];
+
+
+
+      // hover and detail tool
+      let polygonTemplate = polygonSeries.mapPolygons.template;
+      polygonTemplate.tooltipText = "{name}: {value}";
+      polygonTemplate.nonScalingStroke = true;
+
+      // Create hover state and set alternative fill color
+      let hs = polygonTemplate.states.create("hover");
+      hs.properties.fill = am4core.color("#0A285D");
+  </script>
+
+  </main>
+  <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
+    integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
+    integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha"
+    crossorigin="anonymous"></script>
+    <script>
+
+      (function () {
+        'use strict'
+
+        feather.replace({ 'aria-hidden': 'true' })
+
+        // Graphs
+        var ctx = document.getElementById('myChart3').getContext('2d');
+        // eslint-disable-next-line no-unused-vars
+        var myChart3 = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+
+            datasets: [{
+              label: 'Ecommerce',
+              data: [65, 59, 80, 81, 56, 55, 40],
+              fill: false,
+              borderColor: 'rgb(75, 192, 192)',
+              tension: 0.1,
+              backgroundColor: 'rgb(75, 192, 192)',
+            },
+            {
+              label: 'In-Store Purchase',
+              data: [28, 48, 40, 19, 86, 27, 90],
+              fill: false,
+              borderColor: 'rgb(200, 0,0)',
+              tension: 0.1
+            }]
+          },
+
+          options: {
+
+            scales: {
+              yAxes: [{
+                ticks: {
+                  beginAtZero: false
+                }
+              }]
+            },
+            legend: {
+              display: false
+            }
+          }
+        });
+      })();
+
+
+    </script>
+  <script src="../dashboard.js"></script>
+</body>
+
+</html>

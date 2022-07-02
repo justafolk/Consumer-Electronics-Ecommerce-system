@@ -1,0 +1,61 @@
+- Seller Stuff
+
+  - Make offline purchases 
+  - Add Inventory
+  - Analyze sales
+  - Review Orders 
+  - Accept Orders 
+  - Initialize Returns
+
+- Admin Side
+  - Manage Sellers 
+    - Add / Remove Sellers 
+    - Review Sellers 
+      - Sales 
+      - Growth
+      - Public reviews
+      - Returns 
+      - Response time
+      - Offline Sales / Online Sales 
+  
+  - Manage Products / Inventory
+    - Add / Remove Products
+    - Review Product Sales / Returns 
+    - Public reviews
+    - Online vs Offline sales 
+    - Growth 
+    - Traffic Source 
+    - Data 
+      - Top product sales w.r. category
+      - Top product sales w.r. seller  
+      - Top product sales w.r. source 
+      - Top product sales w.r. state 
+      - Top product sales offline vs Online 
+      - Cart Abandoned rate w.r. category
+      - Cart Abandoned rate w.r. seller 
+      - Cart Abandoned rate w.r. source 
+      - Cart Abandoned rate w.r. state 
+
+  - Manage Promotions 
+    - Add / Remove Promotions 
+      - Add Duration
+      - Add category
+      - Add products 
+      - remove Promotions
+    - Review Public respone to promotions 
+      - Hits 
+      - Purchases
+      - Abandons 
+   
+   - Manage Payments
+    - Allocate Seller payouts
+    - Allocate returns 
+    - Data 
+      - Revenue w.r. time 
+      - Profits / Loses
+      - Profits after paying sellers / associates
+      - Sales per Seller 
+      - Sales per State
+      - Sales per category
+      - Sales per Source 
+      - Sales offline vs Online 
