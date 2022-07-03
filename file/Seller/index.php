@@ -1,11 +1,12 @@
 
 <?php 
 $file = "index.php";
-include "./header.php"; ?>
+session_start();
+include "./header.php";  ?>
  
 
   <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="background-color: #f5f3ff;">
-
+  
 
     <br>
 
@@ -25,8 +26,8 @@ include "./header.php"; ?>
 
               </div>
               <div class="col-md-3">
-                <h5 class="card-title">Seller Name</h5>
-                <h6 class="card-subtitle text-muted">Kalyani Nagar, Pune - 411006</h6>
+                <h5 class="card-title"><?php echo $_SESSION["sfirstname"]." ".$_SESSION["slastname"]  ?></h5>
+                <h6 class="card-subtitle text-muted"><?php  echo $_SESSION["sstore_name"] ?></h6>
 
               </div>
             </div>

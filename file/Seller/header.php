@@ -5,9 +5,21 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Seller Home </title>
+  <!-- Font Awesome -->
+<link rel="stylesheet" href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/dist/mdb5/standard/core.min.css">
+<!-- Google Fonts -->
+
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+  rel="stylesheet"
+  />
+<!-- MDB -->
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.css"
+  rel="stylesheet"
+/>
 
 
-  <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <style>
     .bd-placeholder-img {
@@ -328,7 +340,7 @@ input[id=radio-5]:checked ~ .glider {
 
         <!-- Search -->
         <form class="">
-          <input type="search" class="form-control" placeholder="Search" style="height: 90%;" aria-label="Search">
+          <input type="text" class="form-control" placeholder="Search" style="height: 90%;" aria-label="Search">
         </form>
         <ul class="navbar-nav d-flex flex-row me-1">
           <li class="nav-item me-3 me-lg-0">
@@ -340,7 +352,10 @@ input[id=radio-5]:checked ~ .glider {
 
           <!-- Link -->
           <li class="nav-item">
-            <a class="nav-link" href="#">My Profile</a>
+            <a class="nav-link" href="#"> <img src="https://lh3.googleusercontent.com/a-/AOh14GjkVgvw6232aAV2daTLPt0_xcKhALhTuMAxYwVS77Y=s96-c" class="avatar" style="vertical-align: middle;
+width: 29px;
+height: 29px;
+border-radius: 50%;" alt=""> &nbsp; My Profile</a>
           </li>
 
           <!-- Dropdown -->
@@ -364,7 +379,8 @@ input[id=radio-5]:checked ~ .glider {
                 <a class="dropdown-item" href="#">Something else here</a>
               </li>
             </ul>
-          </li>
+
+         </li>
 
         </ul>
       </div>

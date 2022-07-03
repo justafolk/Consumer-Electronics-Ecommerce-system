@@ -39,7 +39,7 @@
         $error = "";
         function UserExists($conn, $name) {
             require_once "login.dbh.php";
-            $sql = "SELECT id FROM store_request WHERE username = ?;";
+            $sql = "SELECT id FROM sellerDB WHERE username = ?;";
             $smt = mysqli_stmt_init($conn);
             if(!mysqli_stmt_prepare($smt, $sql)){
                 exit();
@@ -57,7 +57,7 @@
         }
         function StoreExists($conn, $name) {
             require_once "login.dbh.php";
-            $sql = "SELECT id FROM store_request WHERE store_name = ?;";
+            $sql = "SELECT id FROM sellerDB WHERE store_name = ?;";
             $smt = mysqli_stmt_init($conn);
             if(!mysqli_stmt_prepare($smt, $sql)){
                 exit();
@@ -79,7 +79,7 @@
             $UserExists = UserExists($conn, $username);
             $Store = StoreExists($conn, $store_name);
             if($UserExists == NULL && $Store == NULL){
-                $sql = "INSERT INTO store_request (firstname, lastname, email, phone_no, username, password, Address, store_name, store_address, co_ordinates, files) VALUES(?,?,?,?,?,?,?,?,?,?,?);";
+                $sql = "INSERT INTO sellerDB (firstname, lastname, email, phone_no, username, password, Address, store_name, store_address, co_ordinates, files) VALUES(?,?,?,?,?,?,?,?,?,?,?);";
                 $smt = mysqli_stmt_init($conn);
                 if(!mysqli_stmt_prepare($smt, $sql)){
                     $error .= "Error in STMT";
@@ -110,7 +110,7 @@
             if($UserExists == NULL && $Store == NULL)
             {
                 $query = "";
-                $sql = "INSERT INTO store_request (firstname, lastname, email, phone_no, username, password, Address, store_name, store_address, co_ordinates, files) VALUES ('$firstname', '$lastname', '$email', '$Phone_number', '$username', '$password', '$Address', '$store_name', '$store_address', '$co_ordinates', '$files');";
+                $sql = "INSERT INTO sellerDB (firstname, lastname, email, phone_no, username, password, Address, store_name, store_address, co_ordinates, files) VALUES ('$firstname', '$lastname', '$email', '$Phone_number', '$username', '$password', '$Address', '$store_name', '$store_address', '$co_ordinates', '$files');";
                 if($conn->query($sql) === TRUE) {
                     $error .= "<br>Class $username created Successfully";
                 }

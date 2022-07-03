@@ -39,7 +39,7 @@
         $result = "";
         function user_exist($conn, $email, $store_name) {
             require_once "login.dbh.php";
-            $sql = "SELECT * FROM store_request WHERE email = ? OR store_name = ?;";
+            $sql = "SELECT * FROM sellerDB WHERE email = ? OR store_name = ?;";
             $smt = mysqli_stmt_init($conn);
             if(!mysqli_stmt_prepare($smt, $sql)){
                 exit();

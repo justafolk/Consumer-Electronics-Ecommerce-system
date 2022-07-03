@@ -5,12 +5,28 @@ include "header.php" ?>
     <h1 class="h2">Order Details </h1>
     <div class="btn-toolbar mb-2 mb-md-0">
       <div class="card  shadow-none border">
-        <button onclick="window.location.href='confirm_order.php?order_id=<?php echo $_GET["order_id"] ?>'" class="btn btn-dark btn-ecomm">Confirm Order</button>
-      </div>
+        <button onclick="window.location.href='confirm_order.php?order_id=<?php echo $_GET["order_id"] ?>'" class="btn btn-dark btn-ecomm "><i class="fa-solid fa-print"></i> &nbsp; Print Shipping Slip</button>
+    </div> &nbsp;
+    <button onclick="window.location.href='confirm_order.php?order_id=<?php echo $_GET["order_id"] ?>'" class="btn btn-light border btn-ecomm"> <i class="fa-solid fa-print"></i> &nbsp;  Print Invoice Slip</button>
     </div>
   </div>
+<div class="row">
+    <div class="col-md-6">
 
-  <h5>Order ID : #213901223</h5>
+        <h5>Order ID : #213901223</h5>
+    </div>
+    <div class="col-md-6">
+        <!-- text input for tracking id -->
+        <form action="add_tracking.php" method="get">
+        <div class="input-group flex-nowrap px-xl-4">
+                    
+                    <input type="hidden" name="order_id" value="<?php echo $_GET["order_id"] ?>">
+                    <input type="text" class="form-control shadow-none" style="width:50%!important" id="tracking" name="tracking" placeholder="Tracking ID">
+                    <button type="submit" class="btn btn-dark btn-ecomm">Add Tracking</button>
+                </div>
+            </form>
+    </div>
+</div>
 
   <br>
   <div class="card">
@@ -128,7 +144,7 @@ include "header.php" ?>
 
                 ?>
                 <tr>
-                  <td><?php echo $i+1; ?></td>
+                  <td>1</td>
                   <td>
                     <div class="row">
                       <div class="col-md-3">
@@ -195,7 +211,83 @@ include "header.php" ?>
 
   </div>
   <br>
+  <div class="row ">
+    <div class="col-md-6">
 
+      <div class="card">
+        <div class="card-body">
+
+          <table class="table">
+            <tbody>
+              <tr row="1">
+                <th>Shipping Tracking no.</th>
+                <td>DTDC-03298523395</td>
+              </tr>
+              <tr row="1">
+                <th>Shipping Date</th>
+                <td>24th May, 2022</td>
+              </tr>
+              <tr row="1">
+                <th>Est. Delivery Date</th>
+                <td>24th May, 2022</td>
+              </tr>
+              <tr row="1">
+                <th>Shipping Address</th>
+                <td>H-19, Prashant Path, Flat no. 2920, MHB, Yerwada, Pune-311005</td>
+              </tr>
+              <tr row="1">
+                <th>Contact Customer</th>
+                <td> +91 86056 77177 / avdhut.kamble776@gmail.com</td>
+              </tr>
+
+            </tbody>
+          </table>
+
+        </div>
+
+      </div>
+    </div>
+    <div class="col-md-6">
+
+      <div class="card" style="height:100%">
+        <div class="card-body" style="height:100%">
+
+          <table class="table" style="height:100%">
+            <tbody>
+              <tr row="1">
+                <th>Items Subtotal</th>
+                <td>12,750/-</td>
+              </tr>
+              <tr row="1">
+                <th>Taxes (CGST+SGST)</th>
+                <td>75/-</td>
+              </tr>
+              <tr row="1">
+                <th>Shipping Charges</th>
+                <td>47.78/-</td>
+              </tr>
+              <tr row="1">
+                <th>Grand Total</th>
+                <td>12873.78/-</td>
+              </tr>
+
+            </tbody>
+          </table>
+          <div class="row">
+            <div class="col-md-12"><button class="btn " style="width: 49% ; background-color:grey; color:white">Print
+                Invoice</button>
+
+              <button class="btn " style="width:49%;           background-color:grey; color:white;">Print
+                Invoice</button>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
 
   </div>
 

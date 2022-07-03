@@ -1,0 +1,194 @@
+error: Found argument '--websocket-port' which wasn't expected, or isn't valid in this context
+
+USAGE:
+    geckodriver [FLAGS] [OPTIONS]
+
+For more information try --help
+1656847268493	geckodriver	INFO	Listening on 127.0.0.1:49571
+1656847268731	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "58339" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile4TEJtt"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1656847280941	Marionette	INFO	Marionette enabled
+1656847338312	geckodriver	INFO	Listening on 127.0.0.1:36827
+1656847338665	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "47099" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile79M315"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1656847340410	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofile79M315/search.json.mozlz4", (void 0)))
+console.error: Region.jsm: "Error fetching region" (new AbortError("The operation was aborted. ", (void 0), 770))
+console.error: Region.jsm: "Failed to fetch region" (new Error("NO_RESULT", "resource://gre/modules/Region.jsm", 419))
+DevTools listening on ws://localhost:47099/devtools/browser/2940cd64-8746-46b2-9d3d-95ec7c9b9d71
+1656847357140	Marionette	INFO	Listening on port 34013
+Read port: 34013
+1656847357439	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+1656847364643	Marionette	INFO	Stopped listening on port 34013
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+console.log: "RemoteSettingsWorker error: Error: Can't import when we've started shutting down."
+console.log: "RemoteSettingsWorker error: Error: Can't import when we've started shutting down."
+console.log: "RemoteSettingsWorker error: Error: Can't import when we've started shutting down."
+console.log: "RemoteSettingsWorker error: Error: Can't import when we've started shutting down."
+console.log: "RemoteSettingsWorker error: Error: Can't import when we've started shutting down."
+1656847396707	geckodriver	INFO	Listening on 127.0.0.1:46783
+1656847397198	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "50783" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile4pMmBl"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1656847399001	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofile4pMmBl/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:50783/devtools/browser/e9e18678-4c36-462c-a5ee-4a8575f8d39d
+1656847404284	Marionette	INFO	Listening on port 44517
+Read port: 44517
+1656847405126	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+1656847420360	Marionette	INFO	Stopped listening on port 44517
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+!!! error running onStopped callback: TypeError: callback is not a function
+JavaScript error: resource://gre/modules/UrlClassifierListManager.jsm, line 691: TypeError: this.tablesData[table] is undefined
+console.error: "Could not load engine wikipedia@search.mozilla.org: Error: Data is not ready."
+console.error: "Could not load engine bing@search.mozilla.org: [Exception... \"AddonManager is not initialized\"  nsresult: \"0xc1f30001 (NS_ERROR_NOT_INITIALIZED)\"  location: \"JS frame :: resource://gre/modules/AddonManager.jsm :: installBuiltinAddon :: line 2480\"  data: no]"
+console.error: "Could not load engine ddg@search.mozilla.org: [Exception... \"AddonManager is not initialized\"  nsresult: \"0xc1f30001 (NS_ERROR_NOT_INITIALIZED)\"  location: \"JS frame :: resource://gre/modules/AddonManager.jsm :: installBuiltinAddon :: line 2480\"  data: no]"
+console.warn: SearchService: "_init: abandoning init due to shutting down"
+JavaScript error: resource://gre/modules/AsyncShutdown.jsm, line 575: uncaught exception: 2147500036
+JavaScript error: resource://gre/modules/AsyncShutdown.jsm, line 575: uncaught exception: 2147500036
+JavaScript error: resource://gre/modules/AsyncShutdown.jsm, line 575: uncaught exception: 2147500036
+JavaScript error: resource://gre/modules/AsyncShutdown.jsm, line 575: uncaught exception: 2147500036
+JavaScript error: resource://gre/modules/AsyncShutdown.jsm, line 575: uncaught exception: 2147500036
+JavaScript error: resource://gre/modules/AsyncShutdown.jsm, line 575: uncaught exception: 2147500036
+JavaScript error: resource://gre/modules/AsyncShutdown.jsm, line 575: uncaught exception: 2147500036
+JavaScript error: resource://gre/modules/AsyncShutdown.jsm, line 575: uncaught exception: 2147500036
+
+###!!! [Parent][PImageBridgeParent] Error: RunMessage(msgname=PImageBridge::Msg_WillClose) Channel closing: too late to send/recv, messages will be lost
+
+JavaScript error: resource://gre/modules/CrashManager.jsm, line 898: AbortError: IOUtils: Shutting down and refusing additional I/O tasks
+RunWatchdog: Mainthread nested event loops during hang: 
+ --- (no nested event loop active)
+ExceptionHandler::GenerateDump cloned child ExceptionHandler::WaitForContinueSignal waiting for continue signal...
+18782
+ExceptionHandler::SendContinueSignalToChild sent continue signal to child
+1656848357779	geckodriver	INFO	Listening on 127.0.0.1:38139
+1656848358311	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "36567" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilefHwwyF"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1656848363359	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilefHwwyF/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:36567/devtools/browser/9a371f43-e899-4420-b6b2-ad7857d7194c
+1656848376057	Marionette	INFO	Listening on port 35923
+Read port: 35923
+1656848376248	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: http://track.dtdc.com/ctbs-tracking/pages/resources/js/jquery/jquery-ui.min.js, line 17: ReferenceError: jQuery is not defined
+JavaScript warning: http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js, line 2: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+JavaScript error: http://track.dtdc.com/ctbs-tracking/pages/resources/js/trackingEnhancement/prototype.js, line 7066: TypeError: element.dispatchEvent is not a function
+1656848456362	Marionette	INFO	Stopped listening on port 35923
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+1656848553240	geckodriver	INFO	Listening on 127.0.0.1:38715
+1656848553246	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--headless" "--remote-debugging-port" "46035" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileZM7V0O"
+*** You are running in headless mode.
+1656848553772	Marionette	INFO	Marionette enabled
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileZM7V0O/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:46035/devtools/browser/068e9f1c-2deb-439a-8cb4-5be0e27f8143
+1656848560964	Marionette	INFO	Listening on port 32819
+Read port: 32819
+1656848561261	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: http://track.dtdc.com/ctbs-tracking/pages/resources/js/jquery/jquery-ui.min.js, line 17: ReferenceError: jQuery is not defined
+JavaScript warning: http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js, line 2: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+JavaScript error: http://track.dtdc.com/ctbs-tracking/pages/resources/js/trackingEnhancement/prototype.js, line 7066: TypeError: element.dispatchEvent is not a function
+1656848916212	geckodriver	INFO	Listening on 127.0.0.1:52165
+1656848916550	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--headless" "--remote-debugging-port" "50085" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileCCg2N9"
+*** You are running in headless mode.
+1656848920918	Marionette	INFO	Marionette enabled
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileCCg2N9/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:50085/devtools/browser/54de1816-d538-438c-9a0d-e99cfafbf884
+1656848937188	Marionette	INFO	Listening on port 41435
+Read port: 41435
+1656848937369	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+1656848993120	geckodriver	INFO	Listening on 127.0.0.1:39101
+1656848993868	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--headless" "--remote-debugging-port" "34889" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileH3v4eQ"
+*** You are running in headless mode.
+1656849002211	Marionette	INFO	Marionette enabled
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileH3v4eQ/search.json.mozlz4", (void 0)))
+console.error: Region.jsm: "Error fetching region" (new AbortError("The operation was aborted. ", (void 0), 770))
+console.error: Region.jsm: "Failed to fetch region" (new Error("NO_RESULT", "resource://gre/modules/Region.jsm", 419))
+DevTools listening on ws://localhost:34889/devtools/browser/f3bb2621-5975-42c9-b5a8-0467ec3219f5
+1656849022603	Marionette	INFO	Listening on port 36331
+Read port: 36331
+1656849022647	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+1656849043919	geckodriver	INFO	Listening on 127.0.0.1:48427
+1656849044465	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--headless" "--remote-debugging-port" "42161" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile70t8np"
+*** You are running in headless mode.
+1656849048229	Marionette	INFO	Marionette enabled
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofile70t8np/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:42161/devtools/browser/14a43347-c8b5-43c5-8527-df64246eb851
+1656849069646	Marionette	INFO	Listening on port 44797
+Read port: 44797
+1656849069967	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: http://track.dtdc.com/ctbs-tracking/pages/resources/js/jquery/jquery-ui.min.js, line 17: ReferenceError: jQuery is not defined
+JavaScript warning: http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js, line 2: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+JavaScript error: http://track.dtdc.com/ctbs-tracking/pages/resources/js/trackingEnhancement/prototype.js, line 7066: TypeError: element.dispatchEvent is not a function
+1656849259194	geckodriver	INFO	Listening on 127.0.0.1:60091
+1656849260093	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--headless" "--remote-debugging-port" "54265" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile296BcQ"
+*** You are running in headless mode.
+1656849266664	Marionette	INFO	Marionette enabled
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: Region.jsm: "Error fetching region" (new Error("TIMEOUT", "resource://gre/modules/Region.jsm", 772))
+console.error: Region.jsm: "Failed to fetch region" (new Error("TIMEOUT", "resource://gre/modules/Region.jsm", 419))
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofile296BcQ/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:54265/devtools/browser/5e9eacfb-2b75-4cd2-9261-0bdb40e4cc21
+1656849291110	Marionette	INFO	Listening on port 39553
+Read port: 39553
+1656849291299	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: http://track.dtdc.com/ctbs-tracking/pages/resources/js/jquery/jquery-ui.min.js, line 17: ReferenceError: jQuery is not defined
+JavaScript warning: http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js, line 2: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+JavaScript error: http://track.dtdc.com/ctbs-tracking/pages/resources/js/trackingEnhancement/prototype.js, line 7066: TypeError: element.dispatchEvent is not a function
+1656849427075	geckodriver	INFO	Listening on 127.0.0.1:55909
+1656849427589	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--headless" "--remote-debugging-port" "53655" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile9tmcF8"
+*** You are running in headless mode.
+1656849438360	Marionette	INFO	Marionette enabled
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: Region.jsm: "Error fetching region" (new Error("TIMEOUT", "resource://gre/modules/Region.jsm", 772))
+console.error: Region.jsm: "Failed to fetch region" (new Error("TIMEOUT", "resource://gre/modules/Region.jsm", 419))
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofile9tmcF8/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:53655/devtools/browser/ad3b9c2c-0caf-4200-bbfe-0b8a53391836
+1656849463736	Marionette	INFO	Listening on port 35271
+Read port: 35271
+1656849464284	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: http://track.dtdc.com/ctbs-tracking/pages/resources/js/jquery/jquery-ui.min.js, line 17: ReferenceError: jQuery is not defined
+JavaScript warning: http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js, line 2: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+JavaScript error: http://track.dtdc.com/ctbs-tracking/pages/resources/js/trackingEnhancement/prototype.js, line 7066: TypeError: element.dispatchEvent is not a function
+1656851350760	geckodriver	INFO	Listening on 127.0.0.1:50039
+1656851351259	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--headless" "--remote-debugging-port" "59443" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileHgEFL2"
+*** You are running in headless mode.
+1656851355947	Marionette	INFO	Marionette enabled
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileHgEFL2/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:59443/devtools/browser/800fca35-bea3-4c44-ae1b-e793fcd904df
+1656851375399	Marionette	INFO	Listening on port 36211
+Read port: 36211
+1656851376164	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: http://track.dtdc.com/ctbs-tracking/pages/resources/js/jquery/jquery-ui.min.js, line 17: ReferenceError: jQuery is not defined
+JavaScript warning: http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js, line 2: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+JavaScript error: http://track.dtdc.com/ctbs-tracking/pages/resources/js/trackingEnhancement/prototype.js, line 7066: TypeError: element.dispatchEvent is not a function
+1656853020006	geckodriver	INFO	Listening on 127.0.0.1:50395
+1656853020471	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--headless" "--remote-debugging-port" "48853" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilehpUzIk"
+*** You are running in headless mode.
+1656853031164	Marionette	INFO	Marionette enabled
+console.error: Region.jsm: "Error fetching region" (new Error("TIMEOUT", "resource://gre/modules/Region.jsm", 772))
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: Region.jsm: "Failed to fetch region" (new Error("TIMEOUT", "resource://gre/modules/Region.jsm", 419))
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilehpUzIk/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:48853/devtools/browser/5a4757df-5fa7-4e3f-ae2a-cefd5e1d22c5
+1656853051838	Marionette	INFO	Listening on port 45527
+Read port: 45527
+1656853052227	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: http://track.dtdc.com/ctbs-tracking/pages/resources/js/jquery/jquery-ui.min.js, line 17: ReferenceError: jQuery is not defined
+JavaScript warning: http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js, line 2: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+JavaScript error: http://track.dtdc.com/ctbs-tracking/pages/resources/js/trackingEnhancement/prototype.js, line 7066: TypeError: element.dispatchEvent is not a function

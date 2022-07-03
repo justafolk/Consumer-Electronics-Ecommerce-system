@@ -18,6 +18,7 @@
     </div>
   </div>
     <br>
+    
     <!-- tab layout for add seller, seller lookup, inventory requests -->
 
     <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -35,6 +36,7 @@
       </li>
 
     </ul>
+    <br>
     <div class="tab-content" id="myTabContent">
       <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
         <div class="card">
