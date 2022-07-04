@@ -6,18 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Seller Home </title>
   <!-- Font Awesome -->
-<link rel="stylesheet" href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/dist/mdb5/standard/core.min.css">
-<!-- Google Fonts -->
+  <link rel="stylesheet" href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/dist/mdb5/standard/core.min.css">
+  <!-- Google Fonts -->
 
-<link
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-  rel="stylesheet"
-  />
-<!-- MDB -->
-<link
-  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.css"
-  rel="stylesheet"
-/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <!-- MDB -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.css" rel="stylesheet" />
 
 
 
@@ -181,128 +175,123 @@
         display: initial;
       }
     }
-
-    
   </style>
 
   <style>
+    :root {
+      --primary-color: #6567cb;
+      --secondary-color: #e6e7ff;
+    }
 
-:root {
-  --primary-color: #6567cb;
-  --secondary-color: #e6e7ff;
-}
+    .container {
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-.container {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    .tabs {
+      display: flex;
+      position: relative;
+      background-color: #fff;
+      padding: 0.3rem;
+      border-radius: 5px;
+    }
 
-.tabs {
-  display: flex;
-  position: relative;
-  background-color: #fff;
-  padding: 0.3rem;
-  border-radius: 5px;
-}
-.tabs * {
-  z-index: 2;
-}
+    .tabs * {
+      z-index: 2;
+    }
 
-input[type=radio] {
-  display: none;
-}
+    input[type=radio] {
+      display: none;
+    }
 
-.tab {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 27px;
-  width: 25%;
-  font-size: 0.9rem;
-  font-weight: 500;
-  border-radius: 99px;
-  cursor: pointer;
-  transition: color 0.15s ease-in;
-}
+    .tab {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 27px;
+      width: 25%;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border-radius: 99px;
+      cursor: pointer;
+      transition: color 0.15s ease-in;
+    }
 
-.notification {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 0.95rem;
-  height: 0.95rem;
-  margin-left: 0.75rem;
-  border-radius: 5px;
-  background-color: var(--secondary-color);
-  transition: 0.15s ease-in;
-}
+    .notification {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 0.95rem;
+      height: 0.95rem;
+      margin-left: 0.75rem;
+      border-radius: 5px;
+      background-color: var(--secondary-color);
+      transition: 0.15s ease-in;
+    }
 
-input[type=radio]:checked + label {
-  color: var(--primary-color);
-}
-input[type=radio]:checked + label > .notification {
-  background-color: var(--primary-color);
-  color: #fff;
-}
+    input[type=radio]:checked+label {
+      color: var(--primary-color);
+    }
 
-input[id=radio-1]:checked ~ .glider {
-  transform: translateX(0);
-}
+    input[type=radio]:checked+label>.notification {
+      background-color: var(--primary-color);
+      color: #fff;
+    }
 
-input[id=radio-2]:checked ~ .glider {
-  transform: translateX(100%);
-}
+    input[id=radio-1]:checked~.glider {
+      transform: translateX(0);
+    }
 
-input[id=radio-3]:checked ~ .glider {
-  transform: translateX(200%);
-}
-input[id=radio-4]:checked ~ .glider {
-  transform: translateX(300%);
-}
-input[id=radio-5]:checked ~ .glider {
-  transform: translateX(400%);
-}
+    input[id=radio-2]:checked~.glider {
+      transform: translateX(100%);
+    }
 
-.glider {
-  position: absolute;
-  display: flex;
-  height: 27px;
-  width: 20%; 
-  background-color: var(--secondary-color);
-  z-index: 1;
-  border-radius: 5px;
-  transition: 0.25s ease-out;
-}
+    input[id=radio-3]:checked~.glider {
+      transform: translateX(200%);
+    }
 
-@media (max-width: 700px) {
-  .tabs {
-    transform: scale(0.6);
-  }
-}
-  
+    input[id=radio-4]:checked~.glider {
+      transform: translateX(300%);
+    }
+
+    input[id=radio-5]:checked~.glider {
+      transform: translateX(400%);
+    }
+
+    .glider {
+      position: absolute;
+      display: flex;
+      height: 27px;
+      width: 20%;
+      background-color: var(--secondary-color);
+      z-index: 1;
+      border-radius: 5px;
+      transition: 0.25s ease-out;
+    }
+
+    @media (max-width: 700px) {
+      .tabs {
+        transform: scale(0.6);
+      }
+    }
   </style>
 
   <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
-    integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
-    integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha"
-    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
 
   <style>
 
   </style>
   <!-- jquery cdn -->
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
   <link href="../dashboard.css" rel="stylesheet">
 
@@ -319,22 +308,17 @@ input[id=radio-5]:checked ~ .glider {
       <a class="navbar-brand" style="background-color: transparent;" href="#">E-commerce Client Website</a>
 
       <!-- Toggle button -->
-      <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fas fa-bars"></i>
       </button>
 
       <!-- Collapsible wrapper -->
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-          integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <!-- mdbootstrap cdn -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-          integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-          crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <!-- Icons -->
 
 
@@ -352,16 +336,15 @@ input[id=radio-5]:checked ~ .glider {
 
           <!-- Link -->
           <li class="nav-item">
-            <a class="nav-link" href="#"> <img src="https://lh3.googleusercontent.com/a-/AOh14GjkVgvw6232aAV2daTLPt0_xcKhALhTuMAxYwVS77Y=s96-c" class="avatar" style="vertical-align: middle;
-width: 29px;
-height: 29px;
-border-radius: 50%;" alt=""> &nbsp; My Profile</a>
+            <a class="nav-link" href="#">
+              <img src="https://ui-avatars.com/api/name=<?php echo $_SESSION["sfirstname"] . " " . $_SESSION["slastname"] ?>?rounded=true" alt="Avatar" class="img-fluid" style="vertical-align: middle;width: 29px;height: 29px;
+border-radius: 50%;">
+              &nbsp; My Profile</a>
           </li>
 
           <!-- Dropdown -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-mdb-toggle="dropdown"
-              aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
 
             </a>
             <!-- Dropdown menu -->
@@ -380,7 +363,7 @@ border-radius: 50%;" alt=""> &nbsp; My Profile</a>
               </li>
             </ul>
 
-         </li>
+          </li>
 
         </ul>
       </div>
@@ -393,13 +376,17 @@ border-radius: 50%;" alt=""> &nbsp; My Profile</a>
     <div class="position-sticky pt-3">
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a class="nav-link  <?php if ($file == "index.php"){echo "active";} ?>" aria-current="page" href="index.php">
+          <a class="nav-link  <?php if ($file == "index.php") {
+                                echo "active";
+                              } ?>" aria-current="page" href="index.php">
             <span data-feather="home"></span> Home
           </a>
         </li>
         <li class="nav-item">
           <!-- Graphs of revenue collected and website hits -->
-          <a class="nav-link <?php if ($file == "orders.php"){echo "active";} ?>" href="orders.php">
+          <a class="nav-link <?php if ($file == "orders.php") {
+                                echo "active";
+                              } ?>" href="orders.php">
             <span data-feather="users"></span> Orders
           </a>
           <a class=" nav-link sub-links">
@@ -436,7 +423,9 @@ border-radius: 50%;" alt=""> &nbsp; My Profile</a>
 
         <li class="nav-item">
 
-          <a class="nav-link <?php if ($file == "products.php"){echo "active";} ?>" href="products.php">
+          <a class="nav-link <?php if ($file == "products.php") {
+                                echo "active";
+                              } ?>" href="products.php">
             <span data-feather="bar-chart"></span> Manage Products
           </a>
           <a class=" nav-link sub-links">
@@ -462,43 +451,44 @@ border-radius: 50%;" alt=""> &nbsp; My Profile</a>
         </li>
         <li class="nav-item">
 
-          <a class="nav-link <?php if ($file == "Analytics.php"){echo "active";} ?>" href="reqinven.html">
+          <a class="nav-link <?php if ($file == "Analytics.php") {
+                                echo "active";
+                              } ?>" href="reqinven.html">
             <span data-feather="bar-chart-2"></span> Analytics
           </a>
 
           <a class=" nav-link sub-links">
             <div class="borderop">
-                Customer Analysis
+              Customer Analysis
             </div>
             <div class="borderop">
-                Seller Analysis
+              Seller Analysis
             </div>
             <div class="borderop">
-                Product Analysis
+              Product Analysis
             </div>
             <div class="borderop">
-                Marketing Analysis
+              Marketing Analysis
             </div>
             <div class="borderop">
-                Revenue Analysis
+              Revenue Analysis
             </div>
 
-        </a>
+          </a>
 
 
         </li>
         <li class="nav-item ">
           <a class="nav-link " href="statics.html">
-              <span data-feather="layers"></span> Edit Your Profile
+            <span data-feather="layers"></span> Edit Your Profile
           </a>
-      </li>
+        </li>
 
 
-       
+
         <li class="nav-item">
           <a class="nav-link" href="logout.php">
-            <button type="button" class="btn btn-primary"
-              style="color: #e9e9fe; background-color: #312e65; border-color: #e9e9fe; margin-top: 10px; width: 100%;">
+            <button type="button" class="btn btn-primary" style="color: #e9e9fe; background-color: #312e65; border-color: #e9e9fe; margin-top: 10px; width: 100%;">
               Log out
             </button>
           </a>

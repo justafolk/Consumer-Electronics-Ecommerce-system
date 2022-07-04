@@ -4,6 +4,6 @@ session_start();
 session_destroy();
 $_SESSION = array();
 
-header("location: index.php");
+header("location: ../store_login.php");
 
 ?>

@@ -18,7 +18,7 @@ include "./header.php";  ?>
               <div class="col-md-1" style="align-items: center; justify-content: center;">
                 <div class="row" style="justify-content: center;">
                   <div class="col-md-12" style="width:100%">
-                    <img src="https://ui-avatars.com/api/name=Avdhut+Kamble?rounded=true" alt="Avatar"
+                    <img src="https://ui-avatars.com/api/name=<?php echo $_SESSION["sfirstname"]." ".$_SESSION["slastname"] ?>?rounded=true" alt="Avatar"
                       class="img-fluid">
                   </div>
 
