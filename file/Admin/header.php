@@ -266,7 +266,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:3456/Admin/sellers.php">
+                    <a class="nav-link" href="http://localhost/shopingohtml-11/shopingohtml-10/main-files/Final-year-project-main/file/Admin/sellers.php">
                         <span data-feather="users"></span> Manage Sellers
                     </a>
                     <a class=" nav-link sub-links">
@@ -296,7 +296,7 @@
                 </li>
                 <li class="nav-item">
 
-                    <a class="nav-link" href="http://localhost:3456/Admin/products.php">
+                    <a class="nav-link" href="http://localhost/shopingohtml-10/shopingohtml-10/main-files/Final-year-project-main/file/Admin/products.php">
                         <span data-feather="bar-chart"></span> Manage Products
                     </a>
                     <a class=" nav-link sub-links">

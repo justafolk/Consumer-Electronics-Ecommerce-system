@@ -1,5 +1,5 @@
 <?php
-include './db.php';
+include 'db.php';
 if ($_POST["submit"]) {
     $name = $_POST['productname'];
     $description = $_POST['productdesc'];
@@ -17,10 +17,7 @@ if ($_POST["submit"]) {
             move_uploaded_file($tmp1, $target1);
             echo $i."DOne";
             $image1s .= $image1.",";
-    
         }
-    
-    
         $sql = "INSERT INTO ProductDB ( image_loc, title, Description, Specs, price) VALUES ('$image1s', '$name', '$description', '$category', '$price')";
         $result = mysqli_query($conn, $sql);
     }

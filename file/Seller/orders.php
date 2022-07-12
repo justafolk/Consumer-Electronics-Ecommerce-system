@@ -1,14 +1,14 @@
 <?php $file = "orders.php";
 include "header.php" ?>
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="background-color: #f5f3ff;">
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 border-bottom  ">
-    <h1 class="h2">Manage Orders  </h1>
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 border-bottom  ">
+    <h1 class="h2">Manage Orders </h1>
     <div class="btn-toolbar mb-2 mb-md-0">
-        <button type="button" class="btn btn-sm btn-outline-dark">Export</button>
-          &nbsp;
-          &nbsp;
+      <button type="button" class="btn btn-sm btn-outline-dark">Export</button>
+      &nbsp;
+      &nbsp;
 
-        <button type="button" class="btn btn-sm btn-outline-dark dropdown-toggle">
+      <button type="button" class="btn btn-sm btn-outline-dark dropdown-toggle">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar" aria-hidden="true">
           <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
           <line x1="16" y1="2" x2="16" y2="6"></line>
@@ -41,7 +41,7 @@ include "header.php" ?>
             <button class="nav-link" id="completed-tab" data-bs-toggle="tab" data-bs-target="#completed" type="button" role="tab" aria-controls="completed" aria-selected="false">Completed Past Orders</button>
           </li>
           <li class="nav-item" role="presentation">
-            <button class="nav-link" id="purchase-tab" data-bs-toggle="tab" data-bs-target="#purchase" type="button" role="tab" aria-controls="purchase" aria-selected="false">Create Offline Purchase Order</button>
+            <button class="nav-link" id="purchase_offline-tab" data-bs-toggle="tab" data-bs-target="#purchase_offline" type="button" role="tab" aria-controls="purchase_offline" aria-selected="false">Create Offline Purchase Order</button>
           </li>
 
         </ul>
@@ -413,7 +413,7 @@ include "header.php" ?>
                     echo "</td>";
                     echo "<td>" . $row["Order_status"] . "</td>";
                     echo "<td>Rs. " . number_format($row["amount"]) . "/-</td>"; ?>
-                    <td><a href='#' class='btn btn-outline-dark ripple-surface-dark mb-1 mb-1 mb-1' style="width: 100%">View</a> <br>
+                    <td><a href='trackfr.php?order_id=<?php echo $row["invoice"]; ?>' href='trackfr.php?order_id=<?php echo $row["invoice"]; ?>' class='btn btn-outline-dark ripple-surface-dark mb-1 mb-1 mb-1' style="width: 100%">View</a> <br>
                       <a href='#' class='btn btn-outline-dark ripple-surface-dark mb-1 mb-1 mb-1' style="width: 100%">Print Invoice</a><br>
 
                       </tr>
@@ -422,6 +422,35 @@ include "header.php" ?>
                     ?>
                 </tbody>
               </table>
+            </div>
+          </div>
+
+          <div class="tab-pane fade " id="purchase_offline" role="tabpanel" aria-labelledby="purchase_offline-tab">
+            <div class="row">
+              <div class="col-md-2">
+
+                <h4>Purchase Order </h4>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col-md-9">
+                <!-- search bar -->
+                <form action="" method="get">
+
+                <div class="input-group mb-3">
+                  <input type="text" name="term" id="term" class="form-control" style="" placeholder="Search Products..">
+                  <input type="submit" value="Add Product" style="" class="btn btn-ecomm btn-dark">
+                </div>
+                </form>
+                <script type="text/javascript">
+                  $(function() {
+                    $("#term").autocomplete({
+                      source: 'searchs.php',
+                    });
+                  });
+                </script>
+              </div>
             </div>
           </div>
 
