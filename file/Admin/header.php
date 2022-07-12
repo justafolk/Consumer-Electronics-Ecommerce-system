@@ -188,7 +188,6 @@
     <nav class="navbar navbar-expand-lg sticky-top bg-dark navbar-dark " style="height: 3.1rem">
         <!-- Container wrapper -->
         <div class="container-fluid">
-
             <!-- Navbar brand -->
             <a class="navbar-brand" style="background-color: transparent;" href="#">E-commerce Client Website</a>
 
@@ -208,9 +207,7 @@
 
 
                 <!-- Search -->
-                <form class="">
                     <input type="search" class="form-control" placeholder="Search" style="height: 90%;" aria-label="Search">
-                </form>
                 <ul class="navbar-nav d-flex flex-row me-1">
                     <li class="nav-item me-3 me-lg-0">
                         <a class="nav-link" href="#"><i class="fa-solid fa-bell"></i></a>

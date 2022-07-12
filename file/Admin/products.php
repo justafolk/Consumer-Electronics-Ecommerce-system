@@ -1,5 +1,63 @@
 <?php
-    
+include 'db.php';
+function upload($conn, $image1s, $name, $description, $specs, $price, $category){
+    require_once "db.php";
+    $error = "";
+    $sql = " INSERT INTO productdb(image_loc, title, description, specification, price, category) VALUES (?,?,?,?,?,?)";
+    $smt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($smt, $sql)){
+        $error .= "Error in STMT";
+        exit();
+    }
+    mysqli_stmt_bind_param($smt, "ssssis", $image1s, $name, $description, $specs, $price, $category,);
+    if (!mysqli_stmt_execute($smt)){
+        echo mysqli_error($conn);
+    }
+    mysqli_stmt_close($smt);
+    $error .= "Product Added Successfully";
+    $error .= mysqli_error($conn);
+    return $error;
+}
+
+function RandomString($length = 6) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
+if(isset($_POST['submit'])){
+    $name = $_POST['productname'];
+    $description = $_POST['productdesc'];
+    $specs = $_POST['productspecs'];
+    $price = $_POST['productprice'];
+    $category = $_POST['productcategory'];
+    $image1s = "";
+    // $image1 = $_FILES["image1"]["name"];
+    try{
+        $random_file = RandomString();
+        mkdir("images/".$random_file);
+        for ($i=1; $i <= 6 ; $i++) { 
+            if(isset($_FILES["image$i"])){
+                $image1 = $_FILES["image$i"]["name"];
+                $tmp1 = $_FILES["image$i"]['tmp_name'];
+                $target1 = "images/$random_file/".basename($image1);
+                move_uploaded_file($tmp1, $target1);
+                if($image1 != NULL){
+                    $image1s .= "images/$random_file/".$image1."&";
+                }
+            }
+        }
+        $sql = upload($conn, $image1s, $name, $description, $specs, $price, $category);
+        // $result = mysqli_query($conn, $sql);
+    }
+    catch(Exception $e){
+        echo $e;
+    }
+}
 
 ?>
 <?php include 'header.php' ?>
@@ -35,7 +93,7 @@
 
                             <h5>Add Products</h5>
                             <p>Add new products to your inventory</p>
-                            <form action="addproduct.php" method="post" enctype="multipart/form-data">
+                            <form action="" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="productname">Product Title</label>
                                     <input type="text" class="form-control" id="productname" aria-describedby="emailHelp" placeholder="Enter Product Name" name="productname">
@@ -55,7 +113,7 @@
                                 <br>
                                 <div class="form-group">
                                     <label for="productprice">Product Price</label>
-                                    <input type="text" class="form-control" id="productprice" aria-describedby="emailHelp" placeholder="Enter Product Price" name="productprice" value="(₹)">
+                                    <input type="text" class="form-control" id="productprice" aria-describedby="emailHelp" placeholder="Enter Product Price" name="productprice" value="">
                                 </div>
 
                                 <br>
@@ -78,7 +136,7 @@
                                 <div class="col-md-2">
                                     <div class="card">
                                         <div class="card-body">
-                                            <input type="file" class="form-control" accept="image/*" class="image1" onchange="loadFile1(event)">
+                                            <input type="file" class="form-control" accept="image/*" class="image1" name="image1" onchange="loadFile1(event)">
                                             <br>
 
                                             <img id="output1" src="https://getstamped.co.uk/wp-content/uploads/WebsiteAssets/Placeholder.jpg" class="storeop" />
@@ -88,7 +146,7 @@
                                 <div class="col-md-2">
                                     <div class="card">
                                         <div class="card-body">
-                                            <input type="file" class="form-control" accept="image/*" class="image2" onchange="loadFile2(event)">
+                                            <input type="file" class="form-control" accept="image/*" class="image2" name="image2" onchange="loadFile2(event)">
                                             <br>
 
                                             <img id="output2" src="https://getstamped.co.uk/wp-content/uploads/WebsiteAssets/Placeholder.jpg" class="storeop" />
@@ -98,7 +156,7 @@
                                 <div class="col-md-2">
                                     <div class="card">
                                         <div class="card-body">
-                                            <input type="file" class="form-control" accept="image/*" class="image3" onchange="loadFile3(event)">
+                                            <input type="file" class="form-control" accept="image/*" class="image3" name="image3" onchange="loadFile3(event)">
                                             <br>
 
                                             <img id="output3" src="https://getstamped.co.uk/wp-content/uploads/WebsiteAssets/Placeholder.jpg" class="storeop" />
