@@ -390,8 +390,8 @@
 													<div class="product-compare"><span><i class='bx bx-git-compare'></i> Compare</span>
 													</div>
 												</a>
-												<a href="jzscript:;" onclick="wishlist()">
-													<div class="product-wishlist"><i id="w1" class='bx bx-heart' style="color:#ff0000"></i>
+												<a href="jzscript:;" onclick="wishlist('<?php echo $j ?>wish')">
+													<div class="product-wishlist"><i id="<?php echo $j ?>wish" class='bx bx-heart' style="color:#ff0000"></i>
 													</div>
 												</a>
 											</div>
@@ -845,24 +845,24 @@
 												</a>
 											</div>
 										</div>
-										<a href="product-details.php?id=<?php echo $product[0]['Prod_id']; ?>">
+										<a href="product-details.php?id=<?php echo $product[$j]['Prod_id']; ?>">
 											<?php
-											$temp = $product[0]['image_loc'];
+											$temp = $product[$j]['image_loc'];
 											$img = explode('&', $temp);
 											?>
 											<img src="<?php echo $img[0]; ?>" class="card-img-top" alt="...">
 										</a>
 										<div class="card-body">
 											<div class="product-info">
-												<a href="product-details.php?id=<?php echo $product[0]['Prod_id']; ?>">
-													<p class="product-catergory font-13 mb-1"><?php echo $product[0]['category']; ?></p>
+												<a href="product-details.php?id=<?php echo $product[$j]['Prod_id']; ?>">
+													<p class="product-catergory font-13 mb-1"><?php echo $product[$j]['category']; ?></p>
 												</a>
-												<a href="product-details.php?id=<?php echo $product[0]['Prod_id']; ?>">
-													<h6 class="product-name mb-2"><?php echo $product[0]['title']; ?></h6>
+												<a href="product-details.php?id=<?php echo $product[$j]['Prod_id']; ?>">
+													<h6 class="product-name mb-2"><?php echo $product[$j]['title']; ?></h6>
 												</a>
 												<div class="d-flex align-items-center">
 													<div class="mb-1 product-price"> <span class="me-1 text-decoration-line-through"></span>
-														<span class="fs-5">Rs. <?php echo $product[0]['price']; ?></span>
+														<span class="fs-5">Rs. <?php echo $product[$j]['price']; ?></span>
 													</div>
 													<div class="cursor-pointer ms-auto"> <i class="bx bxs-star text-warning"></i>
 														<i class="bx bxs-star text-warning"></i>
@@ -951,7 +951,7 @@
 							require_once "function.php";
 							$product = array();
 							$row = "";
-							$sql = "SELECT * FROM productdb WHERE category='phone';";
+							$sql = "SELECT * FROM productdb WHERE category='Phone';";
 							$smt = mysqli_stmt_init($conn);
 							if (!mysqli_stmt_prepare($smt, $sql)) {
 								echo "Output not show";
@@ -979,24 +979,24 @@
 												</a>
 											</div>
 										</div>
-										<a href="product-details.php?id=<?php echo $product[0]['Prod_id']; ?>">
+										<a href="product-details.php?id=<?php echo $product[$j]['Prod_id']; ?>">
 											<?php
-											$temp = $product[0]['image_loc'];
+											$temp = $product[$j]['image_loc'];
 											$img = explode('&', $temp);
 											?>
 											<img src="<?php echo $img[0]; ?>" class="card-img-top" alt="...">
 										</a>
 										<div class="card-body">
 											<div class="product-info">
-												<a href="product-details.php?id=<?php echo $product[0]['Prod_id']; ?>">
-													<p class="product-catergory font-13 mb-1"><?php echo $product[0]['category'] ?></p>
+												<a href="product-details.php?id=<?php echo $product[$j]['Prod_id']; ?>">
+													<p class="product-catergory font-13 mb-1"><?php echo $product[$j]['category'] ?></p>
 												</a>
-												<a href="product-details.php?id=<?php echo $product[0]['Prod_id']; ?>">
-													<h6 class="product-name mb-2"><?php echo $product[0]['title']; ?></h6>
+												<a href="product-details.php?id=<?php echo $product[$j]['Prod_id']; ?>">
+													<h6 class="product-name mb-2"><?php echo $product[$j]['title']; ?></h6>
 												</a>
 												<div class="d-flex align-items-center">
 													<div class="mb-1 product-price"><span class="me-1 text-decoration-line-through"></span>
-														<span class="fs-5">Rs.<?php echo $product[0]['price']; ?></span>
+														<span class="fs-5">Rs.<?php echo $product[$j]['price']; ?></span>
 													</div>
 													<div class="cursor-pointer ms-auto">
 														<i class="bx bxs-star text-warning"></i>
@@ -1008,7 +1008,7 @@
 												</div>
 												<div class="mt-2">
 													<div class="d-grid gap-2">
-														<a href="jzscript:;" class="btn btn-dark btn-ecomm"> <i class='bx bxs-cart-add'></i>Add to Cart</a>
+														<a href="add_to_cart.php?prod_id=<?php echo $product[$j]['Prod_id']; ?>" class="btn btn-dark btn-ecomm"> <i class='bx bxs-cart-add'></i>Add to Cart</a>
 														<a href="jzscript:;" class="btn btn-light btn-ecomm" data-bs-toggle="modal" data-bs-target="#QuickViewProduct"><i class='bx bx-zoom-in'></i>Quick View</a>
 													</div>
 												</div>
@@ -1115,24 +1115,24 @@
 												</a>
 											</div>
 										</div>
-										<a href="product-details.php?id=<?php echo $product[0]['Prod_id']; ?>">
+										<a href="product-details.php?id=<?php echo $product[$j]['Prod_id']; ?>">
 											<?php
-											$temp = $product[0]['image_loc'];
+											$temp = $product[$j]['image_loc'];
 											$img = explode('&', $temp);
 											?>
 											<img src="<?php echo $img[0]; ?>" class="card-img-top" alt="...">
 										</a>
 										<div class="card-body">
 											<div class="product-info">
-												<a href="product-details.php?id=<?php echo $product[0]['Prod_id']; ?>">
-													<p class="product-catergory font-13 mb-1"><?php echo $product[0]['category']; ?></p>
+												<a href="product-details.php?id=<?php echo $product[$j]['Prod_id']; ?>">
+													<p class="product-catergory font-13 mb-1"><?php echo $product[$j]['category']; ?></p>
 												</a>
-												<a href="product-details.php?id=<?php echo $product[0]['Prod_id']; ?>	">
-													<h6 class="product-name mb-2"><?php echo $product[0]['title']; ?></h6>
+												<a href="product-details.php?id=<?php echo $product[$j]['Prod_id']; ?>	">
+													<h6 class="product-name mb-2"><?php echo $product[$j]['title']; ?></h6>
 												</a>
 												<div class="d-flex align-items-center">
 													<div class="mb-1 product-price"> <span class="me-1 text-decoration-line-through"></span>
-														<span class="fs-5">Rs. <?php echo $product[0]['price']; ?></span>
+														<span class="fs-5">Rs. <?php echo $product[$j]['price']; ?></span>
 													</div>
 													<div class="cursor-pointer ms-auto"> <i class="bx bxs-star text-warning"></i>
 														<i class="bx bxs-star text-warning"></i>
@@ -1247,24 +1247,24 @@
 												</a>
 											</div>
 										</div>
-										<a href="product-details.php?id=<?php echo $product[0]['Prod_id']; ?>">
+										<a href="product-details.php?id=<?php echo $product[$j]['Prod_id']; ?>">
 											<?php
-											$temp = $product[0]['image_loc'];
+											$temp = $product[$j]['image_loc'];
 											$img = explode('&', $temp);
 											?>
 											<img src="<?php echo $img[0]; ?>" class="card-img-top" alt="...">
 										</a>
 										<div class="card-body">
 											<div class="product-info">
-												<a href="product-details.php?id=<?php echo $product[0]['Prod_id']; ?>">
-													<p class="product-catergory font-13 mb-1"><?php echo $product[0]['category']; ?></p>
+												<a href="product-details.php?id=<?php echo $product[$j]['Prod_id']; ?>">
+													<p class="product-catergory font-13 mb-1"><?php echo $product[$j]['category']; ?></p>
 												</a>
-												<a href="product-details.php?id=<?php echo $product[0]['Prod_id']; ?>">
-													<h6 class="product-name mb-2"><?php echo $product[0]['title']; ?></h6>
+												<a href="product-details.php?id=<?php echo $product[$j]['Prod_id']; ?>">
+													<h6 class="product-name mb-2"><?php echo $product[$j]['title']; ?></h6>
 												</a>
 												<div class="d-flex align-items-center">
 													<div class="mb-1 product-price"> <span class="me-1 text-decoration-line-through"></span>
-														<span class="fs-5">Rs. <?php echo $product[0]['price']; ?></span>
+														<span class="fs-5">Rs. <?php echo $product[$j]['price']; ?></span>
 													</div>
 													<div class="cursor-pointer ms-auto"> <span>5.0</span> <i class="bx bxs-star text-white"></i>
 													</div>
@@ -2004,11 +2004,13 @@
 		}
 
 
-		function wishlist() {
-			var element = document.getElementById("w1");
+		function wishlist(id) {
+			var element = document.getElementById(id);
 			element.classList.remove("bx-heart");
 			element.classList.add("bxs-heart");
+			element.onclick = remove_wish(id);
 		}
+	
 		// var x = document.getElementByClass("product-wishlist");
 		// x.onclick = function(){
 		// 	var b = document.getElementByTagName("i");

@@ -123,7 +123,7 @@ body{
 }
 
 .navbar .form-control {
-    padding: 0.4rem 23rem;
+    width: 65rem;
 border-width: 0;
 border-radius: 3px;
 }

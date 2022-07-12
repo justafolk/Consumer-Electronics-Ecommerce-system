@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `store_request`
+-- Table structure for table `sellerDB`
 --
 
-CREATE TABLE `store_request` (
+CREATE TABLE `sellerDB` (
   `id` int(128) NOT NULL,
   `firstname` varchar(128) NOT NULL,
   `lastname` varchar(128) NOT NULL,
@@ -43,10 +43,10 @@ CREATE TABLE `store_request` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `store_request`
+-- Dumping data for table `sellerDB`
 --
 
-INSERT INTO `store_request` (`id`, `firstname`, `lastname`, `email`, `phone_no`, `username`, `password`, `address`, `store_name`, `store_address`, `co_ordinates`, `files`) VALUES
+INSERT INTO `sellerDB` (`id`, `firstname`, `lastname`, `email`, `phone_no`, `username`, `password`, `address`, `store_name`, `store_address`, `co_ordinates`, `files`) VALUES
 (2, 'Mayur', 'Khadde', 'mayur@gmail.com', 2147483647, 'mayur', 'amuhshdgjsdghs', 'ghjksertyuiojhgfdsertyujhgfds', 'mayur', 'askdjksdhkjsdk@gmail.com', '362783823293238232', '62baff89c90cf0.81455424.jpg&62baff89c93a21.82473202.jpg&62baff89c95f91.85517942.jpg');
 
 --
@@ -54,9 +54,9 @@ INSERT INTO `store_request` (`id`, `firstname`, `lastname`, `email`, `phone_no`,
 --
 
 --
--- Indexes for table `store_request`
+-- Indexes for table `sellerDB`
 --
-ALTER TABLE `store_request`
+ALTER TABLE `sellerDB`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -64,9 +64,9 @@ ALTER TABLE `store_request`
 --
 
 --
--- AUTO_INCREMENT for table `store_request`
+-- AUTO_INCREMENT for table `sellerDB`
 --
-ALTER TABLE `store_request`
+ALTER TABLE `sellerDB`
   MODIFY `id` int(128) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 

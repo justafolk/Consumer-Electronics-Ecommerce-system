@@ -60,7 +60,7 @@
 			</section>
 			<!--end breadcrumb-->
 			<!--start shop cart-->
-			<section class="py-5 pe-7" style="height: 800px;">
+			<section class="py-5 pe-7" style="height: 100%;">
 				<div class="container">
 					<h3 class="d-none">Account</h3>
 					<div class="card">
@@ -107,7 +107,6 @@
 													if ($resultCheck > 0) {
 														while ($row = mysqli_fetch_assoc($result)) {
 															$product_id = explode(";", $row['Prod_id']);
-															echo count($product_id);
 													?>
 															<div class="card border shadow-none px-2 py-2">
 																<?php

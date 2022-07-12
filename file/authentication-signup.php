@@ -38,26 +38,37 @@
 	if (isset($_POST['username'])) {
 		$firstname = $_POST['firstname'];
 		$lastname = $_POST['lastname'];
-		$firebaseop = $_POST["firebaseop"];
 		$email = $_POST['username'];
 
 		// $phone_number = $_POST['Phone_number'];
 		if ($_POST['Phone_number'] == "") {
 			$phone_number = "NULL";
 		}
-
-		$sql = "SELECT * FROM userdb WHERE email = '$email'";
+		$phone_number = $_POST['Phone_number'];
+		$sql = "SELECT * FROM user WHERE email = '$email'";
 		$result = mysqli_query($conn, $sql);
 		if (mysqli_num_rows($result) > 0) {
 			echo "<script>alert('Email already exists');</script>";
+			header("location: ./authentication-signin.php");
+
 		} else {
 			$password = $_POST['password'];
 			$password = password_hash($password, PASSWORD_DEFAULT);
-			$sql = "INSERT INTO user (firstname, lastname, email, password, phone_number) VALUES ('$firstname', '$lastname', '$email', '$password', '$phone_number', )";
-			if (mysqli_query($conn, $sql)) {
+			$img = "https://ui-avatars.com/api/name=".$firstname." ".$lastname."?rounded=true";
+			$sql = "INSERT INTO user (firstname, lastname, email, password1, phone_number, img_url) VALUES ('$firstname', '$lastname', '$email', '$password', '$phone_number', '$img' )";
+			if ($row = mysqli_query($conn, $sql)) {
 				echo "<script>alert('Successfully registered');</script>";
+				// session_start();
+				// $_SESSION["uemail"] = $row['email'];
+				// $_SESSION["ufirstname"] = $row["firstname"];
+				// $_SESSION["ulastname"] = $row["lastname"];
+				// $_SESSION["u_id"] = $row["id"];
+				// $_SESSION["uimg_url"] = "https://ui-avatars.com/api/name=".$row["firstname"]."+".$row["lastname"]."?rounded=true";
+				// print_r($_SESSION);
+				header("location: ./authentication-signin.php");
 			} else {
-				echo "<script>alert('Error registering');</script>";
+				echo mysqli_error($conn);
+				echo "<script>alert('".mysqli_error($conn)."');</script>";
 			}
 		}
 	}
@@ -139,7 +150,7 @@
 													</div>
 													<div class="col-12">
 														<label for="Phone number" class="form-label">Phone Number</label>
-														<input type="text" class="form-control" name="Phone_number" pattern="[7-9]{1}[0-9]{9}" placeholder="98001 98001" required>
+														<input type="tel" class="form-control" name="Phone_number"  placeholder="98001 98001" required>
 													</div>
 													<div class="col-12">
 														<label for="password" class="form-label">Password</label>
@@ -165,7 +176,7 @@
 													<input type="hidden" name="firebaseop" id="firebaseop">
 													<div class="col-12">
 														<div class="d-grid">
-															<button type="button" class="btn btn-dark" id="osubmit" name="osubmit"><i class='bx bx-user'></i>Sign up</button>
+															<button type="submit" class="btn btn-dark" id="osubmit" name="osubmit"><i class='bx bx-user'></i>Sign up</button>
 														</div>
 													</div>
 												</form>

@@ -22,26 +22,219 @@
 	<link href="assets/css/app.css" rel="stylesheet">
 	<link href="assets/css/icons.css" rel="stylesheet">
 	<title>EcommerceWeb</title>
+    <style>
+        .bg-custom-1 {
+            background-color: #85144b;
+        }
+
+        .bg-custom-2 {
+            background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+        }
+    </style>
 </head>
 
 <body>
 	<?php
-		require_once "function.php";
 		require_once "login.dbh.php";
-		$result = "";
-		if(isset($_POST['submit1']))
-		{
-			$firstname = $_POST['firstname'];
+        $error = "";
+        function UserExists($conn, $name) {
+            require_once "login.dbh.php";
+            $sql = "SELECT id FROM sellerDB WHERE username = ?;";
+            $smt = mysqli_stmt_init($conn);
+            if(!mysqli_stmt_prepare($smt, $sql)){
+                exit();
+            }
+            mysqli_stmt_bind_param($smt, "s", $name);
+            mysqli_stmt_execute($smt);
+            $resultData = mysqli_stmt_get_result($smt);
+            if($row = mysqli_fetch_assoc($resultData)) {
+                return $row;
+            }
+            else{
+                $result = false;
+                return $result;
+            }
+        }
+        function StoreExists($conn, $name) {
+            require_once "login.dbh.php";
+            $sql = "SELECT id FROM sellerDB WHERE store_name = ?;";
+            $smt = mysqli_stmt_init($conn);
+            if(!mysqli_stmt_prepare($smt, $sql)){
+                exit();
+            }
+            mysqli_stmt_bind_param($smt, "s", $name);
+            mysqli_stmt_execute($smt);
+            $resultData = mysqli_stmt_get_result($smt);
+            if($row = mysqli_fetch_assoc($resultData)) {
+                return $row;
+            }
+            else{
+                $result = false;
+                return $result;
+            }
+        }
+        function createstore($conn, $firstname, $lastname, $email, $Phone_number, $username, $password, $Address, $store_name, $store_address, $co_ordinates, $files){
+            require_once "login.dbh.php";
+            $error = "";
+            $UserExists = UserExists($conn, $username);
+            $Store = StoreExists($conn, $store_name);
+            if($UserExists == NULL && $Store == NULL){
+                $sql = "INSERT INTO sellerDB (firstname, lastname, email, phone_no, username, password, Address, store_name, store_address, co_ordinates, files, status, zip_code) VALUES(?,?,?,?,?,?,?,?,?,?,?, 'pending', ?);";
+                $smt = mysqli_stmt_init($conn);
+                if(!mysqli_stmt_prepare($smt, $sql)){
+                    $error .= "Error in STMT";
+                    exit();
+                }
+                $latlong = explode("\t", explode("\n", `grep -i $co_ordinates ./IN.txt`)[0]);
+                $lat = $latlong[9];
+                $long = $latlong[10];
+                $zip_code = $co_ordinates."";
+                $co_ordinates = $lat.",".$long;
+                $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
+                mysqli_stmt_bind_param($smt, "sssssssssssi", $firstname, $lastname, $email, $Phone_number, $username, $hashedPwd, $Address, $store_name, $store_address, $co_ordinates, $files, $zip_code);
+                mysqli_stmt_execute($smt);
+                if (mysqli_error($conn)) {
+                    echo mysqli_error($conn);
+                    exit();
+                }
+                else{
+                    $error .= "Success";
+                }
+                mysqli_stmt_close($smt);
+                $error .= "User Created Successfully";
+                return $error;
+            }
+            else
+            {
+                if($UserExists != NULL){
+                    $error = "Username Already Existed";
+                }
+                else{
+                    $error = "Store Name Already Existed";
+                }
+                return $error;
+            }
+        }
+        function insert($conn, $firstname, $lastname, $email, $Phone_number, $username, $password, $Address, $store_name, $store_address, $co_ordinates, $files){
+            $error = "";
+            $UserExists = UserExists($conn, $username);
+            $Store = StoreExists($conn, $store_name);
+            if($UserExists == NULL && $Store == NULL)
+            {
+                $query = "";
+                $sql = "INSERT INTO sellerDB (firstname, lastname, email, phone_no, username, password, Address, store_name, store_address, co_ordinates, files) VALUES ('$firstname', '$lastname', '$email', '$Phone_number', '$username', '$password', '$Address', '$store_name', '$store_address', '$co_ordinates', '$files');";
+                if($conn->query($sql) === TRUE) {
+                    $error .= "<br>Class $username created Successfully";
+                }
+                else{
+                    $error .= "<br>Error creating table1: ".$conn->error;
+                }
+            }
+            else
+            {
+                if($UserExists != NULL){
+                    $error = "Username Already Existed";
+                }
+                else{
+                    $error = "Store Name Already Existed";
+                }
+            }
+            return $error;
+            $conn->close();
+        }
+        $result = "";
+        if(isset($_POST["submit"])){
+            $firstname = $_POST['firstname'];
 			$lastname = $_POST['lastname'];
 			$email = $_POST['email'];
 			$Phone_number = $_POST['Phone_number'];
             $username = $_POST['username'];
 			$password = $_POST['password'];
-			$Address = $_POST['address'];
+			$Address = $_POST['Address'];
+            $store_name = $_POST["store_name"];
+            $store_address = $_POST["store_address"];
+            $co_ordinates = $_POST["co-ordinates"];
+            $file = $_FILES["images"];
+            $count = count($_FILES["images"]["name"]);
+            $filenames = array();
+            for($i=0;$i<$count;$i++){
+                $filename = $_FILES["images"]["name"][$i];
+                $fileTmpName = $_FILES["images"]["tmp_name"][$i];
+                $filesize = $_FILES["images"]["size"][$i];
+                $fileError = $_FILES["images"]["error"][$i];
+                $filetype = $_FILES["images"]["type"][$i];
+    
+                $fileExt = explode(".", $filename);
+                $fileActualExt = strtolower(end($fileExt));
+                $allowed = array('jpg', 'jpeg', 'png', 'pdf');
+    
+                if(in_array($fileActualExt, $allowed)){
+                    if($fileError === 0){
+                        if($filesize < 1000000){
+                            $fileNameNew = uniqid('', true).".".$fileActualExt;
+                            array_push($filenames, $fileNameNew);
+                            $fileDestination = "upload/'.$fileNameNew";
+                            move_uploaded_file($fileTmpName, $fileDestination);
+                        }
+                        else{
+                            $error = "Your File is too Big";
+                        }
+                    }	
+                    else{
+                        $error = "There Was an error uploading your file";
+                    }
+                }
+                else{
+                    $error = "You cannot upload files of this type";
+                }
+            }
+            require_once "login.dbh.php";
             
-		}
+            $files = implode("&",$filenames);
+            $result = $error;
+            $result = createstore($conn, $firstname, $lastname, $email, $Phone_number, $username, $password, $Address, $store_name, $store_address, $co_ordinates, $files);
+        }
 	?>
-	<div include-html="header.php" id="header_file"></div> 
+	<b class="screen-overlay"></b>
+	<!--wrapper-->
+	<div class="wrapper">
+		<!--start top header wrapper-->
+		<div class="header-wrapper">
+			<div class="header-content pb-3 pb-md-0">
+				<div class="container">
+					<div class="row align-items-center">
+						<div class="col-1 col-md-auto">
+							<div class="d-flex align-items-center">
+								<div class="mobile-toggle-menu d-lg-none px-lg-2" data-trigger="#navbar_main"><i class='bx bx-menu'></i>
+								</div>
+								<div class="logo d-none d-lg-flex">
+									<a href="index.html">
+										<div class="ms-2">
+											<h6 class="mb-0">eCommerce Web.</h6>
+											<h5 class="mb-0">Client Site</h5>
+										</div>
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="col col-md-auto" style="margin-left:25%;">
+                            <div class="input-group flex-nowrap px-xl-4 ms-auto">
+                                <h3 class="my-5 my-lg-0">Store Sign in/ Login</h3>
+                            </div>
+                        </div>
+                        <div class="col-4 ms-auto col-md-auto order-3 d-none d-xl-flex align-items-center">
+                            <div class="fs-1 text-white"><i class='bx bx-headphone'></i>
+                            </div>
+                            <div class="ms-2">
+                                <a href="store_login.php" class="btn btn-dark btn-ecomm">Store Login</a>
+                            </div>
+                        </div>
+					</div>
+					<!--end row-->
+				</div>
+			</div>
+		</div>
+    </div>
 		<!--end top header wrapper-->
 		<!--start page wrapper -->
 		<div class="page-wrapper">
@@ -50,7 +243,7 @@
 				<section class="py-3 border-bottom border-top d-none d-md-flex bg-light">
 					<div class="container">
 						<div class="page-breadcrumb d-flex align-items-center">
-							<h3 class="breadcrumb-title pe-3">Sign Up</h3>
+							<h3 class="breadcrumb-title pe-3">Create New Store</h3>
 							<div class="ms-auto">
 								<nav aria-label="breadcrumb">
 									<ol class="breadcrumb mb-0 p-0">
@@ -58,7 +251,7 @@
 										</li>
 										<li class="breadcrumb-item"><a href="javascript:;">Authentication</a>
 										</li>
-										<li class="breadcrumb-item active" aria-current="page">Sign Up</li>
+										<li class="breadcrumb-item active" aria-current="page">Store Sign-in</li>
 									</ol>
 								</nav>
 							</div>
@@ -67,191 +260,132 @@
 				</section>
 				<!--end breadcrumb-->
 				<!--start shop cart-->
-                <section class="py-0 py-lg-1" id="personal_details">
-                    <form action="" method="post">
-                    <div class="container">
-                        <div class="align-items-center justify-content-center my-5 my-lg-0">
-                            <div class="row row-cols-1 row-cols-lg-1 row-cols-xl-2">
-                                <div class="col mx-auto mt-5 mb-5">
-                                    <div class="card mb-0">
-                                        <div class="text-center">
-                                            <h5><?php echo $result; ?></h5>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="border p-4 rounded">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <section class="py-0 py-lg-3" id="personal_details">
+                            <div class="container">
+                                <div class="align-items-center justify-content-center my-5 my-lg-0">
+                                    <div class="row row-cols-1 row-cols-lg-1 row-cols-xl-2">
+                                        <div class="col mx-auto mt-5 mb-5">
+                                            <div class="card mb-0">
                                                 <div class="text-center">
-                                                    <h3 class="">Create Store</h3>
+                                                    <h5><?php echo $result; ?></h5>
                                                 </div>
-                                                <!-- <div class="text-center">
-                                                    <h5 class="mt-4">Personal Details</h5>
-                                                </div> -->
-                                                <div class="login-separater text-center mb-4"><span style="font-size:150%">Personal Details</span>
-                                                    <hr/>
-                                                </div>
-                                                <!-- <div class="d-grid">
-                                                    <a class="btn my-4 shadow-sm btn-white" href="javascript:;"> <span class="d-flex justify-content-center align-items-center">
-                                                        <img class="me-2" src="assets/images/icons/search.svg" width="16" alt="Image Description">
-                                                        <span>Sign Up with Google</span>
-                                                        </span>
-                                                    </a>
-                                                </div> -->
-                                                <!-- <div class="login-separater text-center mb-4"> <span>OR SIGN UP WITH EMAIL</span>
-                                                    <hr/>
-                                                </div> -->
-                                                <div class="form-body mt-5">
-                                                    <form class="row g-3" action="" method="post">
-                                                        <div class="col-sm-6">
-                                                            <label for="inputFirstName" class="form-label">First Name</label>
-                                                            <input type="text" class="form-control" id="inputFirstName" name="firstname" required>
+                                                <div class="card-body">
+                                                    <div class="border p-4 rounded">
+                                                        <div class="text-center">
+                                                            <h3 class="">Create Store</h3>
                                                         </div>
-                                                        <div class="col-sm-6">
-                                                            <label for="inputLastName" class="form-label">Last Name</label>
-                                                            <input type="text" class="form-control" id="inputLastName" name="lastname" required>
+                                                        <div class="login-separater text-center mb-4"><span style="font-size:150%">Personal Details</span>
+                                                            <hr/>
                                                         </div>
-                                                        <div class="col-12">
-                                                            <label for="inputEmailAddress" class="form-label">Email Address</label>
-                                                            <input type="email" class="form-control" id="inputEmailAddress"  name="email" required>
-                                                        </div>
-                                                        <div class="col-12">
-                                                            <label for="Phone number" class="form-label">Phone Number</label>
-                                                            <input type="text" class="form-control" name="Phone_number" pattern="[7-9]{1}[0-9]{9}" required>
-                                                        </div>
-                                                        <div class="col-sm-12">
-                                                            <label class="form-label">Username</label>
-                                                            <input type="text" class="form-control" id="inputFirstName" name="username" required>
-                                                        </div>
-                                                        <div class="col-12">
-                                                            <label for="inputChoosePassword" class="form-label">Password</label>
-                                                            <div class="input-group" id="show_hide_password">
-                                                                <input type="password" class="form-control border-end-0" id="inputChoosePassword" name="password" required> <a href="javascript:;" class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a>
+                                                        <div class="form-body mt-2">
+                                                            <div class="col-sm-6 mt-3">
+                                                                <label for="inputFirstName" class="form-label">First Name</label>
+                                                                <input type="text" class="form-control" id="inputFirstName" name="firstname" required>
+                                                            </div>
+                                                            <div class="col-sm-6 mt-3">
+                                                                <label for="inputLastName" class="form-label">Last Name</label>
+                                                                <input type="text" class="form-control" id="inputLastName" name="lastname" required>
+                                                            </div>
+                                                            <div class="col-12 mt-3">
+                                                                <label for="inputEmailAddress" class="form-label">Email Address</label>
+                                                                <input type="email" class="form-control" id="inputEmailAddress"  name="email" required>
+                                                            </div>
+                                                            <div class="col-12 mt-3">
+                                                                <label for="Phone number" class="form-label">Phone Number</label>
+                                                                <input type="text" class="form-control" name="Phone_number" pattern="[7-9]{1}[0-9]{9}" required>
+                                                            </div>
+                                                            <div class="col-sm-12 mt-3">
+                                                                <label class="form-label">Username</label>
+                                                                <input type="text" class="form-control" id="inputFirstName" name="username" required>
+                                                            </div>
+                                                            <div class="col-12 mt-3">
+                                                                <label for="inputChoosePassword" class="form-label">Password</label>
+                                                                <div class="input-group" id="show_hide_password">
+                                                                    <input type="password" class="form-control border-end-0" id="inputChoosePassword" name="password" required> <a href="javascript:;" class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12 mt-3">
+                                                                <label for="inputSelectCountry" class="form-label">Personal Address</label>
+                                                                <input type="text" class="form-control" name="Address" required>
+                                                            </div>
+                                                            <div class="col-12 mt-3">
+                                                                <div class="d-grid">
+                                                                    <button type="button" class="btn btn-dark" onclick="next()" name="submit1"></i>Next > </button>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <!-- <div class="col-12">
-                                                            <label for="inputSelectCountry" class="form-label">State</label>
-                                                            <select class="form-select" id="inputSelectCountry" name="state" aria-label="Default select example">
-                                                                <option selected>Select State</option>
-                                                                <option value="Maharashtra">Maharashtra</option>
-                                                                <option value="Goa">Goa</option>
-                                                                <option value="Delhi">Delhi</option>
-                                                            </select>
-                                                        </div> -->
-                                                        <div class="col-12">
-                                                            <label for="inputSelectCountry" class="form-label">Personal Address</label>
-                                                            <input type="text" class="form-control" name="Address" required>
-                                                        </div>
-                                                        <!-- <div class="col-12">
-                                                            <div class="form-check form-switch">
-                                                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
-                                                                <label class="form-check-label" for="flexSwitchCheckChecked">I read and agree to Terms & Conditions</label>
-                                                            </div>
-                                                        </div> -->
-                                                        <div class="col-12">
-                                                            <div class="d-grid">
-                                                                <button type="submit1" class="btn btn-dark" id = "b1" name="Next"></i>Next > </button>
-                                                            </div>
-                                                        </div>
-                                                    </form>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <!--end row-->
                                 </div>
                             </div>
-                            <!--end row-->
-                        </div>
-                    </div>
+                        </section>
+                        <section class="py-0 py-lg-3" id="Store_details">
+                            <div class="container">
+                                <div class="align-items-center justify-content-center my-5 my-lg-0">
+                                    <div class="row row-cols-1 row-cols-lg-1 row-cols-xl-2">
+                                        <div class="col mx-auto mt-5 mb-5">
+                                            <div class="card mb-0">
+                                                <div class="text-center">
+                                                    <h5><?php echo $result; ?></h5>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="border p-4 rounded">
+                                                        <div class="text-center">
+                                                            <h3 class="">Create Store</h3>
+                                                        </div>
+                                                        <div class="login-separater text-center mb-4"><span style="font-size:150%">Store Details</span>
+                                                            <hr/>
+                                                        </div>
+                                                        <div class="form-body mt-5">
+                                                            <div class="col-12 mt-3">
+                                                                <label for="inputFirstName" class="form-label">Store Name</label>
+                                                                <input type="text" class="form-control" name="store_name" required>
+                                                            </div>
+                                                            <div class="col-12 mt-3">
+                                                                <label for="inputFirstName" class="form-label">Store Address</label>
+                                                                <input type="text" class="form-control" name="store_address" required>
+                                                            </div>
+                                                            <div class="col-12 mt-3">
+                                                                <label class="form-label">Zipcode</label>
+                                                                <input type="text" class="form-control" name="co-ordinates" required>
+                                                            </div>
+                                                            <div class="col-12 mt-3">
+                                                                <label for="formFileMultiple"class="form-label">Upload Store Images</label>
+                                                                <input type="file" id="formFileMultiple" class="form-control" name="images[]" multiple />
+                                                            </div>
+                                                            <div class="col-12 mt-3">
+                                                                <div class="form-check form-switch">
+                                                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
+                                                                    <label class="form-check-label" for="flexSwitchCheckChecked">I read and agree to Terms & Conditions</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6 mt-3">
+                                                                <div class="d-grid">
+                                                                    <button type="submit" class="btn btn-dark" onclick="back()" name="Back"></i> < Back</button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6 mt-3">
+                                                                <div class="d-grid">
+                                                                    <button type="submit" class="btn btn-dark" name="submit"></i>Send Request</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end row-->
+                                </div>
+                            </div>
+                        </section>
                     </form>
-                </section>
-                <section class="py-0 py-lg-2" id="Store_details">
-                    <div class="container">
-                        <div class="d-flex align-items-center justify-content-center my-5 my-lg-0">
-                            <div class="row row-cols-1 row-cols-lg-1 row-cols-xl-2">
-                                <div class="col mx-auto mt-5 mb-5">
-                                    <div class="card mb-0">
-                                        <div class="text-center">
-                                            <h5><?php echo $result; ?></h5>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="border p-4 rounded">
-                                                <div class="text-center">
-                                                    <h3 class="">Create Store</h3>
-                                                </div>
-                                                <!-- <div class="text-center">
-                                                    <h5 class="mt-4">Store Details</h5>
-                                                </div> -->
-                                                <!-- <div class="d-grid">
-                                                    <a class="btn my-4 shadow-sm btn-white" href="javascript:;"> <span class="d-flex justify-content-center align-items-center">
-                                                        <img class="me-2" src="assets/images/icons/search.svg" width="16" alt="Image Description">
-                                                        <span>Sign Up with Google</span>
-                                                        </span>
-                                                    </a>
-                                                </div> -->
-                                                <div class="login-separater text-center mb-4"><span style="font-size:150%">Store Details</span>
-                                                    <hr/>
-                                                </div>
-                                                <div class="form-body mt-5">
-                                                    <form class="row g-3" action="" method="post">
-                                                        <!-- <div class="col-sm-6">
-                                                            <label for="inputFirstName" class="form-label">First Name</label>
-                                                            <input type="text" class="form-control" id="inputFirstName" name="firstname" placeholder="Mayur" required>
-                                                        </div>
-                                                        <div class="col-sm-6">
-                                                            <label for="inputLastName" class="form-label">Last Name</label>
-                                                            <input type="text" class="form-control" id="inputLastName" placeholder="Khadde" name="lastname" required>
-                                                        </div> -->
-                                                        <div class="col-12">
-                                                            <label for="inputFirstName" class="form-label">Store Name</label>
-                                                            <input type="text" class="form-control" name="store_name" required>
-                                                        </div>
-                                                        <div class="col-12">
-                                                            <label for="inputFirstName" class="form-label">Store Address</label>
-                                                            <input type="email" class="form-control" name="store_address" required>
-                                                        </div>
-                                                        <div class="col-12">
-                                                            <label class="form-label">Enter Geo-graphical (Co-ordinates)</label>
-                                                            <input type="text" class="form-control" name="co-ordinates" required>
-                                                        </div>
-                                                        <div class="col-12">
-                                                            <label for="formFileMultiple"class="form-label">Upload Store Images</label>
-                                                            <input type="file" id="formFileMultiple" class="form-control" name="images" multiple />
-                                                        </div>
-                                                        <!-- <div class="col-12">
-                                                            <label for="inputSelectCountry" class="form-label">State</label>
-                                                            <select class="form-select" id="inputSelectCountry" name="state" aria-label="Default select example">
-                                                                <option selected>Select State</option>
-                                                                <option value="Maharashtra">Maharashtra</option>
-                                                                <option value="Goa">Goa</option>
-                                                                <option value="Delhi">Delhi</option>
-                                                            </select>
-                                                        </div> -->
-                                                        <div class="col-12">
-                                                            <div class="form-check form-switch">
-                                                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
-                                                                <label class="form-check-label" for="flexSwitchCheckChecked">I read and agree to Terms & Conditions</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <div class="d-grid">
-                                                                <button type="submit" class="btn btn-dark" id = "b2" name="Back"></i> < Back</button>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <div class="d-grid">
-                                                                <button type="submit" class="btn btn-dark" name="submit"></i>Send Request</button>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--end row-->
-                        </div>
-                    </div>
-                </section>
-                </form>
+                </div>
 				<!--end shop cart-->
 			</div>
 		</div>
@@ -278,20 +412,18 @@
 	<script src="assets/js/app.js"></script>
 	<!--Password show & hide js -->
 	<script src="assets/js/show-hide-password.js"></script>
-    <!-- <script>
-		var b1 = document.getElementById("b1");
-		var b2 = document.getElementById("b2");
-        document.getElementById("personal_details").style.display="block";
-		document.getElementById("Store_details").style.display="none";
-        b1.onclick = function() {
-			document.getElementById("personal_details").style.display="none";
-			document.getElementById("Store_details").style.display="block";
-		}
-        b2.onclick = function() {
-			document.getElementById("personal_details").style.display="block";
-			document.getElementById("Store_details").style.display="none";
-		}
-    </script> -->
+    <script>
+		document.getElementById("personal_details").style.display="block";
+        document.getElementById("Store_details").style.display="none";
+        function next(){
+            document.getElementById("personal_details").style.display="none";
+            document.getElementById("Store_details").style.display="block";
+        }
+        function back(){
+            document.getElementById("personal_details").style.display="block";
+            document.getElementById("Store_details").style.display="none";
+        }
+    </script>
 </body>
 
 </html>

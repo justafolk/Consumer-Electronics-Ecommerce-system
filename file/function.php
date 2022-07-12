@@ -7,13 +7,16 @@
             header("location: authentication-signup.php/?error=stmtfailed");
             exit();
         }
-        mysqli_stmt_bind_param($smt, "si", $email, $phone_number);
+        mysqli_stmt_bind_param($smt, "ss", $email, $phone_number);
         mysqli_stmt_execute($smt);
         $resultData = mysqli_stmt_get_result($smt);
         if($row = mysqli_fetch_assoc($resultData)) {
+            echo mysqli_error($conn);
+
             return $row;
         }
         else{
+            echo mysqli_error($conn);
             $result = false;
             return $result;
         }
@@ -89,13 +92,17 @@
 
     function login($conn, $email, $password){
         require_once "login.dbh.php";
+        echo "IN LOGIN";
         $error = "";
         $user_existed = user_exists($conn, $email, $password);
+        echo $user_existed["password1"];
+        $check = password_verify($password, $user_existed["password1"]);
+
         if($user_existed === false){
             $error .= "User Does'nt Exists";
         }
         else{
-            if($user_existed["password1"] == $password){
+            if($check){
                 $check = true;
             }
             else{
@@ -112,6 +119,7 @@
                 $_SESSION["ufirstname"] = $user_existed["firstname"];
                 $_SESSION["ulastname"] = $user_existed["lastname"];
                 $_SESSION["u_id"] = $user_existed["id"];
+                $_SESSION["uimg_url"] = $user_existed["img_url"];
                 header("location: index.php");
                 exit();
             }

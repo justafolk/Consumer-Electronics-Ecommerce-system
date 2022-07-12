@@ -392,13 +392,13 @@
 															<?php echo $_SESSION["ufirstname"] . " " . $_SESSION["ulastname"]; ?>
 														</a>
 														<div class="dropdown-menu dropdown-menu-end">
-															<a href="Profile.html" class="dropdown-item">
+															<a href="./account-dashboard.php" class="dropdown-item">
 																<h6>Profile</h6>
 															</a>
-															<a href="#" class="dropdown-item">
+															<a href="./account-dashboard.php" class="dropdown-item">
 																<h6>Order</h6>
 															</a>
-															<a href="order-tracking.html" class="dropdown-item">
+															<a href="./account-dashboard.php" class="dropdown-item">
 																<h6>Track Order</h6>
 															</a>
 															<div class="d-grid p-1 border-top"> <a href="./logout.php" class="btn btn-dark btn-ecomm">Logout</a>
@@ -432,26 +432,26 @@
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown">Categories <i class='bx bx-chevron-down'></i></a>
 								<ul class="dropdown-menu">
-									<li><a class="dropdown-item" name="mobile" href="searchres.php?term=phone">Mobiles</a>
+									<li><a class="dropdown-item" name="mobile" href="categories.php?term=phone">Mobiles</a>
 									</li>
-									<li><a class="dropdown-item" name="laptop" href="searchres.php?term=laptop">Laptops</a>
+									<li><a class="dropdown-item" name="laptop" href="categories.php?term=laptop">Laptops</a>
 									</li>
-									<li><a class="dropdown-item" name="Smart Watch" href="searchres.php?term=smart_watch">Smart Watch</a>
+									<li><a class="dropdown-item" name="Smart Watch" href="categories.php?term=smart_watch">Smart Watch</a>
 									</li>
-									<li><a class="dropdown-item" name="Tablet" href="searchres.php?term=tablet">Tablet</a>
+									<li><a class="dropdown-item" name="Tablet" href="categories.php?term=tablet">Tablet</a>
 									</li>
-									<li><a class="dropdown-item" name="Televisions" href="searchres.php?term=television">Televisions</a>
+									<li><a class="dropdown-item" name="Televisions" href="categories.php?term=television">Televisions</a>
 									</li>
-									<li><a class="dropdown-item" name="Camera" href="searchres.php?term=camera">Camera</a>
+									<li><a class="dropdown-item" name="Camera" href="categories.php?term=camera">Camera</a>
 									</li>
-									<li><a class="dropdown-item" name="PC Monitors" href="searchres.php?term=pc">PC Peripherals</a>
+									<li><a class="dropdown-item" name="PC Monitors" href="categories.php?term=pc">PC Peripherals</a>
 									</li>
 								</ul>
 							</li>
 
 							<li class="nav-item"> <a class="nav-link" href="about-us.html">About Us </a>
 							</li>
-							<li class="nav-item"> <a class="nav-link" href="contact-us.html">Contact Us </a>
+							<li class="nav-item"> <a class="nav-link" href="contact-us.php">Contact Us </a>
 							</li>
 							<li class="nav-item"> <a class="nav-link" href="shop-categories.html">Our Store</a>
 							</li>

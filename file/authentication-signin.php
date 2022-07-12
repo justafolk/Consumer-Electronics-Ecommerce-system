@@ -26,8 +26,8 @@
 
 <body>	
 	<?php
-		require_once "function.php";
-		require_once "login.dbh.php";
+		include "function.php";
+		include "login.dbh.php";
 		$result = "";
 		if(isset($_POST['submit'])){
 			$email = $_POST['email'];

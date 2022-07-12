@@ -273,7 +273,9 @@
 
                                 <?php 
                                     include './login.dbh.php';
-                                    $sql = "insert into transactions () values ('$user_id', '$address1', '$_POST[amount]', '$_POST[mode]', '$_POST[status]', '$_POST[field1]')";
+                                    $sql = "insert into transactions (method, amount, transac_date, status, method_id, c_id, promo) values ('".$_POST['mode']."', '".$_POST['amount']."', '".$_POST["addedon"]."', '".$_POST["status"]."', '".$_POST["field1"]."', '".$_SESSION["u_id"]."', '".$_POST["udf1"]."')";
+                                    $result = mysqli_query($conn, $sql);
+
                                 ?>
 
                                 <div class="card rounded-0 border bg-transparent mb-0 shadow-none">
@@ -306,11 +308,50 @@
                         while ($row = mysqli_fetch_array($result)){
                             $products .= $row["Prod_id"]."x".$row["quantity"].";";
                         }
+                        function distance($lat1, $lon1, $lat2, $lon2, $unit) {
+
+                            $theta = $lon1 - $lon2;
+                            $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+                            $dist = acos($dist);
+                            $dist = rad2deg($dist);
+                            $miles = $dist * 60 * 1.1515;
+                            $unit = strtoupper($unit);
+                          
+                            if ($unit == "K") {
+                                return ($miles * 1.609344);
+                            } else if ($unit == "N") {
+                                return ($miles * 0.8684);
+                            } else {
+                                return $miles;
+                            }
+                          }
+                          $co_ordinate_user = "grep -i '". $address_f['zipcode']."' ./IN.txt";
+                            $co_ordinate_users = shell_exec($co_ordinate_user);
+                            $co_ordinate_user = explode("\t", explode("\n",`$co_ordinate_user`)[0]);
+                            $lat = $co_ordinate_user[9];
+                            $lon = $co_ordinate_user[10];
+                        $sql = "select * from sellerDB where status='verified'";
+                        $result = mysqli_query($conn, $sql);
+                        $ogdistance = 100000000000000000;
+                          while ($row = mysqli_fetch_assoc($result)){
+                              $co_ords = explode(",", $row["co_ordinates"]);
+                                $distance = distance($lat, $co_ords[0],$lon, $co_ords[1], $unit="K");
+                                if ($distance < $ogdistance){
+                                    $ogdistance = $distance;
+                                    $ogsellerid = $row["id"];
+                                    echo $distance."<br>";
+
+                                    $ogsellermail = $row["email"];
+                                    echo $ogsellermail;
+
+                                }
+                          }
                         
 
 
-                        $sql = "insert into OrderDB ( invoice, amount, c_id, Prod_id,Order_date, Order_status, address) values('".$_POST["txnid"]."',".$_POST["amount"].",'".$user_id."','".$products."','".$_POST["addedon"]."','Placed', '".$_POST["address1"]."')";
+                        $sql = "insert into OrderDB ( invoice, amount, c_id, Prod_id, s_id, s_mail,Order_date, Order_status, address) values('".$_POST["txnid"]."','".$_POST["amount"]."','".$user_id."','".$products."','".$ogsellerid."','".$ogsellermail."','".$_POST["addedon"]."','Placed', '".$_POST["address1"]."')";
                         $result = mysqli_query($conn, $sql);
+                        echo mysqli_error($conn);
                        
                         $sql = "delete from cart where U_id = '$user_id'";
                         $result = mysqli_query($conn, $sql);

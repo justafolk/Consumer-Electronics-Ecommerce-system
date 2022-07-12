@@ -84,32 +84,32 @@ googlesign.addEventListener('click', (e) => {
 });
 
 
-osubmit.addEventListener('click', (e) => {
+// osubmit.addEventListener('click', (e) => {
 
-  var email = document.getElementById("username").value;
-  var password = document.getElementById("password").value;
-  console.log(email);
-  console.log(password);
+//   var email = document.getElementById("username").value;
+//   var password = document.getElementById("password").value;
+//   console.log(email);
+//   console.log(password);
 
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in 
-      const user = userCredential.user;
-      document.getElementById("firebaseop").value = user.uid;
-      alert(user.uid + " has been created");
-      // ...
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // ..
-      alert('errorMessage');
-    });
-  // sleep for 2 seconds
-  setTimeout(function () {
-    document.forms["signupform"].submit();
-  }
-    , 2000);
+//   createUserWithEmailAndPassword(auth, email, password)
+//     .then((userCredential) => {
+//       // Signed in 
+//       const user = userCredential.user;
+//       document.getElementById("firebaseop").value = user.uid;
+//       alert(user.uid + " has been created");
+//       // ...
+//     })
+//     .catch((error) => {
+//       const errorCode = error.code;
+//       const errorMessage = error.message;
+//       // ..
+//       alert('errorMessage');
+//     });
+//   // sleep for 2 seconds
+//   setTimeout(function () {
+//     document.forms["signupform"].submit();
+//   }
+//     , 2000);
 
-});
+// });
 

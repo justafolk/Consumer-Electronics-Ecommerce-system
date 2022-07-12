@@ -91,7 +91,7 @@
 									include 'login.dbh.php';
 									session_start();
 									$user_id = $_SESSION['u_id'];
-									$sql = "SELECT * FROM productdb WHERE (category LIKE '%{$_GET['term']}%') or (title LIKE '%{$_GET['term']}%' or Tags LIKE '%{$_GET['term']}%' or specification LIKE '%{$_GET['term']}%')   LIMIT 5";
+									$sql = "SELECT * FROM productdb WHERE (category=' {$_GET['term']} ') or (category LIKE '%{$_GET['term']}%') or (title LIKE '%{$_GET['term']}%' or Tags LIKE '%{$_GET['term']}%' or specification LIKE '%{$_GET['term']}%')   LIMIT 5";
 
 									$result = mysqli_query($conn, $sql);
 									$resultCheck = mysqli_num_rows($result);

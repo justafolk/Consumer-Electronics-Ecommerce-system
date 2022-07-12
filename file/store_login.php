@@ -39,7 +39,7 @@
         $result = "";
         function user_exist($conn, $email, $store_name) {
             require_once "login.dbh.php";
-            $sql = "SELECT * FROM store_request WHERE email = ? OR store_name = ?;";
+            $sql = "SELECT * FROM sellerDB WHERE email = ? OR store_name = ?;";
             $smt = mysqli_stmt_init($conn);
             if(!mysqli_stmt_prepare($smt, $sql)){
                 exit();
@@ -76,7 +76,8 @@
                     $_SESSION["sfirstname"] = $user_existed["firstname"];
                     $_SESSION["slastname"] = $user_existed["lastname"];
                     $_SESSION["s_id"] = $user_existed["id"];
-                    header("location: index.php");
+                    $_SESSION["sstore_name"] = $user_existed["store_name"];
+                    header("location: ./Seller/index.php");
                     exit();
                 }
             }
