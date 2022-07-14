@@ -243,7 +243,7 @@
 										
 											<h5 class="card-title text-uppercase"> <?php echo $row["title"]; ?></h5>
 											<p class="card-text text-uppercase"><?php echo $row["subtitle"]; ?></p>
-											<!-- <a href="jzscript:;" class="btn btn-dark btn-ecomm"></a> -->
+											<!-- <a href="" class="btn btn-dark btn-ecomm"></a> -->
 										</div>
 										<?php } ?>
 										<!-- <div class="card-body">
@@ -253,7 +253,7 @@
 														<p class="card-text text-uppercase">Starting at Rs. 19400</p>
 													</li>
 													<li style="margin-left:30%;">
-														<a href="jzscript:;" class="btn btn-dark btn-ecomm">SHOP NOW</a>
+														<a href="" class="btn btn-dark btn-ecomm">SHOP NOW</a>
 													</li>
 												</ul>
 											</div> -->
@@ -277,7 +277,7 @@
 										
 										<h5 class="card-title text-uppercase"> <?php echo $row["title"]; ?></h5>
 											<p class="card-text text-uppercase"><?php echo $row["subtitle"]; ?></p>
-											<!-- <a href="jzscript:;" class="btn btn-dark btn-ecomm"><?php echo $row["subtitle"]; ?></a> -->
+											<!-- <a href="" class="btn btn-dark btn-ecomm"><?php echo $row["subtitle"]; ?></a> -->
 										</div>
 										<?php } ?>
 									</div>
@@ -305,7 +305,7 @@
 					<div class="container">
 						<div class="d-flex align-items-center">
 							<h5 class="text-uppercase mb-0">New Arrival Products</h5>
-							<a href="jzscript:;" class="btn btn-dark btn-ecomm ms-auto rounded-0 border-1">More<i class='bx bx-chevron-right'></i></a>
+							<a href="" class="btn btn-dark btn-ecomm ms-auto rounded-0 border-1">More<i class='bx bx-chevron-right'></i></a>
 						</div>
 						<br>
 						<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
@@ -319,7 +319,7 @@
 											<div class="card-body">
 												<h5 class="card-title text-uppercase">Samsung Galaxy Z Fold 3 5G</h5>
 												<p class="card-text text-uppercase">Starting at Rs. 19 400</p>
-												<a href="jzscript:;" class="btn btn-dark btn-ecomm">SHOP NOW</a>
+												<a href="" class="btn btn-dark btn-ecomm">SHOP NOW</a>
 											</div>
 										</div>
 									</div>
@@ -335,7 +335,7 @@
 											<div class="card-body">
 												<h5 class="card-title text-uppercase">Samsung Galaxy Z Fold 3 5G</h5>
 												<p class="card-text text-uppercase">Starting at Rs. 19 400</p>
-												<a href="jzscript:;" class="btn btn-dark btn-ecomm">SHOP NOW</a>
+												<a href="" class="btn btn-dark btn-ecomm">SHOP NOW</a>
 											</div>
 										</div>
 									</div>
@@ -351,13 +351,13 @@
 											<div class="card-body">
 												<h5 class="card-title text-uppercase">Samsung Galaxy Z Fold 3 5G</h5>
 												<p class="card-text text-uppercase">Starting at Rs. 19 400</p>
-												<a href="jzscript:;" class="btn btn-dark btn-ecomm">SHOP NOW</a>
+												<a href="" class="btn btn-dark btn-ecomm">SHOP NOW</a>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-
+								
 							<?php
 							require_once "login.dbh.php";
 							require_once "function.php";
@@ -386,11 +386,11 @@
 									<div class="card rounded-0 product-card">
 										<div class="card-header bg-transparent border-bottom-0">
 											<div class="d-flex align-items-center justify-content-end gap-3">
-												<a href="jzscript:;">
+												<a href="">
 													<div class="product-compare"><span><i class='bx bx-git-compare'></i> Compare</span>
 													</div>
 												</a>
-												<a href="jzscript:;" onclick="wishlist('<?php echo $j ?>wish')">
+												<a  onclick="wishlist('<?php echo $j ?>wish', <?php echo $product[$j]['Prod_id'] ?>)">
 													<div class="product-wishlist"><i id="<?php echo $j ?>wish" class='bx bx-heart' style="color:#ff0000"></i>
 													</div>
 												</a>
@@ -420,10 +420,18 @@
 														<span class="fs-5">Rs. <?php echo $product[$j]['price']; ?></span>
 													</div>
 													<div class="cursor-pointer ms-auto"> <i class="bx bxs-star text-warning"></i>
-														<i class="bx bxs-star text-warning"></i>
-														<i class="bx bxs-star text-warning"></i>
-														<i class="bx bxs-star text-light-4"></i>
-														<i class="bx bxs-star text-light-4"></i>
+													<?php
+																		$sql = "SELECT * from review where Prod_id='{$product[$j]["Prod_id"]}'";
+																		$ress = mysqli_query($conn, $sql);
+																		$row_re = mysqli_fetch_assoc($ress); 
+																		for ($asf = 0; $asf < $row_re["ratings"]; $asf++) { ?>
+																			<i class="bx bxs-star text-warning"></i>
+																		<?php
+																		}
+																		for ($asf = 0; $asf < 5 - $row_re["ratings"]; $asf++) { ?>
+																			<i class="bx bxs-star text-gray"></i>
+																			<?php }
+																		?>
 													</div>
 												</div>
 												<div class="product-action mt-2">
@@ -434,7 +442,7 @@
 													<div class="d-grid gap-2">
 
 														<button id="cart1" type="button" name="addtocart" onclick="window.location.href='http://localhost:3456/add_to_cart.php?prod_id=<?php echo $product[$j]['Prod_id']; ?> '" class="btn btn-dark btn-ecomm"><i class='bx bxs-cart'></i>Add to Cart</button>
-														<a href="jzscript:;" class="btn btn-light btn-ecomm" data-bs-toggle="modal" data-bs-target="#QuickViewProduct<?php echo $product[$j]['Prod_id']; ?>"><i class='bx bx-zoom-in'></i>Quick View</a>
+														<a href="" class="btn btn-light btn-ecomm" data-bs-toggle="modal" data-bs-target="#QuickViewProduct<?php echo $product[$j]['Prod_id']; ?>"><i class='bx bx-zoom-in'></i>Quick View</a>
 													</div>
 												</div>
 											</div>
@@ -540,7 +548,7 @@
 															<!--end row-->
 															<div class="d-flex gap-2 mt-3">
 															<button id="cart1" type="button" name="addtocart" onclick="window.location.href='http://localhost:3456/add_to_cart.php?prod_id=<?php echo $product[$j]['Prod_id']; ?> '" class="btn btn-dark btn-ecomm"><i class='bx bxs-cart'></i>Add to Cart</button>
-																<a href="jzscript:;" class="btn btn-light btn-ecomm"><i class="bx bx-heart"></i>Add to Wishlist</a>
+																<a href="" class="btn btn-light btn-ecomm"><i class="bx bx-heart"></i>Add to Wishlist</a>
 															</div>
 														</div>
 													</div>
@@ -556,7 +564,7 @@
 						</div>
 						<div class="d-flex align-items-center mt-5">
 							<h5 class="text-uppercase mb-0">Best Products</h5>
-							<a href="jzscript:;" class="btn btn-dark btn-ecomm ms-auto rounded-0 border-1">More<i class='bx bx-chevron-right'></i></a>
+							<a href="" class="btn btn-dark btn-ecomm ms-auto rounded-0 border-1">More<i class='bx bx-chevron-right'></i></a>
 						</div>
 						<hr>
 						<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
@@ -585,19 +593,14 @@
 									<div class="card rounded-0 product-card">
 										<div class="card-header bg-transparent border-bottom-0">
 											<div class="d-flex align-items-center justify-content-end gap-3">
-												<a href="jzscript:;">
-													<div class="product-compare"><span><i class='bx bx-git-compare'></i>Compare</span>
-													</div>
+												<a href="">
+													
 												</a>
-												<a href="jzscript:;" onclick="wishlist1()">
+												<a href="" onclick="wishlist('<?php echo $j ?>wish', <?php echo $product[$j]['Prod_id'] ?>)">
 													<div class="product-wishlist"><i class='bx bx-heart'></i>
 													</div>
 													<script>
-														function wishlist1() {
-															var element = document.getElementById("w1");
-															element.classList.remove("bx-heart");
-															element.classList.add("bxs-heart");
-														}
+													
 													</script>
 												</a>
 											</div>
@@ -637,7 +640,7 @@
 													?>
 													<div class="d-grid gap-2">
 													<button id="cart1" type="button" name="addtocart" onclick="window.location.href='http://localhost:3456/add_to_cart.php?prod_id=<?php echo $product[$j]['Prod_id']; ?> '" class="btn btn-dark btn-ecomm"><i class='bx bxs-cart'></i>Add to Cart</button>
-														<a href="jzscript:;" class="btn btn-light btn-ecomm" data-bs-toggle="modal" data-bs-target="#QuickViewProduct<?php echo $product[$j]['Prod_id']; ?>"><i class='bx bx-zoom-in'></i>Quick View</a>
+														<a href="" class="btn btn-light btn-ecomm" data-bs-toggle="modal" data-bs-target="#QuickViewProduct<?php echo $product[$j]['Prod_id']; ?>"><i class='bx bx-zoom-in'></i>Quick View</a>
 													</div>
 												</div>
 											</div>
@@ -735,8 +738,8 @@
 															</div>
 															<!--end row-->
 															<div class="d-flex gap-2 mt-3">
-																<a href="jzscript:;" class="btn btn-dark btn-ecomm"> <i class="bx bxs-cart-add"></i>Add to Cart</a>
-																<a href="jzscript:;" class="btn btn-light btn-ecomm"><i class="bx bx-heart"></i>Add to Wishlist</a>
+																<a href="" class="btn btn-dark btn-ecomm"> <i class="bx bxs-cart-add"></i>Add to Cart</a>
+																<a href="" class="btn btn-light btn-ecomm"><i class="bx bx-heart"></i>Add to Wishlist</a>
 															</div>
 														</div>
 													</div>
@@ -757,7 +760,7 @@
 				<div class="container">
 					<div class="d-flex align-items-center">
 						<h5 class="text-uppercase mb-0">New Arrival Headphones</h5>
-						<a href="jzscript:;" class="btn btn-dark btn-ecomm ms-auto rounded-0 border-1">More<i class='bx bx-chevron-right'></i></a>
+						<a href="" class="btn btn-dark btn-ecomm ms-auto rounded-0 border-1">More<i class='bx bx-chevron-right'></i></a>
 					</div>
 					<br>
 					<div class="product-grid">
@@ -772,7 +775,7 @@
 											<div class="card-body">
 												<h5 class="card-title text-uppercase">Mobile</h5>
 												<p class="card-text text-uppercase">Starting at Rs. 19 400</p>
-												<a href="jzscript:;" class="btn btn-dark btn-ecomm">SHOP NOW</a>
+												<a href="" class="btn btn-dark btn-ecomm">SHOP NOW</a>
 											</div>
 										</div>
 									</div>
@@ -788,7 +791,7 @@
 											<div class="card-body">
 												<h5 class="card-title text-uppercase">Samsung Galaxy Z Fold 3 5G</h5>
 												<p class="card-text text-uppercase">Starting at Rs. 19 400</p>
-												<a href="jzscript:;" class="btn btn-dark btn-ecomm">SHOP NOW</a>
+												<a href="" class="btn btn-dark btn-ecomm">SHOP NOW</a>
 											</div>
 										</div>
 									</div>
@@ -804,7 +807,7 @@
 											<div class="card-body">
 												<h5 class="card-title text-uppercase">Samsung Galaxy Z Fold 3 5G</h5>
 												<p class="card-text text-uppercase">Starting at Rs. 19 400</p>
-												<a href="jzscript:;" class="btn btn-dark btn-ecomm">SHOP NOW</a>
+												<a href="" class="btn btn-dark btn-ecomm">SHOP NOW</a>
 											</div>
 										</div>
 									</div>
@@ -835,11 +838,11 @@
 									<div class="card rounded-0 product-card">
 										<div class="card-header bg-transparent border-bottom-0">
 											<div class="d-flex align-items-center justify-content-end gap-3">
-												<a href="jzscript:;">
+												<a href="">
 													<div class="product-compare"><span><i class='bx bx-git-compare'></i> Compare</span>
 													</div>
 												</a>
-												<a href="jzscript:;">
+												<a href="">
 													<div class="product-wishlist"> <i class='bx bx-heart'></i>
 													</div>
 												</a>
@@ -873,8 +876,8 @@
 												</div>
 												<div class="product-action mt-2">
 													<div class="d-grid gap-2">
-														<a href="jzscript:;" class="btn btn-dark btn-ecomm"> <i class='bx bxs-cart-add'></i>Add to Cart</a>
-														<a href="jzscript:;" class="btn btn-light btn-ecomm" data-bs-toggle="modal" data-bs-target="#QuickViewProduct"><i class='bx bx-zoom-in'></i>Quick View</a>
+														<a href="" class="btn btn-dark btn-ecomm"> <i class='bx bxs-cart-add'></i>Add to Cart</a>
+														<a href="" class="btn btn-light btn-ecomm" data-bs-toggle="modal" data-bs-target="#QuickViewProduct"><i class='bx bx-zoom-in'></i>Quick View</a>
 													</div>
 												</div>
 											</div>
@@ -893,7 +896,7 @@
 				<div class="container">
 					<div class="d-flex align-items-center">
 						<h5 class="text-uppercase mb-0">New Arrival Mobiles</h5>
-						<a href="jzscript:;" class="btn btn-dark btn-ecomm ms-auto rounded-0 border-1">More<i class='bx bx-chevron-right'></i></a>
+						<a href="" class="btn btn-dark btn-ecomm ms-auto rounded-0 border-1">More<i class='bx bx-chevron-right'></i></a>
 					</div>
 					<br>
 					<div class="product-grid">
@@ -908,7 +911,7 @@
 											<div class="card-body">
 												<h5 class="card-title text-uppercase">Mobile</h5>
 												<p class="card-text text-uppercase">Starting at Rs. 19 400</p>
-												<a href="jzscript:;" class="btn btn-dark btn-ecomm">SHOP NOW</a>
+												<a href="" class="btn btn-dark btn-ecomm">SHOP NOW</a>
 											</div>
 										</div>
 									</div>
@@ -924,7 +927,7 @@
 											<div class="card-body">
 												<h5 class="card-title text-uppercase">Samsung Galaxy Z Fold 3 5G</h5>
 												<p class="card-text text-uppercase">Starting at Rs. 19 400</p>
-												<a href="jzscript:;" class="btn btn-dark btn-ecomm">SHOP NOW</a>
+												<a href="" class="btn btn-dark btn-ecomm">SHOP NOW</a>
 											</div>
 										</div>
 									</div>
@@ -940,7 +943,7 @@
 											<div class="card-body">
 												<h5 class="card-title text-uppercase">Samsung Galaxy Z Fold 3 5G</h5>
 												<p class="card-text text-uppercase">Starting at Rs. 19 400</p>
-												<a href="jzscript:;" class="btn btn-dark btn-ecomm">SHOP NOW</a>
+												<a href="" class="btn btn-dark btn-ecomm">SHOP NOW</a>
 											</div>
 										</div>
 									</div>
@@ -971,10 +974,10 @@
 									<div class="card rounded-0 product-card">
 										<div class="card-header bg-transparent border-bottom-0">
 											<div class="d-flex align-items-center justify-content-end gap-3 mt-3">
-												<a href="jzscript:;">
+												<a href="">
 													<div class="product-compare"><span><i class='bx bx-git-compare'></i> Compare</span></div>
 												</a>
-												<a href="jzscript:;">
+												<a href="">
 													<div class="product-wishlist"> <i class='bx bx-heart'></i></div>
 												</a>
 											</div>
@@ -1009,7 +1012,7 @@
 												<div class="mt-2">
 													<div class="d-grid gap-2">
 														<a href="add_to_cart.php?prod_id=<?php echo $product[$j]['Prod_id']; ?>" class="btn btn-dark btn-ecomm"> <i class='bx bxs-cart-add'></i>Add to Cart</a>
-														<a href="jzscript:;" class="btn btn-light btn-ecomm" data-bs-toggle="modal" data-bs-target="#QuickViewProduct"><i class='bx bx-zoom-in'></i>Quick View</a>
+														<a href="" class="btn btn-light btn-ecomm" data-bs-toggle="modal" data-bs-target="#QuickViewProduct"><i class='bx bx-zoom-in'></i>Quick View</a>
 													</div>
 												</div>
 											</div>
@@ -1027,7 +1030,7 @@
 				<div class="container">
 					<div class="d-flex align-items-center">
 						<h5 class="text-uppercase mb-0">New Arrival Laptop</h5>
-						<a href="jzscript:;" class="btn btn-dark btn-ecomm ms-auto rounded-0 border-1">More<i class='bx bx-chevron-right'></i></a>
+						<a href="" class="btn btn-dark btn-ecomm ms-auto rounded-0 border-1">More<i class='bx bx-chevron-right'></i></a>
 					</div>
 					<br>
 					<div class="product-grid">
@@ -1042,7 +1045,7 @@
 											<div class="card-body">
 												<h5 class="card-title text-uppercase">Mobile</h5>
 												<p class="card-text text-uppercase">Starting at Rs. 19 400</p>
-												<a href="jzscript:;" class="btn btn-dark btn-ecomm">SHOP NOW</a>
+												<a href="" class="btn btn-dark btn-ecomm">SHOP NOW</a>
 											</div>
 										</div>
 									</div>
@@ -1058,7 +1061,7 @@
 											<div class="card-body">
 												<h5 class="card-title text-uppercase">Samsung Galaxy Z Fold 3 5G</h5>
 												<p class="card-text text-uppercase">Starting at Rs. 19 400</p>
-												<a href="jzscript:;" class="btn btn-dark btn-ecomm">SHOP NOW</a>
+												<a href="" class="btn btn-dark btn-ecomm">SHOP NOW</a>
 											</div>
 										</div>
 									</div>
@@ -1074,7 +1077,7 @@
 											<div class="card-body">
 												<h5 class="card-title text-uppercase">Samsung Galaxy Z Fold 3 5G</h5>
 												<p class="card-text text-uppercase">Starting at Rs. 19 400</p>
-												<a href="jzscript:;" class="btn btn-dark btn-ecomm">SHOP NOW</a>
+												<a href="" class="btn btn-dark btn-ecomm">SHOP NOW</a>
 											</div>
 										</div>
 									</div>
@@ -1105,11 +1108,11 @@
 									<div class="card rounded-0 product-card">
 										<div class="card-header bg-transparent border-bottom-0">
 											<div class="d-flex align-items-center justify-content-end gap-3">
-												<a href="jzscript:;">
+												<a href="">
 													<div class="product-compare"><span><i class='bx bx-git-compare'></i> Compare</span>
 													</div>
 												</a>
-												<a href="jzscript:;">
+												<a href="">
 													<div class="product-wishlist"> <i class='bx bx-heart'></i>
 													</div>
 												</a>
@@ -1143,8 +1146,8 @@
 												</div>
 												<div class="product-action mt-2">
 													<div class="d-grid gap-2">
-														<a href="jzscript:;" class="btn btn-dark btn-ecomm"> <i class='bx bxs-cart-add'></i>Add to Cart</a>
-														<a href="jzscript:;" class="btn btn-light btn-ecomm" data-bs-toggle="modal" data-bs-target="#QuickViewProduct"><i class='bx bx-zoom-in'></i>Quick View</a>
+														<a href="" class="btn btn-dark btn-ecomm"> <i class='bx bxs-cart-add'></i>Add to Cart</a>
+														<a href="" class="btn btn-light btn-ecomm" data-bs-toggle="modal" data-bs-target="#QuickViewProduct"><i class='bx bx-zoom-in'></i>Quick View</a>
 													</div>
 												</div>
 											</div>
@@ -1163,7 +1166,7 @@
 				<div class="container">
 					<div class="d-flex align-items-center">
 						<h5 class="text-uppercase mb-0">New Arrival Tablet</h5>
-						<a href="jzscript:;" class="btn btn-dark btn-ecomm ms-auto rounded-0 border-1">More<i class='bx bx-chevron-right'></i></a>
+						<a href="" class="btn btn-dark btn-ecomm ms-auto rounded-0 border-1">More<i class='bx bx-chevron-right'></i></a>
 					</div>
 					<br>
 					<div class="product-grid">
@@ -1178,7 +1181,7 @@
 											<div class="card-body">
 												<h5 class="card-title text-uppercase">Mobile</h5>
 												<p class="card-text text-uppercase">Starting at Rs. 19 400</p>
-												<a href="jzscript:;" class="btn btn-dark btn-ecomm">SHOP NOW</a>
+												<a href="" class="btn btn-dark btn-ecomm">SHOP NOW</a>
 											</div>
 										</div>
 									</div>
@@ -1194,7 +1197,7 @@
 											<div class="card-body">
 												<h5 class="card-title text-uppercase">Samsung Galaxy Z Fold 3 5G</h5>
 												<p class="card-text text-uppercase">Starting at Rs. 19 400</p>
-												<a href="jzscript:;" class="btn btn-dark btn-ecomm">SHOP NOW</a>
+												<a href="" class="btn btn-dark btn-ecomm">SHOP NOW</a>
 											</div>
 										</div>
 									</div>
@@ -1210,7 +1213,7 @@
 											<div class="card-body">
 												<h5 class="card-title text-uppercase">Samsung Galaxy Z Fold 3 5G</h5>
 												<p class="card-text text-uppercase">Starting at Rs. 19 400</p>
-												<a href="jzscript:;" class="btn btn-dark btn-ecomm">SHOP NOW</a>
+												<a href="" class="btn btn-dark btn-ecomm">SHOP NOW</a>
 											</div>
 										</div>
 									</div>
@@ -1241,7 +1244,7 @@
 									<div class="card rounded-0 product-card">
 										<div class="card-header bg-transparent border-bottom-0">
 											<div class="d-flex align-items-center justify-content-end gap-3">
-												<a href="jzscript:;">
+												<a href="">
 													<div class="product-wishlist"> <i class='bx bx-heart'></i>
 													</div>
 												</a>
@@ -1271,8 +1274,8 @@
 												</div>
 												<div class="product-action mt-2">
 													<div class="d-grid gap-2">
-														<a href="jzscript:;" class="btn btn-dark btn-ecomm"> <i class='bx bxs-cart-add'></i>Add to Cart</a>
-														<a href="jzscript:;" class="btn btn-light btn-ecomm" data-bs-toggle="modal" data-bs-target="#QuickViewProduct"><i class='bx bx-zoom-in'></i>Quick View</a>
+														<a href="" class="btn btn-dark btn-ecomm"> <i class='bx bxs-cart-add'></i>Add to Cart</a>
+														<a href="" class="btn btn-light btn-ecomm" data-bs-toggle="modal" data-bs-target="#QuickViewProduct"><i class='bx bx-zoom-in'></i>Quick View</a>
 													</div>
 												</div>
 											</div>
@@ -1286,7 +1289,7 @@
 						</div>
 						<!-- <div class="d-flex align-items-center mt-3">
 							<h5 class="text-uppercase mb-0">Best Tablet</h5>
-							<a href="jzscript:;" class="btn btn-dark btn-ecomm ms-auto rounded-0 border-1">More<i class='bx bx-chevron-right'></i></a>
+							<a href="" class="btn btn-dark btn-ecomm ms-auto rounded-0 border-1">More<i class='bx bx-chevron-right'></i></a>
 						</div>
 						<hr>
 						<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
@@ -1294,7 +1297,7 @@
 								<div class="card rounded-0 product-card">
 									<div class="card-header bg-transparent border-bottom-0">
 										<div class="d-flex align-items-center justify-content-end">
-											<a href="jzscript:;">
+											<a href="">
 												<div class="product-wishlist"> <i class='bx bx-heart'></i>
 												</div>
 											</a>
@@ -1305,10 +1308,10 @@
 									</a>
 									<div class="card-body">
 										<div class="product-info">
-											<a href="jzscript:;">
+											<a href="">
 												<p class="product-catergory font-13 mb-1">Catergory Name</p>
 											</a>
-											<a href="jzscript:;">
+											<a href="">
 												<h6 class="product-name mb-2">Product Short Name</h6>
 											</a>
 											<div class="d-flex align-items-center">
@@ -1320,8 +1323,8 @@
 											</div>
 											<div class="product-action mt-2">
 												<div class="d-grid gap-2">
-													<a href="jzscript:;" class="btn btn-dark btn-ecomm"> <i class='bx bxs-cart-add'></i>Add to Cart</a>
-													<a href="jzscript:;" class="btn btn-light btn-ecomm" data-bs-toggle="modal" data-bs-target="#QuickViewProduct"><i class='bx bx-zoom-in'></i>Quick View</a>
+													<a href="" class="btn btn-dark btn-ecomm"> <i class='bx bxs-cart-add'></i>Add to Cart</a>
+													<a href="" class="btn btn-light btn-ecomm" data-bs-toggle="modal" data-bs-target="#QuickViewProduct"><i class='bx bx-zoom-in'></i>Quick View</a>
 												</div>
 											</div>
 										</div>
@@ -1373,17 +1376,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="item">
-								<div class="card rounded-0 product-card border">
-									<div class="card-body">
-										<img src="assets/images/categories/Bag.png" class="img-fluid" alt="...">
-									</div>
-									<div class="card-footer text-center">
-										<h6 class="mb-1 text-uppercase">Bags</h6>
-										<p class="mb-0 font-12 text-uppercase">6 Products</p>
-									</div>
-								</div>
-							</div>
+						
 							<div class="item">
 								<div class="card rounded-0 product-card border">
 									<div class="card-body">
@@ -1539,19 +1532,19 @@
 											<div class="date-number">24</div>
 											<div class="date-month">FEB</div>
 										</div>
-										<a href="jzscript:;">
+										<a href="">
 											<img src="assets/images/blogs/01.png" class="card-img-top border-bottom" alt="...">
 										</a>
 										<div class="card-body">
 											<div class="news-title">
-												<a href="jzscript:;">
+												<a href="">
 													<h5 class="mb-3 text-capitalize">Blog Short Title</h5>
 												</a>
 											</div>
 											<p class="news-content mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non placerat mi. Etiam non tellus sem. Aenean...</p>
 										</div>
 										<div class="card-footer border-top">
-											<a href="jzscript:;">
+											<a href="">
 												<p class="mb-0"><small>0 Comments</small>
 												</p>
 											</a>
@@ -1564,19 +1557,19 @@
 											<div class="date-number">24</div>
 											<div class="date-month">FEB</div>
 										</div>
-										<a href="jzscript:;">
+										<a href="">
 											<img src="assets/images/blogs/02.png" class="card-img-top border-bottom" alt="...">
 										</a>
 										<div class="card-body">
 											<div class="news-title">
-												<a href="jzscript:;">
+												<a href="">
 													<h5 class="mb-3 text-capitalize">Blog Short Title</h5>
 												</a>
 											</div>
 											<p class="news-content mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non placerat mi. Etiam non tellus sem. Aenean...</p>
 										</div>
 										<div class="card-footer border-top">
-											<a href="jzscript:;">
+											<a href="">
 												<p class="mb-0"><small>0 Comments</small>
 												</p>
 											</a>
@@ -1589,19 +1582,19 @@
 											<div class="date-number">24</div>
 											<div class="date-month">FEB</div>
 										</div>
-										<a href="jzscript:;">
+										<a href="">
 											<img src="assets/images/blogs/03.png" class="card-img-top border-bottom" alt="...">
 										</a>
 										<div class="card-body">
 											<div class="news-title">
-												<a href="jzscript:;">
+												<a href="">
 													<h5 class="mb-3 text-capitalize">Blog Short Title</h5>
 												</a>
 											</div>
 											<p class="news-content mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non placerat mi. Etiam non tellus sem. Aenean...</p>
 										</div>
 										<div class="card-footer border-top">
-											<a href="jzscript:;">
+											<a href="">
 												<p class="mb-0"><small>0 Comments</small>
 												</p>
 											</a>
@@ -1614,19 +1607,19 @@
 											<div class="date-number">24</div>
 											<div class="date-month">FEB</div>
 										</div>
-										<a href="jzscript:;">
+										<a href="">
 											<img src="assets/images/blogs/04.png" class="card-img-top border-bottom" alt="...">
 										</a>
 										<div class="card-body">
 											<div class="news-title">
-												<a href="jzscript:;">
+												<a href="">
 													<h5 class="mb-3 text-capitalize">Blog Short Title</h5>
 												</a>
 											</div>
 											<p class="news-content mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non placerat mi. Etiam non tellus sem. Aenean...</p>
 										</div>
 										<div class="card-footer border-top">
-											<a href="jzscript:;">
+											<a href="">
 												<p class="mb-0"><small>0 Comments</small>
 												</p>
 											</a>
@@ -1639,19 +1632,19 @@
 											<div class="date-number">24</div>
 											<div class="date-month">FEB</div>
 										</div>
-										<a href="jzscript:;">
+										<a href="">
 											<img src="assets/images/blogs/05.png" class="card-img-top border-bottom" alt="...">
 										</a>
 										<div class="card-body">
 											<div class="news-title">
-												<a href="jzscript:;">
+												<a href="">
 													<h5 class="mb-3 text-capitalize">Blog Short Title</h5>
 												</a>
 											</div>
 											<p class="news-content mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non placerat mi. Etiam non tellus sem. Aenean...</p>
 										</div>
 										<div class="card-footer border-top">
-											<a href="jzscript:;">
+											<a href="">
 												<p class="mb-0"><small>0 Comments</small>
 												</p>
 											</a>
@@ -1664,19 +1657,19 @@
 											<div class="date-number">24</div>
 											<div class="date-month">FEB</div>
 										</div>
-										<a href="jzscript:;">
+										<a href="">
 											<img src="assets/images/blogs/06.png" class="card-img-top border-bottom" alt="...">
 										</a>
 										<div class="card-body">
 											<div class="news-title">
-												<a href="jzscript:;">
+												<a href="">
 													<h5 class="mb-3 text-capitalize">Blog Short Title</h5>
 												</a>
 											</div>
 											<p class="news-content mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non placerat mi. Etiam non tellus sem. Aenean...</p>
 										</div>
 										<div class="card-footer border-top">
-											<a href="jzscript:;">
+											<a href="">
 												<p class="mb-0"><small>0 Comments</small>
 												</p>
 											</a>
@@ -1696,49 +1689,49 @@
 						<div class="brands-shops owl-carousel owl-theme border">
 							<div class="item border-end">
 								<div class="p-4">
-									<a href="jzscript:;">
+									<a href="">
 										<img src="assets/images/brands/01.png" class="img-fluid" alt="...">
 									</a>
 								</div>
 							</div>
 							<div class="item border-end">
 								<div class="p-4">
-									<a href="jzscript:;">
+									<a href="">
 										<img src="assets/images/brands/02.png" class="img-fluid" alt="...">
 									</a>
 								</div>
 							</div>
 							<!-- <div class="item border-end">
 									<div class="p-4">
-										<a href="jzscript:;">
+										<a href="">
 											<img src="assets/images/brands/03.png" class="img-fluid" alt="...">
 										</a>
 									</div>
 								</div> -->
 							<div class="item border-end">
 								<div class="p-4">
-									<a href="jzscript:;">
+									<a href="">
 										<img src="assets/images/brands/04.png" class="img-fluid" alt="...">
 									</a>
 								</div>
 							</div>
 							<div class="item border-end">
 								<div class="p-4">
-									<a href="jzscript:;">
+									<a href="">
 										<img src="assets/images/brands/05.png" class="img-fluid" alt="...">
 									</a>
 								</div>
 							</div>
 							<div class="item border-end">
 								<div class="p-4">
-									<a href="jzscript:;">
+									<a href="">
 										<img src="assets/images/brands/06.png" class="img-fluid" alt="...">
 									</a>
 								</div>
 							</div>
 							<div class="item border-end">
 								<div class="p-4">
-									<a href="jzscript:;">
+									<a href="">
 										<img src="assets/images/brands/07.png" class="img-fluid" alt="...">
 									</a>
 								</div>
@@ -1889,7 +1882,7 @@
 								</div>
 								<!--end row-->
 								<div class="d-flex gap-2 mt-3">
-									<a href="jzscript:;" class="btn btn-dark btn-ecomm"> <i class="bx bxs-cart-add"></i>Add to Cart</a> <a href="jzscript:;" class="btn btn-light btn-ecomm"><i class="bx bx-heart"></i>Add to Wishlist</a>
+									<a href="" class="btn btn-dark btn-ecomm"> <i class="bx bxs-cart-add"></i>Add to Cart</a> <a href="" class="btn btn-light btn-ecomm"><i class="bx bx-heart"></i>Add to Wishlist</a>
 								</div>
 							</div>
 						</div>
@@ -1903,7 +1896,7 @@
 
 	?>
 	<!--end quick view product-->
-	<!--Start Back To Top Button--> <a href="jzScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
+	<!--Start Back To Top Button--> <a href="" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
 	<!--End Back To Top Button-->
 	</div>
 	<!--end wrapper-->
@@ -2004,11 +1997,22 @@
 		}
 
 
-		function wishlist(id) {
+		function wishlist(id, prod) {
 			var element = document.getElementById(id);
-			element.classList.remove("bx-heart");
-			element.classList.add("bxs-heart");
-			element.onclick = remove_wish(id);
+			if (element.classList.contains("bx-heart")){
+				element.classList.remove("bx-heart");
+				element.classList.add("bxs-heart");
+				$.get( "add_wishlist.php?Prod_id="+prod+"&c_id="+"<?php echo $_SESSION["u_id"] ?>", function( data ) {
+					console.log(data);
+				});
+
+			}else{
+				element.classList.remove("bxs-heart");
+				element.classList.add("bx-heart");
+				$.get( "./remove_wishlist.php?Prod_id="+prod+"&c_id="+"<?php echo $_SESSION["u_id"] ?>");
+
+				
+			}
 		}
 	
 		// var x = document.getElementByClass("product-wishlist");

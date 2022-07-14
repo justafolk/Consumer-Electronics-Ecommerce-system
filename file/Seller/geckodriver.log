@@ -192,3 +192,13 @@ Read port: 45527
 JavaScript error: http://track.dtdc.com/ctbs-tracking/pages/resources/js/jquery/jquery-ui.min.js, line 17: ReferenceError: jQuery is not defined
 JavaScript warning: http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js, line 2: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
 JavaScript error: http://track.dtdc.com/ctbs-tracking/pages/resources/js/trackingEnhancement/prototype.js, line 7066: TypeError: element.dispatchEvent is not a function
+1657632348132	geckodriver	INFO	Listening on 127.0.0.1:35033
+1657632348618	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--headless" "--remote-debugging-port" "35507" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileMwi5Hh"
+*** You are running in headless mode.
+1657632352383	Marionette	INFO	Marionette enabled
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileMwi5Hh/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:35507/devtools/browser/76e70ef3-04a5-4c19-bf74-67eb531b93e7
+1657632367819	Marionette	INFO	Listening on port 36077
+Read port: 36077
+1657632368047	RemoteAgent	WARN	TLS certificate errors will be ignored for this session

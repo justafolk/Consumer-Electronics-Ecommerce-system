@@ -130,7 +130,7 @@
 									<nav class="navbar navbar-expand">
 										<ul class="navbar-nav ms-auto">
 
-											<li class="nav-item"><a href="wishlist.html" class="nav-link cart-link"><i class='bx bx-heart'></i></a>
+											<li class="nav-item"><a href="wishlist.php" class="nav-link cart-link"><i class='bx bx-heart'></i></a>
 											</li>
 											<li class="nav-item dropdown dropdown-large">
 

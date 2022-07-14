@@ -1,5 +1,17 @@
 <?php $file = "orders.php";
 include "header.php" ?>
+<?php
+  function verify_delivery($track_id){
+    include "../login.dbh.php"; 
+    $status = explode("\n",`python3 ./requests_track.py $track_id`)[0];
+    if (strpos($status, 'Successfully Delivered')!== false){
+      $sql = "UPDATE OrderDB SET Order_status = 'delivered' WHERE Tracking_id = '$track_id'";
+      $result = mysqli_query($conn, $sql);
+        echo mysqli_error($conn);
+      return true;
+    }
+  }
+?>
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="background-color: #f5f3ff;">
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 border-bottom  ">
     <h1 class="h2">Manage Orders </h1>
@@ -272,6 +284,10 @@ include "header.php" ?>
                     echo mysqli_error($conn);
                   }
                   while ($row = mysqli_fetch_assoc($result)) {
+                    $a = verify_delivery($row["Tracking_id"]);
+                    if ($a == true){
+                      continue;
+                    }
                     $order_id = $row['invoice'];
                     $order_date = $row['Order_date'];
                     $sql = "SELECT * FROM user WHERE id='" . $row['c_id'] . "'";

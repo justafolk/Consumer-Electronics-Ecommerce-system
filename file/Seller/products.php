@@ -1,6 +1,7 @@
-<?php $file="products.php";  include "header.php";?>
-  <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="background-color: #f5f3ff;">
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 border-bottom  ">
+<?php $file = "products.php";
+include "header.php"; ?>
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="background-color: #f5f3ff;">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 border-bottom  ">
     <h1 class="h2">Manage Products and Inventory </h1>
     <div class="btn-toolbar mb-2 mb-md-0">
       <div class="btn-group me-2">
@@ -17,193 +18,110 @@
       </button>
     </div>
   </div>
-    <br>
-    
-    <!-- tab layout for add seller, seller lookup, inventory requests -->
 
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-      <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
-          role="tab" aria-controls="home" aria-selected="true">View Inventory</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"
-          role="tab" aria-controls="profile" aria-selected="false">Request Inventory</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="requestop-tab" data-bs-toggle="tab" data-bs-target="#requestop" type="button"
-          role="tab" aria-controls="requestop" aria-selected="false">Product Sales</button>
-      </li>
+  <!-- tab layout for add seller, seller lookup, inventory requests -->
 
-    </ul>
-    <br>
-    <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-        <div class="card">
-          <div class="card-body">
+
+  <div class="row mx-0 my-3">
+
+    <div class="card border ">
+      <div class="card-body ">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">View Inventory</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Request Inventory</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="requestop-tab" data-bs-toggle="tab" data-bs-target="#requestop" type="button" role="tab" aria-controls="requestop" aria-selected="false">Product Sales</button>
+          </li>
+
+        </ul>
+        <br>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
             <div class="row">
               <div class="col-md-12">
 
+                <div class="row">
+                  <div class="col-md-2">
 
-                <h5>Current Inventory</h5>
-                <p>Orders in the given time.</p>
-                <!-- from date to date -->
-
-
-
-                <div class="d-flex form-inputs">
-                  <h6>Search Products
-                  </h6>
-                  <input class="form-control" type="text" placeholder="Search any product...">
-                  <i class="bx bx-search"></i>
+                    <h4>Current Inventory</h4>
+                  </div>
+                  <div class="col-md-10">
+                    <!-- search bar -->
+                    <div class="input-group mb-3">
+                      <input type="text" name="searchbar" id="searchbar" class="form-control" style="border-radius: 15px" placeholder="Search">
+                    </div>
+                  </div>
                 </div>
-                <br>
+
+
                 <div class="row">
                   <div class="col-md-12">
-                    <div class="card">
-                      <div class="card-body ">
+                    <div class="card shadow-none">
+                      <div class=" shadow-none">
                         <div class="table-responsive">
 
-                          <table class="table ">
+                          <table class="table display" id="idk">
                             <thead>
                               <th>Product Details</th>
                               <th>Category</th>
-                              <th>Available Stock</th>
+                              <th>In Stock</th>
                               <th>Price</th>
                               <th>Action</th>
 
                             </thead>
                             <tbody>
-                              <tr>
-                                <td>
-                                  <div class="row">
-                                    <div class="col-md-2">
-                                      <img src="./ex.jpg" style="width:60px ;" alt="">
+                              
+                              <?php
+                              include "../login.dbh.php";
+                              $sql = "select product_quantity from sellerDB where id={$_SESSION['s_id']}";
+                              $result = mysqli_query($conn, $sql);
+                              if (mysqli_num_rows($result) > 0) {
+                                // output data of each row
+                                $row = mysqli_fetch_assoc($result);
 
-                                    </div>
-                                    <div class="col-md-10">
-                                      Sony WF-1000XM4 Noise-Canceling True Wireless In-Ear Headphones (Black)
-                                      BH #SOWF1000XM4B • MFR #WF1000XM4/B
-                                    </div>
-                                  </div>
-                                </td>
-                                <td>
-                                  Earpones / Audio
-                                </td>
-                                <td>
-                                  234
-                                </td>
-                                <td>6700</td>
-                                <th>
-                                  <button class="btn btn-sm" style="background-color: grey; color: white;">View More
-                                  </button>
-                                </th>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <div class="row">
-                                    <div class="col-md-2">
-                                      <img src="./ex.jpg" style="width:60px ;" alt="">
+                                echo "<tr>";
+                                $prods = explode(";", $row["product_quantity"]);
+                                for ($i = 0; $i < count($prods) - 1; $i++) {
 
-                                    </div>
-                                    <div class="col-md-10">
-                                      Sony WF-1000XM4 Noise-Canceling True Wireless In-Ear Headphones (Black)
-                                      BH #SOWF1000XM4B • MFR #WF1000XM4/B
-                                    </div>
-                                  </div>
-                                </td>
-                                <td>
-                                  Earpones / Audio
-                                </td>
-                                <td>
-                                  234
-                                </td>
-                                <td>6700</td>
-                                <th>
-                                  <button class="btn btn-sm" style="background-color: grey; color: white;">View More
-                                  </button>
-                                </th>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <div class="row">
-                                    <div class="col-md-2">
-                                      <img src="./ex.jpg" style="width:60px ;" alt="">
+                                  $product = explode("x", $prods[$i]);
+                                  $sql2 = "select * from productdb where Prod_id={$product[0]}";
+                                  $result2 = mysqli_query($conn, $sql2);
+                                  $row2 = mysqli_fetch_assoc($result2);
 
-                                    </div>
-                                    <div class="col-md-10">
-                                      Sony WF-1000XM4 Noise-Canceling True Wireless In-Ear Headphones (Black)
-                                      BH #SOWF1000XM4B • MFR #WF1000XM4/B
-                                    </div>
-                                  </div>
-                                </td>
-                                <td>
-                                  Earpones / Audio
-                                </td>
-                                <td>
-                                  234
-                                </td>
-                                <td>6700</td>
-                                <th>
-                                  <button class="btn btn-sm" style="background-color: grey; color: white;">View More
-                                  </button>
-                                </th>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <div class="row">
-                                    <div class="col-md-2">
-                                      <img src="./ex.jpg" style="width:60px ;" alt="">
+                              ?>
+                                  <tr>
+                                    <td>
+                                      <div class="row">
+                                        <div class="col-md-2">
+                                          <?php $img = explode("&", $row2["image_loc"])[0];
+                                          echo "<img src='../" . $img . "' style='width: 133%; class='border-bottom' height: 100%;'>"; ?>
 
-                                    </div>
-                                    <div class="col-md-10">
-                                      Sony WF-1000XM4 Noise-Canceling True Wireless In-Ear Headphones (Black)
-                                      BH #SOWF1000XM4B • MFR #WF1000XM4/B
-                                    </div>
-                                  </div>
-                                </td>
-                                <td>
-                                  Earpones / Audio
-                                </td>
-                                <td>
-                                  234
-                                </td>
-                                <td>6700</td>
-                                <th>
-                                  <button class="btn btn-sm" style="background-color: grey; color: white;">View More
-                                  </button>
-                                </th>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <div class="row">
-                                    <div class="col-md-2">
-                                      <img src="./ex.jpg" style="width:60px ;" alt="">
-
-                                    </div>
-                                    <div class="col-md-10">
-                                      Sony WF-1000XM4 Noise-Canceling True Wireless In-Ear Headphones (Black)
-                                      BH #SOWF1000XM4B • MFR #WF1000XM4/B
-                                    </div>
-                                  </div>
-                                </td>
-                                <td>
-                                  Earpones / Audio
-                                </td>
-                                <td>
-                                  234
-                                </td>
-                                <td>6700</td>
-                                <th>
-                                  <button class="btn btn-sm" style="background-color: grey; color: white;">View More
-                                  </button>
-                                </th>
-                              </tr>
+                                        </div>
+                                        <div class="col-md-10">
+                                          <?php echo $row2["title"] ?>
+                                        </div>
+                                      </div>
+                                    </td>
+                                    <td>
+                                      <?php echo $row2["category"] ?>
+                                    </td>
+                                    <td>
+                                      <?php echo $product[1] ?>
+                                    </td>
+                                    <td>Rs. <?php echo number_format($row2["price"]) ?></td>
+                                    <th>
+                                      <button class="btn btn-sm" style="background-color: grey; color: white;">View More
+                                      </button>
+                                    </th>
+                                  </tr>
 
 
-
-
-
+                              <?php }
+                              } ?>
 
 
                             </tbody>
@@ -220,26 +138,70 @@
 
             </div>
           </div>
-        </div>
-      </div>
-      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-        <!-- search bar -->
-        <div class="card">
-          <div class="card-body">
-            <h5>Request Inventory</h5>
+          <!-- search bar -->
+          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <h4>Request Inventory</h4>
             <div class="row">
               <div class="col-md-12">
+
+                <form action="">
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-group">
+                        <label for="sellername">Seller Name</label>
+                        <input type="text" name="sellername" id="sellername" class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group">
+                        <label for="sellerphone">Seller Phone</label>
+                        <input type="text" name="sellerphone" id="sellerphone" class="form-control">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-group">
+                        <label for="selleraddress">Address</label>
+                        <input type="text" name="selleraddress" id="selleraddress" class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group">
+                        <label for="sellermail">Seller Mail</label>
+                        <input type="text" name="sellermail" id="sellermail" class="form-control">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-group">
+                        <label for="sellerzipcode">Seller Zipcode</label>
+                        <input type="text" name="sellerzipcode" id="sellerzipcode" class="form-control">
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                <br>
+                <!-- add a searchbar for searching products and adding them in the list -->
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Search Product ID or title">
+                  <span class="input-group-btn">
+                    <button class="btn btn-ecomm btn-dark" style="height: 100%;
+border-radius: 0px 5px 5px 0px;
+" type="button">Go!</button>
+                  </span>
+                </div>
+                <br>
                 <div class="table-responsive">
                   <table class="table">
                     <thead>
                       <tr>
                         <th>#</th>
                         <th>
-                          Product Name
+                          Product Details
                         </th>
-                        <th>
-                          Cost Price
-                        </th>
+                        <th>Product ID</th>
                         <th>
                           Quantity
                         </th>
@@ -252,126 +214,11 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th>
-                          1
-                        </th>
-                        <td>
-                          <input type="text" class="form-control" id="product_name" name="product_name"
-                            placeholder="Enter Product Name">
-                        </td>
-                        <td>
-                          <input type="text" class="form-control" id="product_price" name="product_price"
-                            placeholder=" Price">
-                        </td>
-                        <td>
-                          <input type="text" class="form-control" id="product_quantity" name="product_quantity"
-                            placeholder=" Quantity">
-                        </td>
-                        <td>
-                          <input type="text" class="form-control" id="total" name="total" placeholder=" Total">
-                        </td>
-                        <td>
-                          <button type="button" class="btn"
-                            style="color: #e9e9fe; background-color: #312e65; border-color: #e9e9fe; height: 20%;">
-                            Add
-                          </button>
-                          <button type="button" class="btn"
-                            style="color: #e9e9fe; background-color: #312e65; border-color: #e9e9fe; height: 20%;">
-                            Remove
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th>
-                          2
-                        </th>
-                        <td>
-                          <input type="text" class="form-control" id="product_name" name="product_name"
-                            placeholder="Enter Product Name">
-                        </td>
-                        <td>
-                          <input type="text" class="form-control" id="product_price" name="product_price"
-                            placeholder=" Price">
-                        </td>
-                        <td>
-                          <input type="text" class="form-control" id="product_quantity" name="product_quantity"
-                            placeholder=" Quantity">
-                        </td>
-                        <td>
-                          <input type="text" class="form-control" id="total" name="total" placeholder=" Total">
-                        </td>
-                        <td>
-                          <button type="button" class="btn"
-                            style="color: #e9e9fe; background-color: #312e65; border-color: #e9e9fe; height: 20%;">
-                            Add
-                          </button>
-                          <button type="button" class="btn"
-                            style="color: #e9e9fe; background-color: #312e65; border-color: #e9e9fe; height: 20%;">
-                            Remove
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th>
-                          3
-                        </th>
-                        <td>
-                          <input type="text" class="form-control" id="product_name" name="product_name"
-                            placeholder="Enter Product Name">
-                        </td>
-                        <td>
-                          <input type="text" class="form-control" id="product_price" name="product_price"
-                            placeholder=" Price">
-                        </td>
-                        <td>
-                          <input type="text" class="form-control" id="product_quantity" name="product_quantity"
-                            placeholder=" Quantity">
-                        </td>
-                        <td>
-                          <input type="text" class="form-control" id="total" name="total" placeholder=" Total">
-                        </td>
-                        <td>
-                          <button type="button" class="btn"
-                            style="color: #e9e9fe; background-color: #312e65; border-color: #e9e9fe; height: 20%;">
-                            Add
-                          </button>
-                          <button type="button" class="btn"
-                            style="color: #e9e9fe; background-color: #312e65; border-color: #e9e9fe; height: 20%;">
-                            Remove
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <th>
-                          Subtotal
-                        </th>
-                        <td>193081</td>
-                      </tr>
 
-
-                      <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-
-                        <th>
-                          Grand total
-                        </th>
-                        <td>
-                          Rs 242,252/-
-                        </td>
-                      </tr>
                     </tbody>
                   </table>
                   <!-- add row button -->
-                  <button type="button" class="btn"
-                    style="color: #e9e9fe; background-color: #312e65; border-color: #e9e9fe; height: 20%;">
+                  <button type="button" class="btn" style="color: #e9e9fe; background-color: #312e65; border-color: #e9e9fe; height: 20%;">
                     +
                   </button>
 
@@ -379,37 +226,37 @@
               </div>
             </div>
 
+
+
           </div>
-        </div>
-
-
-      </div>
-      <div class="tab-pane fade" id="requestop" role="tabpanel" aria-labelledby="requestsop-tab">
-        <div class="card">
-          <div class="card-body">
+          <div class="tab-pane fade" id="requestop" role="tabpanel" aria-labelledby="requestsop-tab">
             <!-- Sales with respect to category -->
             <h4>Product Sales Analysis</h4>
 
             <!-- from date to date -->
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-5">
                 <div class="form-group">
                   <label for="from_date">From Date</label>
                   <input type="date" class="form-control" id="from_date" name="from_date">
                 </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-5">
                 <div class="form-group">
                   <label for="to_date">To Date</label>
                   <input type="date" class="form-control" id="to_date" name="to_date">
                 </div>
               </div>
+              <div class="col-md-2">
+                <button type="button" class="btn btn-ecomm btn-dark" style="margin-top:20px ;width:100%">
+              Submit</button>
+              </div>
             </div>
             <br>
             <div class="row">
               <div class="col-md-6">
-                <div class="card">
-                  <div class="card-body">
+                <div class="card border shadow-none">
+                  <div class="card-body  ">
                     <h5>Revenue Collected Offline VS Online</h5>
                     <div class="chart-area">
                       <canvas id="myChart"></canvas>
@@ -419,8 +266,8 @@
               </div>
 
               <div class="col-md-6">
-                <div class="card">
-                  <div class="card-body">
+                <div class="card border shadow-none">
+                  <div class="card-body ">
                     <h5>Revenue W.R. Categories</h5>
                     <div class="chart-area">
                       <canvas id="lol"></canvas>
@@ -431,13 +278,15 @@
             </div>
           </div>
         </div>
+
       </div>
-
-
-
     </div>
 
-  </main>
+
+
+  </div>
+
+</main>
 
 
 
@@ -445,15 +294,11 @@
 
 
 
-  <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
-    integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
-    integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha"
-    crossorigin="anonymous"></script>
-  <script src="../dashboard.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
+<script src="../dashboard.js"></script>
 </body>
 
 </html>

@@ -89,7 +89,6 @@
 
 									<?php
 									include 'login.dbh.php';
-									session_start();
 									$user_id = $_SESSION['u_id'];
 									$sql = "SELECT * FROM productdb WHERE (category=' {$_GET['term']} ') or (category LIKE '%{$_GET['term']}%') or (title LIKE '%{$_GET['term']}%' or Tags LIKE '%{$_GET['term']}%' or specification LIKE '%{$_GET['term']}%')   LIMIT 5";
 
@@ -103,14 +102,7 @@
 									?>
 											<div class="card rounded-0 product-card">
 												<div class="d-flex align-items-center justify-content-end gap-3 position-absolute end-0 top-0 m-3">
-													<a href="javascript:;">
-														<div class="product-compare"><span><i class="bx bx-git-compare"></i> Compare</span>
-														</div>
-													</a>
-													<a href="javascript:;">
-														<div class="product-wishlist"> <i class="bx bx-heart"></i>
-														</div>
-													</a>
+													
 												</div>
 												<div class="row g-0">
 													<div class="col-md-4">
@@ -127,16 +119,22 @@
 																</a>
 																<p class="card-text"> <?php echo $row["description"] ?></p>
 																<div class="d-flex align-items-center">
-																	<div class="mb-1 product-price"> <span class="me-1 text-decoration-line-through"></span>
-																		<span class="fs-5">Rs. <?php echo $row["price"] ?></span>
+																	<div class="mb-1 product-price"> 
+																		<span class="fs-5" style="color: green">Rs. <?php echo number_format($row["price"]) ?></span>
+																		<span class="me-1 text-decoration-line-through">Rs. <?php echo number_format($row["mrp_price"]) ?></span>
 																	</div>
 																	<div class="cursor-pointer ms-auto">
 																		<?php
 																		$sql = "SELECT * from review where Prod_id='{$row["Prod_id"]}'";
-																		for ($i = 0; $i < $row["ratings"]; $i++) { ?>
+																		$ress = mysqli_query($conn, $sql);
+																		$row_re = mysqli_fetch_assoc($ress); 
+																		for ($asf = 0; $asf < $row_re["ratings"]; $asf++) { ?>
 																			<i class="bx bxs-star text-warning"></i>
 																		<?php
 																		}
+																		for ($asf = 0; $asf < 5 - $row_re["ratings"]; $asf++) { ?>
+																			<i class="bx bxs-star text-gray"></i>
+																			<?php }
 																		?>
 																	</div>
 																</div>

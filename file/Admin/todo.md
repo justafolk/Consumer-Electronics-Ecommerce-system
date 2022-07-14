@@ -22,7 +22,7 @@
     - [clone from admin]
   - Invoice page            [ 10mins ]
 
-- Miscellenous
+Miscellenous
   - DTDC tracking Integ     [  ]
   - Admin / Seller Home pgs [  ]
   - EMI if time permits

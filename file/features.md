@@ -1,0 +1,85 @@
+- User Side
+  - Products
+    - Search
+    - Search By Category
+    - Browse through homepage
+  - Shopping Cart 
+  - Wishlist
+  - Save Addresses
+  - Make payments with any payment method
+  - Offers
+  - Promotions
+  - Coupons
+  - View Reviews / Ratings 
+  - Login with Google
+  - Sign up with traditional method 
+  - Product Recommendations
+  - Old Order History Page 
+  - Track Orders 
+  - Get Help with Customer Care form
+  - Locate Stores
+
+- Seller Side 
+  - Home Page statistics
+  - New Orders Prompt 
+  - Sign in 
+  - Request for verfication to Admin 
+  - Orders 
+    - Pending Orders 
+    - Unshipped Orders 
+    - Shipped Orders 
+    - Completed / Delivered Orders 
+    - Create Offline Purchase Order 
+  - Products 
+    - View / Check current Inventory
+    - Make request for new Inventory 
+    - Review Product statistics to make inventory decisions 
+  - Analytics 
+    - See Customer Reviews 
+    - See Product Analysis 
+    - See Revenue 
+  - Edit Your Profile
+
+- Admin 
+  - Admin Login 
+  - Home Page statistics 
+  - Home page overview graphs
+  - Sellers
+    - Current Seller list 
+    - View / Lookup Existing Sellers 
+    - Verify Seller Requests 
+    - Fullfill Inventory Requests 
+    - View Performance Reports of Individual Sellers 
+  - Products
+    - Add new Products 
+    - Update Existing Products 
+    - View Old Products 
+    - Analyze Public Response towards products (Reviews)
+  - Promotions 
+    - Add Primary / Main page banner promotions 
+    - Add Secondary / Home page promotions 
+    - Add Categorical promotions 
+    - Add Coupons 
+      - To specific category 
+      - To a group of Products 
+    - View Promotions 
+    - Update / Remove Promotions 
+    - See Hits / Public response of promotions 
+  - Orders 
+    - View Orders 
+    - View Order status, depth information 
+  - Payments 
+    - View Payments with info 
+    - View Revenue and related info 
+    - Initialize Seller Payouts 
+    - View Payouts history 
+  - Marketing 
+    - Add Marketing Source 
+    - Update / Remove Marketing Source 
+    - View Marketing Results 
+  - Edit Static Content 
+    - Edit About Us 
+    - Edit Contact Us Details 
+    - Edit Footer Data 
+
+

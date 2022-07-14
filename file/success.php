@@ -273,7 +273,7 @@
 
                                 <?php 
                                     include './login.dbh.php';
-                                    $sql = "insert into transactions (method, amount, transac_date, status, method_id, c_id, promo) values ('".$_POST['mode']."', '".$_POST['amount']."', '".$_POST["addedon"]."', '".$_POST["status"]."', '".$_POST["field1"]."', '".$_SESSION["u_id"]."', '".$_POST["udf1"]."')";
+                                    $sql = "insert into transactions (method, amount, transac_date, status, method_id, c_id, promo, hash) values ('".$_POST['mode']."', '".$_POST['amount']."', '".$_POST["addedon"]."', '".$_POST["status"]."', '".$_POST["field1"]."', '".$_SESSION["u_id"]."', '".$_POST["udf1"]."', '".$_POST["hash"]."')";
                                     $result = mysqli_query($conn, $sql);
 
                                 ?>
@@ -349,12 +349,12 @@
                         
 
 
-                        $sql = "insert into OrderDB ( invoice, amount, c_id, Prod_id, s_id, s_mail,Order_date, Order_status, address) values('".$_POST["txnid"]."','".$_POST["amount"]."','".$user_id."','".$products."','".$ogsellerid."','".$ogsellermail."','".$_POST["addedon"]."','Placed', '".$_POST["address1"]."')";
+                        $sql = "insert into OrderDB ( invoice, amount, c_id, Prod_id, s_id, s_mail,Order_date, Order_status, address, method) values('".$_POST["txnid"]."','".$_POST["amount"]."','".$user_id."','".$products."','".$ogsellerid."','".$ogsellermail."','".$_POST["addedon"]."','Placed', '".$_POST["address1"]."', 'online')";
                         $result = mysqli_query($conn, $sql);
                         echo mysqli_error($conn);
                        
                         $sql = "delete from cart where U_id = '$user_id'";
-                        $result = mysqli_query($conn, $sql);
+                        $result = mysqli_query($conn, $sql);    
 
                     ?>
 

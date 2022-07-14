@@ -289,7 +289,7 @@
                                                                         <div class="col-md-12">
                                                                             <div class="d-grid">
                                                                               
-                                                                                      <input onclick="window.location.href='http://localhost:3456/secure_payu.php?promo=<?php echo $promo?>&address=<?php echo $_GET["address"] ?>'"
+                                                                                      <input onclick="window.location.href='http://localhost:3456/payu.php?promo=<?php echo $promo?>&address=<?php echo $_GET["address"] ?>'"
                                                                                       
                                                                                       style="width: 100%" class="btn btn-dark btn-ecomm" value="Place Order! >">
                                                                             </div>

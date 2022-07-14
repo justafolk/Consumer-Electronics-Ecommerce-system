@@ -264,8 +264,7 @@
 																		?>
 																		
 																		</p>
-																		<button onclick="window.location.href='http://localhost:3456/checkout-review.php?address=1&percent=<?php echo $_GET["percent"] ?>&promo=<?php echo $_GET["promo"] ?>'" class="btn btn-dark btn-ecomm">Edit</button>
-
+																	
 																	</div>
 																</div>
 															</div>
@@ -275,15 +274,27 @@
 														if ($address2 != NULL){
 													?>
 													<div class="col-md-6">
-														<div class="bg-white card mb-4 border">
+														<div class="bg-white card shadow-none mb-4 border">
 															<div class="gold-members p-4">
 																<div class="media">
 																	<div class="mr-3"><i class="icofont-ui-home icofont-3x"></i></div>
 																	<div class="media-body">
 																		<h6 class="mb-1 text-secondary">Office</h6>
-																		<p class="text-black"><?php echo $address2; print_r($address2) ?>
+																		<p class="text-black"><?php 
+																		$jsonData = rtrim($address2, "\0");
+																		$address_f =  json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $jsonData), true );
+																		echo $address_f["fname"] . " " . $address_f["lname"] . "<br>";
+																		echo $address_f["address1"] . "<br>";
+																		echo $address_f["address2"] ;
+																		echo $address_f["city"] ." - ".$address_f["zipcode"]. "<br>";
+																		echo $address_f["state"] . "<br>";
+																		echo $address_f["phoneno"] . "<br>";
+																		$json_string = stripslashes(html_entity_decode($address1));
+																		echo json_decode($json_string, true);
+																		?>
+																		
 																		</p>
-																		<button onclick="window.location.href='http://localhost:3456/checkout-review.php?address=2&percent=<?php echo $_GET["percent"] ?>'" class="btn btn-dark btn-ecomm">Edit</button>
+																	
 																	</div>
 																</div>
 															</div>
@@ -293,15 +304,27 @@
 														if ($address3 != NULL){
 													?>
 													<div class="col-md-6">
-														<div class="bg-white card mb-4 border">
+														<div class="bg-white card shadow-none mb-4 border">
 															<div class="gold-members p-4">
 																<div class="media">
 																	<div class="mr-3"><i class="icofont-ui-home icofont-3x"></i></div>
 																	<div class="media-body">
-																		<h6 class="mb-1 text-secondary">Other</h6>
-																		<p class="text-black"><?php echo $address3 ?>
+																		<h6 class="mb-1 text-secondary">Home</h6>
+																		<p class="text-black"><?php 
+																		$jsonData = rtrim($address3, "\0");
+																		$address_f =  json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $jsonData), true );
+																		echo $address_f["fname"] . " " . $address_f["lname"] . "<br>";
+																		echo $address_f["address1"] . "<br>";
+																		echo $address_f["address2"] ;
+																		echo $address_f["city"] ." - ".$address_f["zipcode"]. "<br>";
+																		echo $address_f["state"] . "<br>";
+																		echo $address_f["phoneno"] . "<br>";
+																		$json_string = stripslashes(html_entity_decode($address1));
+																		echo json_decode($json_string, true);
+																		?>
+																		
 																		</p>
-																		<button onclick="window.location.href='http://localhost:3456/checkout-review.php?address=3&percent=<?php echo $_GET["percent"]?>&promo=<?php echo $_GET["promo"]; ?>'" class="btn btn-dark btn-ecomm">Edit</button>
+																	
 																	</div>
 																</div>
 															</div>
