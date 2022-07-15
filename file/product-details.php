@@ -28,9 +28,83 @@
 </head>
 
 <body>
+<?php
+	require_once "login.dbh.php";
+	function cart_exists($conn, $user, $prod)
+	{
+		require_once "login.dbh.php";
+		$error = "";
+		$sql = "SELECT * FROM cart WHERE U_id = ? AND Prod_id = ?;";
+		$smt = mysqli_stmt_init($conn);
+		if (!mysqli_stmt_prepare($smt, $sql)) {
+			$error .= "Error in STMT";
+			exit();
+		}
+		mysqli_stmt_bind_param($smt, "ii", $user, $prod);
+		mysqli_stmt_execute($smt);
+		$resultData = mysqli_stmt_get_result($smt);
+		if ($row = mysqli_fetch_assoc($resultData)) {
+			return $row;
+		} else {
+			$result = false;
+			return $result;
+		}
+	}
+	function existed($conn, $prod_id)
+	{
+		$error = "";
+		$sql = "SELECT Prod_id FROM cart WHERE Prod_id = ?;";
+		$smt = mysqli_stmt_init($conn);
+		if (!mysqli_stmt_prepare($smt, $sql)) {
+			$error .= "Error in STMT";
+			exit();
+		}
+		mysqli_stmt_bind_param($smt, "i", $prod_id);
+		mysqli_stmt_execute($smt);
+		$resultData = mysqli_stmt_get_result($smt);
+		if ($row = mysqli_fetch_assoc($resultData)) {
+			return $row;
+		} else {
+
+			$result = null;
+			return $result;
+		}
+	}
+	function cart($conn, $user, $prod)
+	{
+		require_once "login.dbh.php";
+		$error = "";
+		$cart_existed = cart_exists($conn, $user, $prod);
+		if ($cart_existed == NULL) {
+			if ($user > 0) {
+				$sql = "INSERT INTO cart(U_id, Prod_id) VALUES('$user','$prod');";
+				$smt = mysqli_stmt_init($conn);
+				if (!mysqli_stmt_prepare($smt, $sql)) {
+					$error .= "Error in STMT";
+					exit();
+				}
+				mysqli_stmt_execute($smt);
+				mysqli_stmt_close($smt);
+				$error .= "Cart Added Successfully";
+			} else {
+			}
+		} else {
+		}
+	}
+	session_start();
+	$user_id = "";
+	if (isset($_SESSION['u_id'])) {
+		$user_id = $_SESSION["u_id"];
+	}
+	if (isset($_POST['submit'])) {
+		$prod = $_POST['prod_id'];
+		$result = cart($conn, $user_id, $prod);
+	}
+	?>
 	<?php
 	require_once "login.dbh.php";
 	require_once "function.php";
+	include "./hits.php";
 	$id = $_GET['id'];
 	$row = "";
 	$sql = "SELECT * FROM productdb WHERE Prod_id=$id;";
@@ -102,6 +176,7 @@
 										<div class="product-gallery owl-carousel owl-theme border mb-3 p-3" data-slider-id="1">
 											<?php
 											$temp = $product['image_loc'];
+											$category = $product["category"];
 											$img = explode('&', $temp);
 											$count = count($img);
 											for ($i = 0; $i < $count - 1; $i++) {
@@ -531,258 +606,210 @@
 					<hr />
 					<div class="product-grid">
 						<div class="similar-products owl-carousel owl-theme">
+							<?php
+							require_once "login.dbh.php";
+							require_once "function.php";
+							$product = array();
+							$row = "";
+							$sql = "SELECT * FROM productdb WHERE category = '$category'";
+							$smt = mysqli_stmt_init($conn);
+							if (!mysqli_stmt_prepare($smt, $sql)) {
+								echo "Output not show";
+								exit();
+							}
+							$i = 0;
+							mysqli_stmt_execute($smt);
+							$resultData = mysqli_stmt_get_result($smt);
+							$num_rows = mysqli_num_rows($resultData);
+
+							while ($row = mysqli_fetch_assoc($resultData)) {
+								$product[$i] = $row;
+								$i++;
+							}
+							?>
+							<?php
+							for ($j = 0; $j < 4; $j++) {
+							?>
 							<div class="item">
-								<div class="card rounded-0 product-card">
-									<div class="card-header bg-transparent border-bottom-0">
-										<div class="d-flex align-items-center justify-content-end">
-											<a href="javascript:;">
-												<div class="product-wishlist"> <i class='bx bx-heart'></i>
-												</div>
-											</a>
-										</div>
-									</div>
-									<img src="assets/images/similar-products/15.png" class="card-img-top" alt="...">
-									<div class="card-body">
-										<div class="product-info">
-											<a href="javascript:;">
-												<p class="product-catergory font-13 mb-1">Catergory Name</p>
-											</a>
-											<a href="javascript:;">
-												<h6 class="product-name mb-2">Product Short Name</h6>
-											</a>
-											<div class="d-flex align-items-center">
-												<div class="mb-1 product-price"> <span class="me-1 text-decoration-line-through">Rs. 12,499</span>
-													<h6 class="mb-0">Rs. 11,999</h6>
-												</div>
-												<div class="cursor-pointer ms-auto"> <span>5.0</span> <i class="bx bxs-star text-white"></i>
-												</div>
+
+								<div class="col mt-5">
+									<div class="card rounded-0 product-card">
+										<div class="card-header bg-transparent border-bottom-0">
+											<div class="d-flex align-items-center justify-content-end gap-3">
+
+												<a onclick="wishlist('<?php echo $j ?>wish', <?php echo $product[$j]['Prod_id'] ?>)">
+													<div class="product-wishlist"><i id="<?php echo $j ?>wish" class='bx bx-heart' style="color:#ff0000"></i>
+													</div>
+												</a>
 											</div>
-											<div class="product-action mt-2">
-												<div class="d-grid gap-2">
-													<a href="javascript:;" class="btn btn-dark btn-ecomm"> <i class='bx bxs-cart-add'></i>Add to Cart</a>
-													<a href="javascript:;" class="btn btn-light btn-ecomm" data-bs-toggle="modal" data-bs-target="#QuickViewProduct"><i class='bx bx-zoom-in'></i>Quick View</a>
+										</div>
+										<a href="product-details.php?id=<?php echo $product[$j]['Prod_id']; ?>">
+											<?php
+											$temp = $product[$j]['image_loc'];
+											$img = explode('&', $temp);
+											?>
+											<img src="<?php echo $img[0]; ?>" class="card-img-top" alt="...">
+										</a>
+										<div class="card-body">
+											<div class="product-info">
+												<a href="product-details.php?id=<?php echo $product[$j]['Prod_id']; ?>">
+													<p class="product-catergory font-13 mb-1"><?php echo $product[$j]['category']; ?></p>
+												</a>
+												<a href="product-details.php?id=<?php echo $product[$j]['Prod_id']; ?>">
+													<h6 class="product-name mb-2"><?php echo $product[$j]['title']; ?></h6>
+												</a>
+												<input type="hidden" name="prod_id" value="<?php echo $product[$j]['Prod_id']; ?>">
+												<div class="d-flex align-items-center">
+
+
+													<div class="mb-1 product-price"> <span class="me-1 text-decoration-line-through"></span>
+
+														<span class="fs-5">Rs. <?php echo $product[$j]['price']; ?></span>
+													</div>
+													<div class="cursor-pointer ms-auto"> <i class="bx bxs-star text-warning"></i>
+														<?php
+														$sql = "SELECT * from review where Prod_id='{$product[$j]["Prod_id"]}'";
+														$ress = mysqli_query($conn, $sql);
+														$row_re = mysqli_fetch_assoc($ress);
+														for ($asf = 0; $asf < $row_re["ratings"]; $asf++) { ?>
+															<i class="bx bxs-star text-warning"></i>
+														<?php
+														}
+														for ($asf = 0; $asf < 5 - $row_re["ratings"]; $asf++) { ?>
+															<i class="bx bxs-star text-gray"></i>
+														<?php }
+														?>
+													</div>
+												</div>
+												<div class="product-action mt-2">
+													<?php
+													$prod = $product[$j]['Prod_id'];
+													$prod1 = existed($conn, $prod);
+													?>
+													<div class="d-grid gap-2">
+
+														<button id="cart1" type="button" name="addtocart" onclick="window.location.href='http://localhost:3456/add_to_cart.php?prod_id=<?php echo $product[$j]['Prod_id']; ?> '" class="btn btn-dark btn-ecomm"><i class='bx bxs-cart'></i>Add to Cart</button>
+														<a href="" class="btn btn-light btn-ecomm" data-bs-toggle="modal" data-bs-target="#QuickViewProduct<?php echo $product[$j]['Prod_id']; ?>"><i class='bx bx-zoom-in'></i>Quick View</a>
+													</div>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-							<div class="item">
-								<div class="card rounded-0 product-card">
-									<div class="card-header bg-transparent border-bottom-0">
-										<div class="d-flex align-items-center justify-content-end">
-											<a href="javascript:;">
-												<div class="product-wishlist"> <i class='bx bx-heart'></i>
+								<div class="modal fade" id="QuickViewProduct<?php echo $product[$j]['Prod_id']; ?>">
+									<div class="modal-dialog modal-dialog-centered modal-xl modal-fullscreen-xl-down">
+										<div class="modal-content rounded-0 border-0">
+											<div class="modal-body">
+												<button type="button" class="btn-close float-end" data-bs-dismiss="modal"></button>
+												<div class="row g-0">
+													<div class="col-12 col-lg-6">
+														<div class="image-zoom-section">
+															<div class="product-gallery owl-carousel owl-theme border mb-3 p-3" data-slider-id="1">
+																<?php
+																$temp = $product[$j]['image_loc'];
+																$img = explode('&', $temp);
+																$count = count($img);
+																for ($i = 0; $i < $count - 1; $i++) {
+																?>
+																	<div class="item">
+																		<img src="<?php echo $img[$i]; ?>" class="img-fluid" alt="">
+																	</div>
+																<?php
+																}
+																?>
+															</div>
+															<div class="owl-thumbs d-flex justify-content-center" data-slider-id="1">
+																<?php
+																for ($i = 0; $i < $count - 1; $i++) {
+																?>
+																	<button class="owl-thumb-item">
+																		<img src="<?php echo $img[$i]; ?>" class="" alt="">
+																	</button>
+																<?php
+																}
+																?>
+															</div>
+														</div>
+													</div>
+													<div class="col-12 col-lg-6">
+														<div class="product-info-section p-3">
+															<h3 class="mt-3 mt-lg-0 mb-0"><?php echo $product[$j]['title']; ?></h3>
+															<div class="product-rating d-flex align-items-center mt-2">
+																<div class="rates cursor-pointer font-13"> <i class="bx bxs-star text-warning"></i>
+																	<i class="bx bxs-star text-warning"></i>
+																	<i class="bx bxs-star text-warning"></i>
+																	<i class="bx bxs-star text-warning"></i>
+																	<i class="bx bxs-star text-light-4"></i>
+																</div>
+																<div class="ms-1">
+																	<p class="mb-0">(<?php
+																						$sql = "SELECT * FROM review WHERE prod_id = '$product[$j]['Prod_id']'";
+																						$result = mysqli_query($conn, $sql);
+																						$count = mysqli_num_rows($result);
+																						echo "0" . $count;
+
+																						?>) Ratings</p>
+																</div>
+															</div>
+															<div class="d-flex align-items-center mt-3 gap-2">
+																<h5 class="mb-0 text-decoration-line-through text-light-3"></h5>
+																<h4 class="mb-0">Rs. <?php echo $product[$j]['price']; ?></h4>
+															</div>
+															<div class="mt-3">
+																<h6>Description :</h6>
+																<p class="mb-0"><?php echo $product[$j]['description']; ?></p>
+															</div>
+															<dl class="row mt-3">
+																<dt class="col-sm-3">Product id</dt>
+															</dl>
+															<div class="row row-cols-auto align-items-center mt-3">
+																<div class="col">
+																	<label class="form-label">Quantity</label>
+																	<select class="form-select form-select-sm">
+																		<option>1</option>
+																		<option>2</option>
+																		<option>3</option>
+																		<option>4</option>
+																		<option>5</option>
+																	</select>
+																</div>
+																<div class="col">
+																	<label class="form-label">RAM</label>
+																	<select class="form-select form-select-sm">
+																		<option>4 GB</option>
+																		<option>6 GB</option>
+																	</select>
+																</div>
+																<div class="col">
+																	<label class="form-label">Storage</label>
+																	<select class="form-select form-select-sm">
+																		<option>64 GB</option>
+																		<option>128 GB</option>
+																	</select>
+																</div>
+															</div>
+															<?php
+															$prod = $product[$j]['Prod_id'];
+															$prod1 = existed($conn, $prod);
+															?>
+															<!--end row-->
+															<div class="d-flex gap-2 mt-3">
+																<button id="cart1" type="button" name="addtocart" onclick="window.location.href='http://localhost:3456/add_to_cart.php?prod_id=<?php echo $product[$j]['Prod_id']; ?> '" class="btn btn-dark btn-ecomm"><i class='bx bxs-cart'></i>Add to Cart</button>
+																<a href="" class="btn btn-light btn-ecomm"><i class="bx bx-heart"></i>Add to Wishlist</a>
+															</div>
+														</div>
+													</div>
 												</div>
-											</a>
-										</div>
-									</div>
-									<img src="assets/images/similar-products/16.png" class="card-img-top" alt="...">
-									<div class="card-body">
-										<div class="product-info">
-											<a href="javascript:;">
-												<p class="product-catergory font-13 mb-1">Catergory Name</p>
-											</a>
-											<a href="javascript:;">
-												<h6 class="product-name mb-2">Product Short Name</h6>
-											</a>
-											<div class="d-flex align-items-center">
-												<div class="mb-1 product-price"> <span class="me-1 text-decoration-line-through">Rs. 12,499</span>
-													<h6 class="mb-0">Rs. 11,999</h6>
-												</div>
-												<div class="cursor-pointer ms-auto"> <span>5.0</span> <i class="bx bxs-star text-white"></i>
-												</div>
-											</div>
-											<div class="product-action mt-2">
-												<div class="d-grid gap-2">
-													<a href="javascript:;" class="btn btn-dark btn-ecomm"> <i class='bx bxs-cart-add'></i>Add to Cart</a>
-													<a href="javascript:;" class="btn btn-light btn-ecomm" data-bs-toggle="modal" data-bs-target="#QuickViewProduct"><i class='bx bx-zoom-in'></i>Quick View</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="item">
-								<div class="card rounded-0 product-card">
-									<div class="card-header bg-transparent border-bottom-0">
-										<div class="d-flex align-items-center justify-content-end">
-											<a href="javascript:;">
-												<div class="product-wishlist"> <i class='bx bx-heart'></i>
-												</div>
-											</a>
-										</div>
-									</div>
-									<img src="assets/images/similar-products/17.png" class="card-img-top" alt="...">
-									<div class="card-body">
-										<div class="product-info">
-											<a href="javascript:;">
-												<p class="product-catergory font-13 mb-1">Catergory Name</p>
-											</a>
-											<a href="javascript:;">
-												<h6 class="product-name mb-2">Product Short Name</h6>
-											</a>
-											<div class="d-flex align-items-center">
-												<div class="mb-1 product-price"> <span class="me-1 text-decoration-line-through">Rs. 12,499</span>
-													<h6 class="mb-0">Rs. 11,999</h6>
-												</div>
-												<div class="cursor-pointer ms-auto"> <span>4.9</span> <i class="bx bxs-star text-white"></i>
-												</div>
-											</div>
-											<div class="product-action mt-2">
-												<div class="d-grid gap-2">
-													<a href="javascript:;" class="btn btn-dark btn-ecomm"> <i class='bx bxs-cart-add'></i>Add to Cart</a>
-													<a href="javascript:;" class="btn btn-light btn-ecomm" data-bs-toggle="modal" data-bs-target="#QuickViewProduct"><i class='bx bx-zoom-in'></i>Quick View</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="item">
-								<div class="card rounded-0 product-card">
-									<div class="card-header bg-transparent border-bottom-0">
-										<div class="d-flex align-items-center justify-content-end">
-											<a href="javascript:;">
-												<div class="product-wishlist"> <i class='bx bx-heart'></i>
-												</div>
-											</a>
-										</div>
-									</div>
-									<img src="assets/images/similar-products/18.png" class="card-img-top" alt="...">
-									<div class="card-body">
-										<div class="product-info">
-											<a href="javascript:;">
-												<p class="product-catergory font-13 mb-1">Catergory Name</p>
-											</a>
-											<a href="javascript:;">
-												<h6 class="product-name mb-2">Product Short Name</h6>
-											</a>
-											<div class="d-flex align-items-center">
-												<div class="mb-1 product-price"> <span class="me-1 text-decoration-line-through">Rs. 12,499</span>
-													<h6 class="mb-0">Rs. 11,999</h6>
-												</div>
-												<div class="cursor-pointer ms-auto"> <span>5.0</span> <i class="bx bxs-star text-white"></i>
-												</div>
-											</div>
-											<div class="product-action mt-2">
-												<div class="d-grid gap-2">
-													<a href="javascript:;" class="btn btn-dark btn-ecomm"> <i class='bx bxs-cart-add'></i>Add to Cart</a>
-													<a href="javascript:;" class="btn btn-light btn-ecomm" data-bs-toggle="modal" data-bs-target="#QuickViewProduct"><i class='bx bx-zoom-in'></i>Quick View</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="item">
-								<div class="card rounded-0 product-card">
-									<div class="card-header bg-transparent border-bottom-0">
-										<div class="d-flex align-items-center justify-content-end">
-											<a href="javascript:;">
-												<div class="product-wishlist"> <i class='bx bx-heart'></i>
-												</div>
-											</a>
-										</div>
-									</div>
-									<img src="assets/images/similar-products/19.png" class="card-img-top" alt="...">
-									<div class="card-body">
-										<div class="product-info">
-											<a href="javascript:;">
-												<p class="product-catergory font-13 mb-1">Catergory Name</p>
-											</a>
-											<a href="javascript:;">
-												<h6 class="product-name mb-2">Product Short Name</h6>
-											</a>
-											<div class="d-flex align-items-center">
-												<div class="mb-1 product-price"> <span class="me-1 text-decoration-line-through">Rs. 12,499</span>
-													<h6 class="mb-0">Rs. 11,999</h6>
-												</div>
-												<div class="cursor-pointer ms-auto"> <span>3.9</span> <i class="bx bxs-star text-white"></i>
-												</div>
-											</div>
-											<div class="product-action mt-2">
-												<div class="d-grid gap-2">
-													<a href="javascript:;" class="btn btn-dark btn-ecomm"> <i class='bx bxs-cart-add'></i>Add to Cart</a>
-													<a href="javascript:;" class="btn btn-light btn-ecomm" data-bs-toggle="modal" data-bs-target="#QuickViewProduct"><i class='bx bx-zoom-in'></i>Quick View</a>
-												</div>
+												<!--end row-->
 											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-							<div class="item">
-								<div class="card rounded-0 product-card">
-									<div class="card-header bg-transparent border-bottom-0">
-										<div class="d-flex align-items-center justify-content-end">
-											<a href="javascript:;">
-												<div class="product-wishlist"> <i class='bx bx-heart'></i>
-												</div>
-											</a>
-										</div>
-									</div>
-									<img src="assets/images/similar-products/20.png" class="card-img-top" alt="...">
-									<div class="card-body">
-										<div class="product-info">
-											<a href="javascript:;">
-												<p class="product-catergory font-13 mb-1">Catergory Name</p>
-											</a>
-											<a href="javascript:;">
-												<h6 class="product-name mb-2">Product Short Name</h6>
-											</a>
-											<div class="d-flex align-items-center">
-												<div class="mb-1 product-price"> <span class="me-1 text-decoration-line-through">Rs. 13,499</span>
-													<h6 class="mb-0">Rs. 11,999</h6>
-												</div>
-												<div class="cursor-pointer ms-auto"> <span>5.0</span> <i class="bx bxs-star text-white"></i>
-												</div>
-											</div>
-											<div class="product-action mt-2">
-												<div class="d-grid gap-2">
-													<a href="javascript:;" class="btn btn-dark btn-ecomm"> <i class='bx bxs-cart-add'></i>Add to Cart</a>
-													<a href="javascript:;" class="btn btn-light btn-ecomm" data-bs-toggle="modal" data-bs-target="#QuickViewProduct"><i class='bx bx-zoom-in'></i>Quick View</a>
-												</div>
-											</div>
-										</div>
-									</div>
 								</div>
-							</div>
-							<div class="item">
-								<div class="card rounded-0 product-card">
-									<div class="card-header bg-transparent border-bottom-0">
-										<div class="d-flex align-items-center justify-content-end">
-											<a href="javascript:;">
-												<div class="product-wishlist"> <i class='bx bx-heart'></i>
-												</div>
-											</a>
-										</div>
-									</div>
-									<img src="assets/images/similar-products/21.png" class="card-img-top" alt="...">
-									<div class="card-body">
-										<div class="product-info">
-											<a href="javascript:;">
-												<p class="product-catergory font-13 mb-1">Catergory Name</p>
-											</a>
-											<a href="javascript:;">
-												<h6 class="product-name mb-2">Product Short Name</h6>
-											</a>
-											<div class="d-flex align-items-center">
-												<div class="mb-1 product-price"> <span class="me-1 text-decoration-line-through"></span>
-													<h6 class="mb-0">Rs. 11,999</h6>
-												</div>
-												<div class="cursor-pointer ms-auto"> <span>5.0</span> <i class="bx bxs-star text-white"></i>
-												</div>
-											</div>
-											<div class="product-action mt-2">
-												<div class="d-grid gap-2">
-													<a href="javascript:;" class="btn btn-dark btn-ecomm"> <i class='bx bxs-cart-add'></i>Add to Cart</a>
-													<a href="javascript:;" class="btn btn-light btn-ecomm" data-bs-toggle="modal" data-bs-target="#QuickViewProduct"><i class='bx bx-zoom-in'></i>Quick View</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
+							<?php
+							}
+							?>
+						
 						</div>
 					</div>
 				</div>

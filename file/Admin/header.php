@@ -263,7 +263,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/shopingohtml-11/shopingohtml-10/main-files/Final-year-project-main/file/Admin/sellers.php">
+                    <a class="nav-link" href="sellers.php">
                         <span data-feather="users"></span> Manage Sellers
                     </a>
                     <a class=" nav-link sub-links">
@@ -293,7 +293,7 @@
                 </li>
                 <li class="nav-item">
 
-                    <a class="nav-link" href="http://localhost/shopingohtml-10/shopingohtml-10/main-files/Final-year-project-main/file/Admin/products.php">
+                    <a class="nav-link" href="products.php">
                         <span data-feather="bar-chart"></span> Manage Products
                     </a>
                     <a class=" nav-link sub-links">
@@ -322,7 +322,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./promotions.html">
+                    <a class="nav-link" href="promotions.php">
                         <span data-feather="users"></span> Manage Promotions
                     </a>
                     <a class=" nav-link sub-links">
@@ -346,7 +346,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="./payments.html">
+                    <a class="nav-link" href="./payments.php">
                         <span data-feather="layers"></span> Manage Payments
                     </a>
                     <a class=" nav-link sub-links">
@@ -366,7 +366,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./orders.html">
+                    <a class="nav-link" href="./orders.php">
                         <span data-feather="layers"></span> Manage Orders
                     </a>
                     <a class=" nav-link sub-links">
@@ -382,7 +382,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="./marketing.html">
+                    <a class="nav-link" href="./marketing.php">
                         <span data-feather="users"></span> Marketing
                     </a>
                     <a class=" nav-link sub-links">
@@ -402,7 +402,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="marketing.html">
+                    <a class="nav-link" href="analysis.php">
                         <span data-feather="users"></span> Analytics
                     </a>
                     <a class=" nav-link sub-links">

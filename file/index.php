@@ -229,24 +229,25 @@
 							<div class="card rounded-0 border shadow-none">
 								<div class="row g-0 align-items-center">
 									<div class="">
-									<?php
-											include "login.dbh.php";
-											$sql = "SELECT * FROM promotions where type=\"secondary\";";
-											$result = mysqli_query($conn, $sql);
-											$i = 0;
-											if ($row = mysqli_fetch_assoc($result)) {
-											 ?>
-										<img src="<?php $img = explode(";", $row["image_loc"])[0]; echo $img ?>" class="img-fluid w-100" alt="" />
+										<?php
+										include "login.dbh.php";
+										$sql = "SELECT * FROM promotions where type=\"secondary\";";
+										$result = mysqli_query($conn, $sql);
+										$i = 0;
+										if ($row = mysqli_fetch_assoc($result)) {
+										?>
+											<img src="<?php $img = explode(";", $row["image_loc"])[0];
+														echo $img ?>" class="img-fluid w-100" alt="" />
 									</div>
 									<div class="">
 										<div class="card-body">
-										
+
 											<h5 class="card-title text-uppercase"> <?php echo $row["title"]; ?></h5>
 											<p class="card-text text-uppercase"><?php echo $row["subtitle"]; ?></p>
 											<!-- <a href="" class="btn btn-dark btn-ecomm"></a> -->
 										</div>
-										<?php } ?>
-										<!-- <div class="card-body">
+									<?php } ?>
+									<!-- <div class="card-body">
 												<ul class="list-unstyled mb-0 categories-list list-group-horizontal-md list-group">
 													<li>
 														<h5 class="card-title text-uppercase">Samsung Galaxy Z Fold 3 5G</h5>
@@ -265,21 +266,21 @@
 						<!-- assets/images/products/38.png -->
 						<div class="col-6">
 							<div class="card rounded-0 border shadow-none">
-							<div class="row g-0 align-items-center">
+								<div class="row g-0 align-items-center">
 									<div class="">
-									<?php
-											if ($row = mysqli_fetch_assoc($result)) {
-											 ?>
-										<img src="<?php echo $row["image_loc"]; ?>" class="img-fluid w-100" alt="" />
+										<?php
+										if ($row = mysqli_fetch_assoc($result)) {
+										?>
+											<img src="<?php echo $row["image_loc"]; ?>" class="img-fluid w-100" alt="" />
 									</div>
 									<div class="">
 										<div class="card-body">
-										
-										<h5 class="card-title text-uppercase"> <?php echo $row["title"]; ?></h5>
+
+											<h5 class="card-title text-uppercase"> <?php echo $row["title"]; ?></h5>
 											<p class="card-text text-uppercase"><?php echo $row["subtitle"]; ?></p>
 											<!-- <a href="" class="btn btn-dark btn-ecomm"><?php echo $row["subtitle"]; ?></a> -->
 										</div>
-										<?php } ?>
+									<?php } ?>
 									</div>
 								</div>
 							</div>
@@ -357,7 +358,7 @@
 									</div>
 								</div>
 							</div>
-								
+
 							<?php
 							require_once "login.dbh.php";
 							require_once "function.php";
@@ -386,11 +387,8 @@
 									<div class="card rounded-0 product-card">
 										<div class="card-header bg-transparent border-bottom-0">
 											<div class="d-flex align-items-center justify-content-end gap-3">
-												<a href="">
-													<div class="product-compare"><span><i class='bx bx-git-compare'></i> Compare</span>
-													</div>
-												</a>
-												<a  onclick="wishlist('<?php echo $j ?>wish', <?php echo $product[$j]['Prod_id'] ?>)">
+
+												<a onclick="wishlist('<?php echo $j ?>wish', <?php echo $product[$j]['Prod_id'] ?>)">
 													<div class="product-wishlist"><i id="<?php echo $j ?>wish" class='bx bx-heart' style="color:#ff0000"></i>
 													</div>
 												</a>
@@ -420,18 +418,18 @@
 														<span class="fs-5">Rs. <?php echo $product[$j]['price']; ?></span>
 													</div>
 													<div class="cursor-pointer ms-auto"> <i class="bx bxs-star text-warning"></i>
-													<?php
-																		$sql = "SELECT * from review where Prod_id='{$product[$j]["Prod_id"]}'";
-																		$ress = mysqli_query($conn, $sql);
-																		$row_re = mysqli_fetch_assoc($ress); 
-																		for ($asf = 0; $asf < $row_re["ratings"]; $asf++) { ?>
-																			<i class="bx bxs-star text-warning"></i>
-																		<?php
-																		}
-																		for ($asf = 0; $asf < 5 - $row_re["ratings"]; $asf++) { ?>
-																			<i class="bx bxs-star text-gray"></i>
-																			<?php }
-																		?>
+														<?php
+														$sql = "SELECT * from review where Prod_id='{$product[$j]["Prod_id"]}'";
+														$ress = mysqli_query($conn, $sql);
+														$row_re = mysqli_fetch_assoc($ress);
+														for ($asf = 0; $asf < $row_re["ratings"]; $asf++) { ?>
+															<i class="bx bxs-star text-warning"></i>
+														<?php
+														}
+														for ($asf = 0; $asf < 5 - $row_re["ratings"]; $asf++) { ?>
+															<i class="bx bxs-star text-gray"></i>
+														<?php }
+														?>
 													</div>
 												</div>
 												<div class="product-action mt-2">
@@ -495,13 +493,13 @@
 																	<i class="bx bxs-star text-light-4"></i>
 																</div>
 																<div class="ms-1">
-																	<p class="mb-0">(<?php 
-																	$sql = "SELECT * FROM review WHERE prod_id = '$product[$j]['Prod_id']'";
-																	$result = mysqli_query($conn, $sql);
-																	$count = mysqli_num_rows($result);
-																	echo "0".$count;
-																	
-																	?>) Ratings</p>
+																	<p class="mb-0">(<?php
+																						$sql = "SELECT * FROM review WHERE prod_id = '$product[$j]['Prod_id']'";
+																						$result = mysqli_query($conn, $sql);
+																						$count = mysqli_num_rows($result);
+																						echo "0" . $count;
+
+																						?>) Ratings</p>
 																</div>
 															</div>
 															<div class="d-flex align-items-center mt-3 gap-2">
@@ -514,7 +512,7 @@
 															</div>
 															<dl class="row mt-3">
 																<dt class="col-sm-3">Product id</dt>
-1															</dl>
+															</dl>
 															<div class="row row-cols-auto align-items-center mt-3">
 																<div class="col">
 																	<label class="form-label">Quantity</label>
@@ -547,7 +545,7 @@
 															?>
 															<!--end row-->
 															<div class="d-flex gap-2 mt-3">
-															<button id="cart1" type="button" name="addtocart" onclick="window.location.href='http://localhost:3456/add_to_cart.php?prod_id=<?php echo $product[$j]['Prod_id']; ?> '" class="btn btn-dark btn-ecomm"><i class='bx bxs-cart'></i>Add to Cart</button>
+																<button id="cart1" type="button" name="addtocart" onclick="window.location.href='http://localhost:3456/add_to_cart.php?prod_id=<?php echo $product[$j]['Prod_id']; ?> '" class="btn btn-dark btn-ecomm"><i class='bx bxs-cart'></i>Add to Cart</button>
 																<a href="" class="btn btn-light btn-ecomm"><i class="bx bx-heart"></i>Add to Wishlist</a>
 															</div>
 														</div>
@@ -594,13 +592,13 @@
 										<div class="card-header bg-transparent border-bottom-0">
 											<div class="d-flex align-items-center justify-content-end gap-3">
 												<a href="">
-													
+
 												</a>
 												<a href="" onclick="wishlist('<?php echo $j ?>wish', <?php echo $product[$j]['Prod_id'] ?>)">
 													<div class="product-wishlist"><i class='bx bx-heart'></i>
 													</div>
 													<script>
-													
+
 													</script>
 												</a>
 											</div>
@@ -639,7 +637,7 @@
 													$prod2 = existed($conn, $prod3);
 													?>
 													<div class="d-grid gap-2">
-													<button id="cart1" type="button" name="addtocart" onclick="window.location.href='http://localhost:3456/add_to_cart.php?prod_id=<?php echo $product[$j]['Prod_id']; ?> '" class="btn btn-dark btn-ecomm"><i class='bx bxs-cart'></i>Add to Cart</button>
+														<button id="cart1" type="button" name="addtocart" onclick="window.location.href='http://localhost:3456/add_to_cart.php?prod_id=<?php echo $product[$j]['Prod_id']; ?> '" class="btn btn-dark btn-ecomm"><i class='bx bxs-cart'></i>Add to Cart</button>
 														<a href="" class="btn btn-light btn-ecomm" data-bs-toggle="modal" data-bs-target="#QuickViewProduct<?php echo $product[$j]['Prod_id']; ?>"><i class='bx bx-zoom-in'></i>Quick View</a>
 													</div>
 												</div>
@@ -838,10 +836,7 @@
 									<div class="card rounded-0 product-card">
 										<div class="card-header bg-transparent border-bottom-0">
 											<div class="d-flex align-items-center justify-content-end gap-3">
-												<a href="">
-													<div class="product-compare"><span><i class='bx bx-git-compare'></i> Compare</span>
-													</div>
-												</a>
+
 												<a href="">
 													<div class="product-wishlist"> <i class='bx bx-heart'></i>
 													</div>
@@ -1108,10 +1103,7 @@
 									<div class="card rounded-0 product-card">
 										<div class="card-header bg-transparent border-bottom-0">
 											<div class="d-flex align-items-center justify-content-end gap-3">
-												<a href="">
-													<div class="product-compare"><span><i class='bx bx-git-compare'></i> Compare</span>
-													</div>
-												</a>
+
 												<a href="">
 													<div class="product-wishlist"> <i class='bx bx-heart'></i>
 													</div>
@@ -1376,7 +1368,7 @@
 									</div>
 								</div>
 							</div>
-						
+
 							<div class="item">
 								<div class="card rounded-0 product-card border">
 									<div class="card-body">
@@ -1742,7 +1734,7 @@
 			</section>
 			<!--end brands-->
 			<!--start bottom products section-->
-			
+
 			<!--end bottom products section-->
 		</div>
 	</div>
@@ -1999,22 +1991,22 @@
 
 		function wishlist(id, prod) {
 			var element = document.getElementById(id);
-			if (element.classList.contains("bx-heart")){
+			if (element.classList.contains("bx-heart")) {
 				element.classList.remove("bx-heart");
 				element.classList.add("bxs-heart");
-				$.get( "add_wishlist.php?Prod_id="+prod+"&c_id="+"<?php echo $_SESSION["u_id"] ?>", function( data ) {
+				$.get("add_wishlist.php?Prod_id=" + prod + "&c_id=" + "<?php echo $_SESSION["u_id"] ?>", function(data) {
 					console.log(data);
 				});
 
-			}else{
+			} else {
 				element.classList.remove("bxs-heart");
 				element.classList.add("bx-heart");
-				$.get( "./remove_wishlist.php?Prod_id="+prod+"&c_id="+"<?php echo $_SESSION["u_id"] ?>");
+				$.get("./remove_wishlist.php?Prod_id=" + prod + "&c_id=" + "<?php echo $_SESSION["u_id"] ?>");
 
-				
+
 			}
 		}
-	
+
 		// var x = document.getElementByClass("product-wishlist");
 		// x.onclick = function(){
 		// 	var b = document.getElementByTagName("i");

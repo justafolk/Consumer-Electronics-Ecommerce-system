@@ -239,7 +239,7 @@
 																		</p>
 																		<p class="cart-product-price">
 
-																			<?php echo "Rs. ", $productdb[$s]['price']; ?></p>
+																			<?php echo "Rs. ", number_format($productdb[$s]['price']); ?></p>
 																	</div>
 
 																</div>
@@ -254,23 +254,24 @@
 
 
 
-															<p class="mb-0 ms-auto" style="">Rs. <del>
-																	<?php $total = 0;
-																	for ($i = 0; $i < $num_rows; $i++) {
-																		$total += $productdb[$i]['mrp_price'] * $quantities[$i];
-																	}
-																	echo $total; ?>
-																</del>
-
-															</p>
-															<h5 class="mb-0 " style="color: green"> Rs.
+															
+															<h5 class="mb-0 ms-auto" style="color: green"> Rs.
 																<?php $total = 0;
 																for ($i = 0; $i < $num_rows; $i++) {
 																	$total += $productdb[$i]['price'] * $quantities[$i];
 																}
-																echo $total; ?>
+																echo number_format($total); ?>
 
 															</h5>
+															<p class="mb-0 " style="">Rs. <del>
+																	<?php $total = 0;
+																	for ($i = 0; $i < $num_rows; $i++) {
+																		$total += $productdb[$i]['mrp_price'] * $quantities[$i];
+																	}
+																	echo number_format($total); ?>
+																</del>
+
+															</p>
 														</div>
 													</a>
 													<div class="d-grid p-3 border-top"> <a href="./cart-up.php" class="btn btn-dark btn-ecomm">CHECKOUT</a>
@@ -388,7 +389,7 @@
 													<li class="nav-item dropdown">
 														<a href="#" class="nav-link dropdown-toggle  cart-link" data-bs-toggle="dropdown" style="font-size:20px; margin-top: 2px; margin-left: 10px">
 
-															<img src="<?php echo $_SESSION["uimg_url"] ?>" alt="Avatar" class="avatar shadow" style=" border: 2px solid #000">
+															<img src="<?php echo $_SESSION["uimg_url"] ?>" referrerpolicy="no-referrer" alt="Avatar" class="avatar shadow" style=" border: 2px solid #000">
 															<?php echo $_SESSION["ufirstname"] . " " . $_SESSION["ulastname"]; ?>
 														</a>
 														<div class="dropdown-menu dropdown-menu-end">
