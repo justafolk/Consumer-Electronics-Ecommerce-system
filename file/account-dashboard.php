@@ -76,8 +76,8 @@
 												<a href="#" class="list-group-item d-flex justify-content-between align-items-center" onclick="address(this)">Addresses <i class='bx bx-home-smile fs-5'></i></a>
 											
 												<a href="#" class="list-group-item d-flex justify-content-between align-items-center" onclick="account(this)">Account Details <i class='bx bx-user-circle fs-5'></i></a>
-												<a href="#" class="list-group-item d-flex justify-content-between align-items-center" onclick="forgot(this)">Forgot Password<i class='bx bx-lock-open-alt fs-5'></i></a>
-												<a href="#" class="list-group-item d-flex justify-content-between align-items-center">Logout <i class='bx bx-log-out fs-5'></i></a>
+											
+												<a href="logout.php" class="list-group-item d-flex justify-content-between align-items-center">Logout <i class='bx bx-log-out fs-5'></i></a>
 											</div>
 										</div>
 									</div>

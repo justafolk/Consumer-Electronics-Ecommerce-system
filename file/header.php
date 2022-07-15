@@ -454,8 +454,7 @@
 							</li>
 							<li class="nav-item"> <a class="nav-link" href="contact-us.php">Contact Us </a>
 							</li>
-							<li class="nav-item"> <a class="nav-link" href="shop-categories.html">Our Store</a>
-							</li>
+						
 							<li class="nav-item dropdown"> <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown">My Account <i class='bx bx-chevron-down'></i></a>
 								<ul class="dropdown-menu">
 									<li><a class="dropdown-item" href="account-dashboard.php">Dashboard</a>
@@ -464,12 +463,12 @@
 									</li>
 									<li><a class="dropdown-item" href="account-dashboard.php">Address</a>
 									</li>
-									<li><a class="dropdown-item" href="account-dashboard.php">Payment Details</a>
+									
 									</li>
 									<li><a class="dropdown-item" href="account-dashboard.php">Account Details</a>
 									</li>
-									<li><a class="dropdown-item" href="account-dashboard.php">Forgot Password</a>
-									</li>
+									<li><a class="dropdown-item" href="logout.php">Logout</a>
+									
 								</ul>
 							</li>
 						</ul>

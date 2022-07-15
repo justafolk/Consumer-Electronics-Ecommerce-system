@@ -16,7 +16,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.css" rel="stylesheet" />
 
 
-
+  <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>  
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -183,71 +183,27 @@
 </head>
 
 <body>
-
+<nav class="navbar navbar-expand-lg sticky-top bg-dark navbar-dark bg-dark" style="height:50px">
+    <a class="navbar-brand" style="margin-left:5px;" href="#">Ecommerce Client Website</a>
+   
+    <div class="pos-f-t">
+    <div class="collapse navbar-collapse" id="navbarColor01">
+  
+      <form class="form-inline">
+          <div class="row">
+              <div class="col-9">
+                  <input class="form-control mr-sm-2" style="" type="search" placeholder="Search" aria-label="Search">
+              </div>
+          </div>
+      </form>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    </div>
+  </nav>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg sticky-top bg-dark navbar-dark " style="height: 3.1rem">
-        <!-- Container wrapper -->
-        <div class="container-fluid">
-            <!-- Navbar brand -->
-            <a class="navbar-brand" style="background-color: transparent;" href="#">E-commerce Client Website</a>
-
-            <!-- Toggle button -->
-            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
-            </button>
-
-            <!-- Collapsible wrapper -->
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-                <!-- mdbootstrap cdn -->
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-                <!-- Icons -->
-
-
-                <!-- Search -->
-                    <input type="search" class="form-control" placeholder="Search" style="height: 90%;" aria-label="Search">
-                <ul class="navbar-nav d-flex flex-row me-1">
-                    <li class="nav-item me-3 me-lg-0">
-                        <a class="nav-link" href="#"><i class="fa-solid fa-bell"></i></a>
-                    </li>
-
-                </ul>
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-                    <!-- Link -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">My Profile</a>
-                    </li>
-
-                    <!-- Dropdown -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-
-                        </a>
-                        <!-- Dropdown menu -->
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li>
-                                <a class="dropdown-item" href="#">Action</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Another action</a>
-                            </li>
-                            <li>
-                                <hr class="dropdown-divider" />
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </li>
-                        </ul>
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-        <!-- Container wrapper -->
-    </nav>
+   
     <!-- Navbar -->
 
 

@@ -1,8 +1,8 @@
 <?php 
 
 include "./login.dbh.php";
-
 session_start();
+include "./no_login.php";
 
 $uid = $_SESSION["u_id"]; 
 $st = "select * from cart where U_id=\"".$uid."\" and Prod_id=\"".$_GET['prod_id']."\"";

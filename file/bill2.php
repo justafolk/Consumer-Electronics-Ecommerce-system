@@ -245,7 +245,8 @@
             font-size: 12px;
             color: #969CAD;
         }
-        .card-body{
+
+        .card-body {
             padding: 0px 0px !important;
         }
     </style>
@@ -262,13 +263,25 @@
                 <div class="col-md-12">
                     <div class="invoice-wrapper border-bottom">
                         <div class="row">
+                            <?php
+                            include "login.dbh.php";
+                            $order_id = $_GET['order_id'];
+                            $sql = "select * from OrderDB where invoice='$order_id'";
+                            $result = mysqli_query($conn, $sql);
+                            if (mysqli_error($conn)) {
+                                echo mysqli_error($conn);
+                            }
+                            $row = mysqli_fetch_assoc($result);
+                            $prods = explode(";", $row["Prod_id"]);
+                            $total = 0;
+                            ?>
                             <div class="col-3">
                                 <h6 class="mb-0">eCommerce Web.</h6>
                                 <h5 class="mb-0">Client Site</h5>
                             </div>
                             <div class="col-9" style="align-items: right; text-align:right">
-                                <h5>Invoice No. #7483793</h5>
-                                <p>Date : 15th July, 2022 </p>
+                                <h5>Invoice No. #<?php echo $_GET["order_id"] ?></h5>
+                                <p>Date : <?php echo $row["Order_date"] ?></p>
 
                             </div>
                         </div>
@@ -288,9 +301,27 @@
 
                                     <h5 class="">Billing Address:</h5>
 
+                                    <?php
+                                    $ad = $row["address"];
+                                    $user_id = $row["c_id"];
+                                    $sql = "SELECT address$ad FROM user WHERE id = '$user_id'";
+                                    $s = mysqli_query($conn, $sql);
+                                    $row2 = mysqli_fetch_array($s);
+                                    $address1 = $row2["address$ad"];
+                                    $jsonData = rtrim($address1, "\0");
+                                    $address_f =  json_decode(preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $jsonData), true);
+                                    ?>
+                                    <h5 class=""><?php echo str_replace("_", " ", $address_f["fname"] . " " . $address_f["lname"]) ?></h5>
+                                    <?php
+                                    echo $address_f["address1"] . "<br>";
+                                    echo $address_f["address2"];
+                                    echo $address_f["city"] . " - " . $address_f["zipcode"] . "<br>";
+                                    echo $address_f["state"] . "<br>";
+                                    echo $address_f["phoneno"] . "<br>";
+                                    $json_string = stripslashes(html_entity_decode($address1));
+                                    echo json_decode($json_string, true);
 
-                                    <h5 class="">Avdhut Kamble</h5>
-                                    H - 19, Flat no.2920,Maharashtra Housing Board,Yerwada, Pune-6.<br>Florida Housing SocietyPune - 411006<br>Maharashtra<br>8605677177<br>
+                                    ?>
                                 </div>
                             </div>
                         </div>
@@ -305,11 +336,16 @@
                                         <tbody>
                                             <tr>
                                                 <th>Payment Method</th>
-                                                <td></td>
+                                                <td><?php
+                                                    $sq = "select * from transactions where order_id='$order_id'";
+                                                    $res = mysqli_query($conn, $sq);
+                                                    $ro = mysqli_fetch_assoc($res);
+                                                    echo $ro["method"];
+                                                    ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Paid Amount</th>
-                                                <td>Rs. 1 /-</td>
+                                                <td>Rs. <?php echo $row["amount"] ?> </td>
                                             </tr>
                                             <tr>
                                                 <th>Payment Status</th>
@@ -321,7 +357,7 @@
                                             </tr>
                                             <tr>
                                                 <th>Method ID:</th>
-                                                <td></td>
+                                                <td><?php echo $ro["method_id"] ?></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -347,16 +383,7 @@
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                include "login.dbh.php";
-                                                $order_id = $_GET['order_id'];
-                                                $sql = "select * from OrderDB where invoice='$order_id'";
-                                                $result = mysqli_query($conn, $sql);
-                                                if (mysqli_error($conn)) {
-                                                    echo mysqli_error($conn);
-                                                }
-                                                $row = mysqli_fetch_assoc($result);
-                                                $prods = explode(";", $row["Prod_id"]);
-                                                $total = 0;
+
                                                 for ($i = 0; $i < count($prods) - 1; $i++) {
                                                     $sql = "select * from productdb where Prod_id='" . explode("x", $prods[$i])[0] . "'";
                                                     $result = mysqli_query($conn, $sql);
@@ -402,7 +429,7 @@
                                                         <td><strong>
                                                                 Subtotal :
                                                             </strong> </td>
-                                                        <th>Rs <?php echo number_format($total); ?> /-</th>
+                                                        <th>Rs <?php echo number_format($total); ?> </th>
 
                                                     </tr>
                                                     <tr>
@@ -415,7 +442,7 @@
                                                                 Discount <?php ?> :
                                                             </strong>
                                                         </td>
-                                                        <th> 6700 /-</th>
+                                                        <th> 6700 </th>
 
                                                     </tr>
                                                     <tr>
@@ -428,7 +455,7 @@
                                                                 Grand Total
                                                             </strong>
                                                         </td>
-                                                        <th>Rs. <?php echo number_format($row["amount"]) ?> /-</th>
+                                                        <th>Rs. <?php echo number_format($row["amount"]) ?> </th>
 
                                                     </tr>
                                                 </thead>
@@ -456,6 +483,8 @@
                         <br>x
                         <button type="submit" name="submit" class="btn btn-dark" id="printPageButton" onClick="window.print();">Print</button>
                     </div>
+                    <br>
+                    <img src="http://bwipjs-api.metafloor.com/?bcid=code128&text=<?php echo $_GET["order_id"] ?>" alt="">
                 </div>
             </div>
         </div>

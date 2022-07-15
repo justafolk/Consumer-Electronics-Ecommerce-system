@@ -1,4 +1,4 @@
-<?php $file = "orders.php";
+<?php $file = "analysis.php";
 include "header.php" ?>
 <?php
 function verify_delivery($track_id)
@@ -54,9 +54,7 @@ function verify_delivery($track_id)
           <li class="nav-item" role="presentation">
             <button class="nav-link" id="shipped-tab" data-bs-toggle="tab" data-bs-target="#shipped" type="button" role="tab" aria-controls="shipped" aria-selected="false">Marketing Analysis</button>
           </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link" id="completed-tab" data-bs-toggle="tab" data-bs-target="#completed" type="button" role="tab" aria-controls="completed" aria-selected="false">Customer Analysis</button>
-          </li>
+        
 
 
         </ul>
@@ -81,7 +79,7 @@ function verify_delivery($track_id)
                 </form>
               </div>
             </div>
-<br>
+            <br>
             <?php if (isset($_GET["Prod_id"])) { ?>
               <div class="row">
                 <div class="col-md-3">
@@ -155,7 +153,7 @@ function verify_delivery($track_id)
                             <tbody>
 
                               <?php
-                              include "./db.php";
+                              include "../login.dbh.php";
                               $sql = "select * from productdb where Prod_id={$_GET["Prod_id"]}";
                               $results = mysqli_query($conn, $sql);
                               $row = mysqli_fetch_assoc($results);
@@ -288,6 +286,7 @@ function verify_delivery($track_id)
                 </form>
               </div>
             </div>
+            <br>
             <?php if (isset($_GET["s_id"])) { ?>
 
               <div class="row">
@@ -364,7 +363,7 @@ function verify_delivery($track_id)
                               </div>
                               <div class="col-md-4">
                                 <?php
-                                include "./db.php";
+                                include "../login.dbh.php";
                                 $sql = "select * from seller where seller_id={$_GET["s_id"]}";
                                 $results = mysqli_query($conn, $sql);
                                 $row = mysqli_fetch_assoc($results);
@@ -964,9 +963,7 @@ function verify_delivery($track_id)
 
 <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
-                                <script>
-
-
+<script>
   (function() {
     var ctx = document.getElementById('social_media').getContext('2d');
     // eslint-disable-next-line no-unused-vars
@@ -1022,46 +1019,6 @@ function verify_delivery($track_id)
       }
     });
   })();
-                                  (function() {
-    'use strict'
-
-    feather.replace({
-      'aria-hidden': 'true'
-    })
-
-    var ctx2 = document.getElementById('lol').getContext('2d');
-    var lol = new Chart(ctx2, {
-      // The type of chart we want to create
-      type: 'doughnut',
-
-      // The data for our dataset
-      data: {
-        labels: [
-          'Instagram',
-          'Facebook',
-          'Google Adsense',
-        ],
-        datasets: [{
-
-          label: 'Website Hit Sources',
-          data: [300, 50, 100],
-          backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            'rgb(255, 205, 86)'
-          ],
-          hoverOffset: 4
-        }]
-      },
-
-      // Configuration options go here
-      options: {}
-    });
-  })();
-
-
-</script>
-<script>
 
   (function() {
     'use strict'
@@ -1112,6 +1069,42 @@ function verify_delivery($track_id)
     });
   })();
 
+  (function() {
+    'use strict'
+
+    feather.replace({
+      'aria-hidden': 'true'
+    })
+
+    var ctx2 = document.getElementById('lol').getContext('2d');
+    var lol = new Chart(ctx2, {
+      // The type of chart we want to create
+      type: 'doughnut',
+
+      // The data for our dataset
+      data: {
+        labels: [
+          'Instagram',
+          'Facebook',
+          'Google Adsense',
+        ],
+        datasets: [{
+
+          label: 'Website Hit Sources',
+          data: [300, 50, 100],
+          backgroundColor: [
+            'rgb(255, 99, 132)',
+            'rgb(54, 162, 235)',
+            'rgb(255, 205, 86)'
+          ],
+          hoverOffset: 4
+        }]
+      },
+
+      // Configuration options go here
+      options: {}
+    });
+  })();
 </script>
 <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 <script>

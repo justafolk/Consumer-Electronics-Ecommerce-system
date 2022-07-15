@@ -25,12 +25,15 @@
 </head>
 <?php 
 	include "./login.dbh.php";
-	$name = $_POST['name'];
-	$email = $_POST['email'];
-	$phone = $_POST['phone'];
-	$message = $_POST['message'];
-	$sql = "INSERT INTO help (name, email, phone, message) VALUES ('$name', '$email', '$phone', '$message')";
-	$result = mysqli_query($conn, $sql);
+	if (isset($_POST["email"])){
+
+		$name = $_POST['name'];
+		$email = $_POST['email'];
+		$phone = $_POST['phone'];
+		$message = $_POST['message'];
+		$sql = "INSERT INTO help (name, email, phone, message) VALUES ('$name', '$email', '$phone', '$message')";
+		$result = mysqli_query($conn, $sql);
+	}
 
 ?>
 <body>	

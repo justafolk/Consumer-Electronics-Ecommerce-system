@@ -417,7 +417,7 @@
 
 														<span class="fs-5">Rs. <?php echo $product[$j]['price']; ?></span>
 													</div>
-													<div class="cursor-pointer ms-auto"> <i class="bx bxs-star text-warning"></i>
+													<div class="cursor-pointer ms-auto">
 														<?php
 														$sql = "SELECT * from review where Prod_id='{$product[$j]["Prod_id"]}'";
 														$ress = mysqli_query($conn, $sql);
@@ -771,7 +771,7 @@
 										</div>
 										<div class="">
 											<div class="card-body">
-												<h5 class="card-title text-uppercase">Mobile</h5>
+												<h5 class="card-title text-uppercase">New BOSE HeadPLX23</h5>
 												<p class="card-text text-uppercase">Starting at Rs. 19 400</p>
 												<a href="" class="btn btn-dark btn-ecomm">SHOP NOW</a>
 											</div>
@@ -787,8 +787,8 @@
 										</div>
 										<div class="">
 											<div class="card-body">
-												<h5 class="card-title text-uppercase">Samsung Galaxy Z Fold 3 5G</h5>
-												<p class="card-text text-uppercase">Starting at Rs. 19 400</p>
+												<h5 class="card-title text-uppercase">Bowners and Winkins HeadSkull5542 at its lowest price</h5>
+												<p class="card-text text-uppercase">Hurry Now!!!!!</p>
 												<a href="" class="btn btn-dark btn-ecomm">SHOP NOW</a>
 											</div>
 										</div>
@@ -803,8 +803,8 @@
 										</div>
 										<div class="">
 											<div class="card-body">
-												<h5 class="card-title text-uppercase">Samsung Galaxy Z Fold 3 5G</h5>
-												<p class="card-text text-uppercase">Starting at Rs. 19 400</p>
+												<h5 class="card-title text-uppercase">Sony Headphones XB25</h5>
+												<p class="card-text text-uppercase">Starting at Rs. 20,230</p>
 												<a href="" class="btn btn-dark btn-ecomm">SHOP NOW</a>
 											</div>
 										</div>
@@ -1336,60 +1336,75 @@
 					<div class="product-grid">
 						<div class="browse-category owl-carousel owl-theme">
 							<div class="item">
-								<div class="card rounded-0 product-card border">
-									<div class="card-body">
-										<img src="assets/images/categories/phone.png" class="img-fluid" alt="...">
+								<a href="./categories.php?term=phone">
+
+									<div class="card rounded-0 product-card border">
+										<div class="card-body">
+											<img src="assets/images/categories/phone.png" class="img-fluid" alt="...">
+										</div>
+										<div class="card-footer text-center">
+											<h6 class="mb-1 text-uppercase">Phone</h6>
+											<p class="mb-0 font-12 text-uppercase">10 Products</p>
+										</div>
 									</div>
-									<div class="card-footer text-center">
-										<h6 class="mb-1 text-uppercase">Phone</h6>
-										<p class="mb-0 font-12 text-uppercase">10 Products</p>
-									</div>
-								</div>
+								</a>
 							</div>
 							<div class="item">
-								<div class="card rounded-0 product-card border">
-									<div class="card-body">
-										<img src="assets/images/categories/02.png" class="img-fluid" alt="...">
+								<a href="./categories.php?term=watch">
+
+									<div class="card rounded-0 product-card border">
+										<div class="card-body">
+											<img src="assets/images/categories/02.png" class="img-fluid" alt="...">
+										</div>
+										<div class="card-footer text-center">
+											<h6 class="mb-1 text-uppercase">Watches</h6>
+											<p class="mb-0 font-12 text-uppercase">0 Products</p>
+										</div>
 									</div>
-									<div class="card-footer text-center">
-										<h6 class="mb-1 text-uppercase">Watches</h6>
-										<p class="mb-0 font-12 text-uppercase">8 Products</p>
-									</div>
-								</div>
+								</a>
 							</div>
 							<div class="item">
-								<div class="card rounded-0 product-card border">
-									<div class="card-body">
-										<img src="assets/images/categories/Tablet.png" class="img-fluid" alt="...">
+								<a href="./categories.php?term=tablet">
+
+									<div class="card rounded-0 product-card border">
+										<div class="card-body">
+											<img src="assets/images/categories/Tablet.png" class="img-fluid" alt="...">
+										</div>
+										<div class="card-footer text-center">
+											<h6 class="mb-1 text-uppercase">Tablet</h6>
+											<p class="mb-0 font-12 text-uppercase">14 Products</p>
+										</div>
 									</div>
-									<div class="card-footer text-center">
-										<h6 class="mb-1 text-uppercase">Tablet</h6>
-										<p class="mb-0 font-12 text-uppercase">14 Products</p>
-									</div>
-								</div>
+								</a>
 							</div>
 
 							<div class="item">
-								<div class="card rounded-0 product-card border">
-									<div class="card-body">
-										<img src="assets/images/categories/05.png" class="img-fluid" alt="...">
+								<a href="./categories.php?term=laptop">
+
+									<div class="card rounded-0 product-card border">
+										<div class="card-body">
+											<img src="assets/images/categories/05.png" class="img-fluid" alt="...">
+										</div>
+										<div class="card-footer text-center">
+											<h6 class="mb-1 text-uppercase">Laptop</h6>
+											<p class="mb-0 font-12 text-uppercase">6 Products</p>
+										</div>
 									</div>
-									<div class="card-footer text-center">
-										<h6 class="mb-1 text-uppercase">Laptop</h6>
-										<p class="mb-0 font-12 text-uppercase">6 Products</p>
-									</div>
-								</div>
+								</a>
 							</div>
 							<div class="item">
-								<div class="card rounded-0 product-card border">
-									<div class="card-body">
-										<img src="assets/images/categories/06.png" class="img-fluid" alt="...">
+								<a href="./categories.php?term=headphones">
+
+									<div class="card rounded-0 product-card border">
+										<div class="card-body">
+											<img src="assets/images/categories/06.png" class="img-fluid" alt="...">
+										</div>
+										<div class="card-footer text-center">
+											<h6 class="mb-1 text-uppercase">Headphones</h6>
+											<p class="mb-0 font-12 text-uppercase">5 Products</p>
+										</div>
 									</div>
-									<div class="card-footer text-center">
-										<h6 class="mb-1 text-uppercase">Headphones</h6>
-										<p class="mb-0 font-12 text-uppercase">5 Products</p>
-									</div>
-								</div>
+								</a>
 							</div>
 							<!-- <div class="item">
 									<div class="card rounded-0 product-card border">

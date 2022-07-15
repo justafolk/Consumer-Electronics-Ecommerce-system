@@ -52,9 +52,7 @@ include "header.php" ?>
           <li class="nav-item" role="presentation">
             <button class="nav-link" id="completed-tab" data-bs-toggle="tab" data-bs-target="#completed" type="button" role="tab" aria-controls="completed" aria-selected="false">Completed Past Orders</button>
           </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link" id="purchase_offline-tab" data-bs-toggle="tab" data-bs-target="#purchase_offline" type="button" role="tab" aria-controls="purchase_offline" aria-selected="false">Create Offline Purchase Order</button>
-          </li>
+         
 
         </ul>
         <br>

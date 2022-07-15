@@ -39,8 +39,6 @@ googlesign.addEventListener('click', (e) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
-      alert(token);
-      alert(auth.lastNotifiedUid);
 
       for ( const item in auth.currentUser){
         console.log(item);
@@ -48,7 +46,6 @@ googlesign.addEventListener('click', (e) => {
       }
       // The signed-in user info.
       const user = result.user;
-      alert(typeof user.phoneNumber);
       for (const item in user) {
         console.log(item);
       }
@@ -57,13 +54,11 @@ googlesign.addEventListener('click', (e) => {
       }
 
       
-      alert(user.displayName);
       var chunks = user.displayName.split(/\s+/);
       var arr = [chunks.shift(), chunks.join(' ')];
       console.log(arr);
       document.getElementById("inputFirstName").value = arr[0];
       document.getElementById("inputLastName").value = arr[1];
-      alert(user.phoneNumber);
       document.getElementById("username").value = user.email;
       document.getElementById("firebaseop").value = user.uid;
       window.location.replace("http://localhost:3456/login_firebase.php?name=" + user.displayName + "&email=" + user.email + "&uid=" + user.uid + "&firebase_id="+auth.lastNotifiedUid + "&photo=" + user.photoURL);

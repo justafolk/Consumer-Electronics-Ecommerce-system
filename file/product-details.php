@@ -268,7 +268,7 @@
 												<i class="bx bxs-star text-light-4"></i>
 											</div>
 											<div class="ms-1">
-												<p class="mb-0">(24 Ratings)</p>
+												<p class="mb-0">(0 Ratings)</p>
 											</div>
 										</div>
 										<p style="color:grey ; margin-bottom:2px">MRP: <del> Rs. <?php echo $product["mrp_price"]; ?> </del></p>

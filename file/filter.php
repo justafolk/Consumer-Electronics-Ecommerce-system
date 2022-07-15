@@ -1,6 +1,5 @@
 <div class="col-12 col-xl-3">
-    <div class="btn-mobile-filter d-xl-none"><i class='bx bx-slider-alt'></i>
-    </div>
+
     <div class="filter-sidebar d-none d-xl-flex">
         <div class="card rounded-0 w-100">
             <div class="card-body">
@@ -128,7 +127,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">Rs.</span>
                         </div>
-                        <input type="text" class="form-control" id="min-price" placeholder="Min" aria-label="Min" name="min-price" required>
+                        <input type="text" class="form-control" id="min-price" value="0" placeholder="Min" aria-label="Min" name="min-price" required>
                         &nbsp;
                         <h4>
 
@@ -139,7 +138,7 @@
                         <div class="input-group-append">
                             <span class="input-group-text">Rs.</span>
                         </div>
-                        <input type="text" class="form-control" id="max-price" placeholder="Max" name="max-price" aria-label="Max" required>
+                        <input type="text" class="form-control" id="max-price" placeholder="Max" name="max-price" aria-label="Max" value="1000000000000000000" required>
                         <input type="hidden" id="term" value="<?php echo $_GET["term"] ?>" name="term" >
 
                     </div>

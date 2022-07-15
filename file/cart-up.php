@@ -61,6 +61,7 @@
 									<?php
 									include 'login.dbh.php';
 									session_start();
+									include "./no_login.php";
 									$user_id = $_SESSION['u_id'];
 									$sql = "SELECT * FROM cart WHERE U_id = '$user_id'";
 									$result = mysqli_query($conn, $sql);

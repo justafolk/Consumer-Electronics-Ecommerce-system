@@ -31,10 +31,7 @@ include "./header.php";
         <li class="nav-item" role="presentation">
             <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Manage Seller Payouts</button>
         </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="requestop-tab" data-bs-toggle="tab" data-bs-target="#requestop" type="button" role="tab" aria-controls="requestop" aria-selected="false">Revenue Statistics</button>
-        </li>
-
+        
     </ul>
     <br>
     <div class="tab-content" id="myTabContent">
@@ -148,7 +145,6 @@ include "./header.php";
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
                                             <th>Seller ID</th>
                                             <th>Seller Location </th>
                                             <th>Revenue Collected Offline </th>
@@ -159,51 +155,35 @@ include "./header.php";
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php
+                                        include "./db.php";
+                                        $sql = "select * from sellerDB";
+                                        $results = mysqli_query($conn, $sql);
+                                        if (mysqli_num_rows($results) > 0){
+                                            while ($row = mysqli_fetch_assoc($results)){
+                                               $sqsl = "select SUM(amount) as total_amount from OrderDB where s_id = '{$row["id"]}' and method='online'";
+                                                  $results2 = mysqli_query($conn, $sqsl);
+                                                    $row2 = mysqli_fetch_assoc($results2);
+                                                    $online_total_amount = $row2["total_amount"];
+                                                    $sqsl = "select SUM(amount) as total_amount from OrderDB where s_id = '{$row["id"]}' and method='offline'";
+                                                    $results2 = mysqli_query($conn, $sqsl);
+                                                    $row2 = mysqli_fetch_assoc($results2);
+                                                    $offline_total_amount = $row2["total_amount"];
+                                        ?>
                                         <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            <td>@mdo</td>
-                                            <td>@mdo</td>
-                                            <td>@mdo</td>
+                                            <th scope="row"><?php echo $row["id"] ?></th>
+                                            <td><?php echo $row["store_name"] ?></td>
+                                            <td><?php echo 0+$offline_total_amount ?></td>
+                                            <td><?php echo 0+$online_total_amount ?></td>
+                                            <td><?php echo 0+$online_total_amount+$offline_total_amount ?></td>
+                                            <td><?php echo 0+$online_total_amount ?></td>
                                             <td>
-                                                <button type="button" class="btn-sm btn-secondary">View</button>
-                                                <button type="button" class="btn-sm btn-secondary">Initiate
-                                                    Payout</button>
+                                                <button type="button" class="btn-sm btn-dark btn-ecomm">View</button>                                              <button type="button" class="btn-sm btn-dark btn-ecomm">Payout done</button>
 
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                            <td>@mdo</td>
-                                            <td>@mdo</td>
-                                            <td>@mdo</td>
-                                            <td>
-                                                <button type="button" class="btn-sm btn-secondary">View</button>
-                                                <button type="button" class="btn-sm btn-secondary">Initiate
-                                                    Payout</button>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@mdo</td>
-                                            <td>@mdo</td>
-                                            <td>@mdo</td>
-                                            <td>@mdo</td>
-                                            <td>
-                                                <button type="button" class="btn-sm btn-secondary">View</button>
-                                                <button type="button" class="btn-sm btn-secondary">Initiate
-                                                    Payout</button>
-
-                                            </td>
-                                        </tr>
+                                       <?php }}
+                                       ?>
                                     </tbody>
                                 </table>
                             </div>

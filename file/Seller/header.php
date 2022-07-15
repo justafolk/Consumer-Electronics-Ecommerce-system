@@ -453,9 +453,9 @@ border-radius: 50%;">
         </li>
         <li class="nav-item">
 
-          <a class="nav-link <?php if ($file == "Analytics.php") {
+          <a class="nav-link <?php if ($file == "analysis.php") {
                                 echo "active";
-                              } ?>" href="reqinven.html">
+                              } ?>" href="analysis.php">
             <span data-feather="bar-chart-2"></span> Analytics
           </a>
 

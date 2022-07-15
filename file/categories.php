@@ -25,6 +25,69 @@
 </head>
 
 <body>
+	<?php 
+	require_once "login.dbh.php";
+	function cart_exists($conn, $user, $prod)
+	{
+		require_once "login.dbh.php";
+		$error = "";
+		$sql = "SELECT * FROM cart WHERE U_id = ? AND Prod_id = ?;";
+		$smt = mysqli_stmt_init($conn);
+		if (!mysqli_stmt_prepare($smt, $sql)) {
+			$error .= "Error in STMT";
+			exit();
+		}
+		mysqli_stmt_bind_param($smt, "ii", $user, $prod);
+		mysqli_stmt_execute($smt);
+		$resultData = mysqli_stmt_get_result($smt);
+		if ($row = mysqli_fetch_assoc($resultData)) {
+			return $row;
+		} else {
+			$result = false;
+			return $result;
+		}
+	}
+	function existed($conn, $prod_id)
+	{
+		$error = "";
+		$sql = "SELECT Prod_id FROM cart WHERE Prod_id = ?;";
+		$smt = mysqli_stmt_init($conn);
+		if (!mysqli_stmt_prepare($smt, $sql)) {
+			$error .= "Error in STMT";
+			exit();
+		}
+		mysqli_stmt_bind_param($smt, "i", $prod_id);
+		mysqli_stmt_execute($smt);
+		$resultData = mysqli_stmt_get_result($smt);
+		if ($row = mysqli_fetch_assoc($resultData)) {
+			return $row;
+		} else {
+
+			$result = null;
+			return $result;
+		}
+	}
+	function cart($conn, $user, $prod)
+	{
+		require_once "login.dbh.php";
+		$error = "";
+		$cart_existed = cart_exists($conn, $user, $prod);
+		if ($cart_existed == NULL) {
+			if ($user > 0) {
+				$sql = "INSERT INTO cart(U_id, Prod_id) VALUES('$user','$prod');";
+				$smt = mysqli_stmt_init($conn);
+				if (!mysqli_stmt_prepare($smt, $sql)) {
+					$error .= "Error in STMT";
+					exit();
+				}
+				mysqli_stmt_execute($smt);
+				mysqli_stmt_close($smt);
+				$error .= "Cart Added Successfully";
+			} else {
+			}
+		} else {
+		}
+	} ?>
 	<div include-html="header.php" id="header_file"></div>
 	<!--end top header wrapper-->
 	<!--start page wrapper -->
@@ -54,7 +117,8 @@
 			<section class="py-4">
 				<div class="container">
 					<div class="row">
-						<?php include "./filter.php"; ?>
+
+							<?php include "./filter.php"; ?>
 						<div class="col-12 col-xl-9">
 							<div class="product-wrapper">
 								<div class="toolbox d-flex align-items-center mb-3 gap-2">
@@ -71,46 +135,76 @@
 											</select>
 										</div>
 									</div>
-									<div class="d-flex flex-wrap">
-										<div class="d-flex align-items-center flex-nowrap">
-											<p class="mb-0 font-13 text-nowrap">Show:</p>
-											<select class="form-select ms-3 rounded-0">
-												<option>9</option>
-												<option>12</option>
-												<option>16</option>
-												<option>20</option>
-												<option>50</option>
-												<option>100</option>
-											</select>
-										</div>
-									</div>
+
 								</div>
 								<div class="product-grid">
 
 									<?php
 									include 'login.dbh.php';
-									session_start();
 									$user_id = $_SESSION['u_id'];
-									$sql = "SELECT * FROM productdb WHERE category='".$_GET['term']."' LIMIT 5";
+									$categories = array();
+									$brands = array();
+									$star = array();
 
+									foreach ($_GET as $key => $value) {
+										if (strpos($key, "cat") !== false) {
+											
+											array_push($categories, preg_replace('~\x{00a0}~','',$value)); 
+										}
+										elseif (strpos($key, "brand") !== false) {
+											array_push($brands, preg_replace('~\x{00a0}~','', $value)); 
+										}
+										elseif (strpos($key, "star") !== false) {
+											array_push($star, preg_replace('~\x{00a0}~','', $value)); 
+										}
+										elseif (strpos($key, "max-price") !== false) {
+											$max_price = preg_replace('~\x{00a0}~','', $value); 
+										}
+										elseif (strpos($key, "min-price") !== false) {
+											$min_price = preg_replace('~\x{00a0}~','', $value); 
+										}
+									}
+									$sql = "SELECT *, (select AVG(ratings) from review where Prod_id=productdb.Prod_id) as rating FROM productdb WHERE ((category=' {$_GET['term']} ') or (category LIKE '%{$_GET['term']}%') or (title LIKE '%{$_GET['term']}%' or Tags LIKE '%{$_GET['term']}%' or specification LIKE '%{$_GET['term']}%'))   ";
+									if (count($categories) > 0) {
+										$sql .= " and (category='{$categories[0]}'";
+										for ($i = 1; $i < count($categories); $i++) {
+											$sql .= " or category='{$categories[$i]}'";
+										}
+										$sql .= ")";
+									}
+									if (count($brands) > 0) {
+										$sql .= " and (brand='{$brands[0]}'";
+										for ($i = 1; $i < count($brands); $i++) {
+											$sql .= " or brand='{$brands[$i]}'";
+										}
+										$sql .= ")";
+									}
+									if (isset($max_price)) {
+										$sql .= " and price <= $max_price";
+									}
+									if (isset($min_price)) {
+										$sql .= " and price >= $min_price";
+									}
+
+									
 									$result = mysqli_query($conn, $sql);
+									if (!$result){
+										echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+									}
 									$resultCheck = mysqli_num_rows($result);
 									$total = 0;
 									if ($resultCheck > 0) {
 										while ($row = mysqli_fetch_assoc($result)) {
-
-
+											if (count($star) >0){
+												if ($row['rating'] < $star[0]){
+													continue;
+												}
+											}
+									
 									?>
 											<div class="card rounded-0 product-card">
 												<div class="d-flex align-items-center justify-content-end gap-3 position-absolute end-0 top-0 m-3">
-													<a href="javascript:;">
-														<div class="product-compare"><span><i class="bx bx-git-compare"></i> Compare</span>
-														</div>
-													</a>
-													<a href="javascript:;">
-														<div class="product-wishlist"> <i class="bx bx-heart"></i>
-														</div>
-													</a>
+
 												</div>
 												<div class="row g-0">
 													<div class="col-md-4">
@@ -127,23 +221,29 @@
 																</a>
 																<p class="card-text"> <?php echo $row["description"] ?></p>
 																<div class="d-flex align-items-center">
-																	<div class="mb-1 product-price"> <span class="me-1 text-decoration-line-through"></span>
-																		<span class="fs-5">Rs. <?php echo $row["price"] ?></span>
+																	<div class="mb-1 product-price">
+																		<span class="fs-5" style="color: green">Rs. <?php echo number_format($row["price"]) ?></span>
+																		<span class="me-1 text-decoration-line-through">Rs. <?php echo number_format($row["mrp_price"]) ?></span>
 																	</div>
 																	<div class="cursor-pointer ms-auto">
 																		<?php
 																		$sql = "SELECT * from review where Prod_id='{$row["Prod_id"]}'";
-																		for ($i = 0; $i < $row["ratings"]; $i++) { ?>
+																		$ress = mysqli_query($conn, $sql);
+																		$row_re = mysqli_fetch_assoc($ress);
+																		for ($asf = 0; $asf < $row_re["ratings"]; $asf++) { ?>
 																			<i class="bx bxs-star text-warning"></i>
 																		<?php
 																		}
+																		for ($asf = 0; $asf < 5 - $row_re["ratings"]; $asf++) { ?>
+																			<i class="bx bxs-star text-gray"></i>
+																		<?php }
 																		?>
 																	</div>
 																</div>
 																<div class="product-action mt-2">
 																	<div class="d-flex gap-2">
-																		<button onclick="window.location.href='http://localhost:3456/add_to_cart.php?prod_id=<?php echo $row["Prod_id"] ?> '" class="btn btn-dark btn-ecomm"> <i class="bx bxs-cart-add"></i>Add to Cart</button> 
-																		<a href="javascript:;" class="btn btn-light btn-ecomm" data-bs-toggle="modal" data-bs-target="#QuickViewProduct"><i class="bx bx-zoom-in"></i>Quick View</a>
+																		<button onclick="window.location.href='http://localhost:3456/add_to_cart.php?prod_id=<?php echo $row["Prod_id"] ?> '" class="btn btn-dark btn-ecomm"> <i class="bx bxs-cart-add"></i>Add to Cart</button>
+																		<a href="javascript:;" class="btn btn-light btn-ecomm" data-bs-toggle="modal" data-bs-target="#QuickViewProduct<?php echo $row["Prod_id"] ?>"><i class="bx bx-zoom-in"></i>Quick View</a>
 																	</div>
 																</div>
 															</div>
@@ -151,35 +251,120 @@
 													</div>
 												</div>
 											</div>
+											<div class="modal fade" id="QuickViewProduct<?php echo $row['Prod_id']; ?>">
+												<div class="modal-dialog modal-dialog-centered modal-xl modal-fullscreen-xl-down">
+													<div class="modal-content rounded-0 border-0">
+														<div class="modal-body">
+															<button type="button" class="btn-close float-end" data-bs-dismiss="modal"></button>
+															<div class="row g-0">
+																<div class="col-12 col-lg-6">
+																	<div class="image-zoom-section">
+																		<div class="product-gallery owl-carousel owl-theme border mb-3 p-3" data-slider-id="1">
+																			<?php
+																			$temp = $row['image_loc'];
+																			$img = explode('&', $temp);
+																			$count = count($img);
+																			for ($i = 0; $i < $count - 1; $i++) {
+																			?>
+																				<div class="item">
+																					<img src="<?php echo $img[$i]; ?>" class="img-fluid" alt="">
+																				</div>
+																			<?php
+																			}
+																			?>
+																		</div>
+																		<div class="owl-thumbs d-flex justify-content-center" data-slider-id="1">
+																			<?php
+																			for ($i = 0; $i < $count - 1; $i++) {
+																			?>
+																				<button class="owl-thumb-item">
+																					<img src="<?php echo $img[$i]; ?>" class="" alt="">
+																				</button>
+																			<?php
+																			}
+																			?>
+																		</div>
+																	</div>
+																</div>
+																<div class="col-12 col-lg-6">
+																	<div class="product-info-section p-3">
+																		<h3 class="mt-3 mt-lg-0 mb-0"><?php echo $row['title']; ?></h3>
+																		<div class="product-rating d-flex align-items-center mt-2">
+																			<div class="rates cursor-pointer font-13"> <i class="bx bxs-star text-warning"></i>
+																				<i class="bx bxs-star text-warning"></i>
+																				<i class="bx bxs-star text-warning"></i>
+																				<i class="bx bxs-star text-warning"></i>
+																				<i class="bx bxs-star text-light-4"></i>
+																			</div>
+																			<div class="ms-1">
+																				<p class="mb-0">(<?php
+																									$sql = "SELECT * FROM review WHERE prod_id = '{$row['Prod_id']}'";
+																									$results = mysqli_query($conn, $sql);
+																									$count = mysqli_num_rows($results);
+																									echo "0" . $count;
+
+																									?>) Ratings</p>
+																			</div>
+																		</div>
+																		<div class="d-flex align-items-center mt-3 gap-2">
+																			<h5 class="mb-0 text-decoration-line-through text-light-3"></h5>
+																			<h4 class="mb-0">Rs. <?php echo $row['price']; ?></h4>
+																		</div>
+																		<div class="mt-3">
+																			<h6>Description :</h6>
+																			<p class="mb-0"><?php echo $row['description']; ?></p>
+																		</div>
+																		<dl class="row mt-3">
+																			<dt class="col-sm-3">Product id</dt>
+																		</dl>
+																		<div class="row row-cols-auto align-items-center mt-3">
+																			<div class="col">
+																				<label class="form-label">Quantity</label>
+																				<select class="form-select form-select-sm">
+																					<option>1</option>
+																					<option>2</option>
+																					<option>3</option>
+																					<option>4</option>
+																					<option>5</option>
+																				</select>
+																			</div>
+																			<div class="col">
+																				<label class="form-label">RAM</label>
+																				<select class="form-select form-select-sm">
+																					<option>4 GB</option>
+																					<option>6 GB</option>
+																				</select>
+																			</div>
+																			<div class="col">
+																				<label class="form-label">Storage</label>
+																				<select class="form-select form-select-sm">
+																					<option>64 GB</option>
+																					<option>128 GB</option>
+																				</select>
+																			</div>
+																		</div>
+														
+																		<!--end row-->
+																		<div class="d-flex gap-2 mt-3">
+																			<button id="cart1" type="button" name="addtocart" onclick="window.location.href='http://localhost:3456/add_to_cart.php?prod_id=<?php echo $row['Prod_id']; ?> '" class="btn btn-dark btn-ecomm"><i class='bx bxs-cart'></i>Add to Cart</button>
+																			<a href="" class="btn btn-light btn-ecomm"><i class="bx bx-heart"></i>Add to Wishlist</a>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<!--end row-->
+														</div>
+													</div>
+												</div>
+											</div>
 											<div class="border-top my-3"></div>
+
 									<?php }
 									} ?>
 
 
 								</div>
-								<hr>
-								<nav class="d-flex justify-content-between" aria-label="Page navigation">
-									<ul class="pagination">
-										<li class="page-item"><a class="page-link" href="javascript:;"><i class='bx bx-chevron-left'></i> Prev</a>
-										</li>
-									</ul>
-									<ul class="pagination">
-										<li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1<span class="visually-hidden">(current)</span></span>
-										</li>
-										<li class="page-item d-none d-sm-block"><a class="page-link" href="javascript:;">2</a>
-										</li>
-										<li class="page-item d-none d-sm-block"><a class="page-link" href="javascript:;">3</a>
-										</li>
-										<li class="page-item d-none d-sm-block"><a class="page-link" href="javascript:;">4</a>
-										</li>
-										<li class="page-item d-none d-sm-block"><a class="page-link" href="javascript:;">5</a>
-										</li>
-									</ul>
-									<ul class="pagination">
-										<li class="page-item"><a class="page-link" href="javascript:;" aria-label="Next">Next <i class='bx bx-chevron-right'></i></a>
-										</li>
-									</ul>
-								</nav>
+
 							</div>
 						</div>
 					</div>

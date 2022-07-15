@@ -124,15 +124,7 @@
 								<div class="toolbox d-flex align-items-center mb-3 gap-2">
 									<div class="d-flex flex-wrap flex-grow-1 gap-1">
 										<div class="d-flex align-items-center flex-nowrap">
-											<p class="mb-0 font-13 text-nowrap">Sort By:</p>
-											<select class="form-select ms-3 rounded-0">
-												<option value="menu_order" selected="selected">Default sorting</option>
-												<option value="popularity">Sort by popularity</option>
-												<option value="rating">Sort by average rating</option>
-												<option value="date">Sort by newness</option>
-												<option value="price">Sort by price: low to high</option>
-												<option value="price-desc">Sort by price: high to low</option>
-											</select>
+										
 										</div>
 									</div>
 
@@ -361,7 +353,11 @@
 
 									<?php }
 									} ?>
+									<hr>
+									<div style="text-align: center;">
 
+										<h6>The list ends here</h6>
+									</div>
 
 								</div>
 
@@ -518,6 +514,7 @@
 	<!--Start Back To Top Button--> <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
 	<!--End Back To Top Button-->
 	</div>
+									
 	<!--end wrapper-->
 
 	<!-- Bootstrap JS -->
