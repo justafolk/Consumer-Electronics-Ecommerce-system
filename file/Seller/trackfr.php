@@ -5,9 +5,9 @@ include "header.php" ?>
     <h1 class="h2">Order Details </h1>
     <div class="btn-toolbar mb-2 mb-md-0">
       <div class="card  shadow-none border">
-        <button onclick="window.location.href='confirm_order.php?order_id=<?php echo $_GET["order_id"] ?>'" class="btn btn-dark btn-ecomm "><i class="fa-solid fa-print"></i> &nbsp; Print Shipping Slip</button>
+        <button href='../bill2.php?order_id=<?php echo $row["invoice"]  ?>' class="btn btn-dark btn-ecomm "><i class="fa-solid fa-print"></i> &nbsp; Print Shipping Slip</button>
       </div> &nbsp;
-      <button onclick="window.location.href='confirm_order.php?order_id=<?php echo $_GET["order_id"] ?>'" class="btn btn-light border btn-ecomm"> <i class="fa-solid fa-print"></i> &nbsp; Print Invoice Slip</button>
+      <button href='../bill2.php?order_id=<?php echo $row["invoice"]  ?>' class="btn btn-light border btn-ecomm"> <i class="fa-solid fa-print"></i> &nbsp; Print Invoice Slip</button>
     </div>
   </div>
   <div class="card" style="width: 100%; height:100%">

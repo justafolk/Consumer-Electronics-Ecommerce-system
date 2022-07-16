@@ -102,7 +102,7 @@
 								<div class="mobile-toggle-menu d-lg-none px-lg-2" data-trigger="#navbar_main"><i class='bx bx-menu'></i>
 								</div>
 								<div class="logo d-none d-lg-flex">
-									<a href="index.html">
+									<a href="index.php">
 										<div class="ms-2">
 											<h6 class="mb-0">eCommerce Web.</h6>
 											<h5 class="mb-0">Client Site</h5>

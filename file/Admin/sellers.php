@@ -72,10 +72,7 @@
                         <button class="nav-link" id="requestop-tab" data-bs-toggle="tab" data-bs-target="#requestop" type="button" role="tab" aria-controls="requestop" aria-selected="false">Inventory Requests</button>
                     </li>
 
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="performanceop-tab" data-bs-toggle="tab" data-bs-target="#performanceop" type="button" role="tab" aria-controls="performanceop" aria-selected="false">Performance
-                            Reports</button>
-                    </li>
+              
                 </ul>
                 <?php
                 require_once "db.php";

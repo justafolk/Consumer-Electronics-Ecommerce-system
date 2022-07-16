@@ -114,7 +114,7 @@ include "header.php"; ?>
                                     </td>
                                     <td>Rs. <?php echo number_format($row2["price"]) ?></td>
                                     <th>
-                                      <button class="btn btn-sm" style="background-color: grey; color: white;">View More
+                                      <button class="btn btn-sm" onclick="window.location.href='/product-details.php?id=<?php echo $row2["Prod_id"] ?>'" style="background-color: grey; color: white;">View More
                                       </button>
                                     </th>
                                   </tr>

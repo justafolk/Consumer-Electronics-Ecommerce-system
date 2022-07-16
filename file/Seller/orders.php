@@ -238,7 +238,7 @@ include "header.php" ?>
                     <td><a href='old_order.php?order_id=<?php echo $row["invoice"]; ?>' class='btn btn-outline-dark ripple-surface-dark mb-1 mb-1 mb-1' style="width: 100%">View</a> <br>
                       <a href='track_order.php?order_id=<?php echo $row["invoice"] ?>' class='btn btn-outline-dark ripple-surface-dark mb-1 mb-1 mb-1' style="width: 100%">Add Tracking ID</a><br>
 
-                      <a href='#' class='btn btn-outline-dark ripple-surface-dark mb-1 mb-1 mb-1' style="width: 100%">Print Packing Slip</a>
+                      <a href='../bill2.php?order_id=<?php echo $row["invoice"]  ?>' class='btn btn-outline-dark ripple-surface-dark mb-1 mb-1 mb-1' style="width: 100%">Print Packing Slip</a>
                     </td>
                     </tr>
                   <?php
@@ -335,7 +335,7 @@ include "header.php" ?>
                     echo "<td>" . $row["Order_status"] . "</td>";
                     echo "<td>Rs. " . number_format($row["amount"]) . "/-</td>"; ?>
                     <td><a href='trackfr.php?order_id=<?php echo $row["invoice"]; ?>' class='btn btn-outline-dark ripple-surface-dark mb-1 mb-1 mb-1' style="width: 100%">View</a> <br>
-                      <a href='#' class='btn btn-outline-dark ripple-surface-dark mb-1 mb-1 mb-1' style="width: 100%">Print Invoice</a><br>
+                      <a href='../bill2.php?order_id=<?php echo $row["invoice"]  ?>' class='btn btn-outline-dark ripple-surface-dark mb-1 mb-1 mb-1' style="width: 100%">Print Invoice</a><br>
 
                       </tr>
                     <?php
@@ -428,7 +428,7 @@ include "header.php" ?>
                     echo "<td>" . $row["Order_status"] . "</td>";
                     echo "<td>Rs. " . number_format($row["amount"]) . "/-</td>"; ?>
                     <td><a href='trackfr.php?order_id=<?php echo $row["invoice"]; ?>' href='trackfr.php?order_id=<?php echo $row["invoice"]; ?>' class='btn btn-outline-dark ripple-surface-dark mb-1 mb-1 mb-1' style="width: 100%">View</a> <br>
-                      <a href='#' class='btn btn-outline-dark ripple-surface-dark mb-1 mb-1 mb-1' style="width: 100%">Print Invoice</a><br>
+                      <a href='../bill2.php?order_id=<?php echo $row["invoice"]  ?>' class='btn btn-outline-dark ripple-surface-dark mb-1 mb-1 mb-1' style="width: 100%">Print Invoice</a><br>
 
                       </tr>
                     <?php

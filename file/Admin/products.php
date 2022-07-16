@@ -216,9 +216,7 @@ while ($row = mysqli_fetch_assoc($resultData)) {
                 </li>
              
 
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="performanceop-tab" data-bs-toggle="tab" data-bs-target="#performanceop" type="button" role="tab" aria-controls="performanceop" aria-selected="false">Public Reviews</button>
-                </li>
+             
             </ul>
             <br>
             <div class="tab-content" id="myTabContent">

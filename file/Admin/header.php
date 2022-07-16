@@ -240,12 +240,7 @@
                             Seller Lookup
                         </div>
                     </a>
-                    <a class=" nav-link sub-links">
-                        <div class="borderop">
-
-                            Performance Reports
-                        </div>
-                    </a>
+                   
                 </li>
                 <li class="nav-item">
 
@@ -264,12 +259,7 @@
                             Review Product Sales
                         </div>
                     </a>
-                    <a class=" nav-link sub-links">
-                        <div class="borderop">
-
-                            Customer Reviews
-                        </div>
-                    </a>
+                   
                     <a class=" nav-link sub-links">
                         <div class="borderop">
 
@@ -293,13 +283,7 @@
                             Update / Remove Promotions
                         </div>
                     </a>
-                    <a class=" nav-link sub-links">
-                        <div class="borderop">
-
-                            Response Analytics
-                        </div>
-                    </a>
-                </li>
+                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="./payments.php">
@@ -315,11 +299,7 @@
                             Manage Seller Payouts
                         </div>
                     </a>
-                    <a class=" nav-link sub-links">
-                        <div class="borderop">
-                            View Payout Requests
-                        </div>
-                    </a>
+                
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="./orders.php">
@@ -374,19 +354,12 @@
                         <div class="borderop">
                             Marketing Analysis
                         </div>
-                        <div class="borderop">
-                            Revenue Analysis
-                        </div>
+              
 
                     </a>
                 </li>
 
 
-                <li class="nav-item ">
-                    <a class="nav-link " href="statics.html">
-                        <span data-feather="layers"></span> Edit Static Content
-                    </a>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="logout.php">
                         <button type="button" class="btn btn-primary" style="color: #e9e9fe; background-color: #312e65; border-color: #e9e9fe; margin-top: 10px; width: 100%;">
