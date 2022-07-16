@@ -1,0 +1,21 @@
+Project Name : Consumer Electronics Ecommerce System 
+Project Members:
+  1. Mayur Satish Khadde 194029
+  2. Avdhut Akash Kamble 194033
+  3. Hrishikesh Satish Chaudhari 194034
+
+Project Tech Stack:
+  PHP 7.4
+  Mysql 8.0
+  Python3
+  Apache2 Server
+
+Instructions for setup:
+  1. Create a user in Mysql data with following credentials:
+    - username : justafolk
+    - password : 794613
+  2. Create a database named "ecommerce";
+  3. Import the ecommerce.sql file to the ecommerce database 
+  4. Change PHP apache2 server port to 3456
+  5. Access the project with 0.0.0.0:3456 
+
