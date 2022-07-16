@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "material-react-toastify": "^1.0.1",
-    "mysql": "^2.18.1"
-  }
-}
