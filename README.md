@@ -2,6 +2,8 @@
 
 This is a web application made using PHP, HTML, CSS, Bootstrap, JS, and Python. The project allows authentication using Google Auth, has an active payment gateway, and allows administrators, sellers, and consumers to operate accordingly. The database is hosted on Azure MySQL Server, utilizing MySQL. The installation requires PHP 7.4 and Apache server—a LAMP stack with MySQL enabled.
 
+![image](https://github.com/justafolk/Consumer-Electronics-Ecommerce-system/assets/65607123/770bd7f6-8e30-466d-b90d-a4088ff71ca9)
+
 ## Project Members
 
 1. Mayur Satish Khadde (194029)
