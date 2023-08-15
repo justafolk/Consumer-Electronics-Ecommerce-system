@@ -30,3 +30,5 @@ This is a web application made using PHP, HTML, CSS, Bootstrap, JS, and Python. 
 4. Change PHP Apache2 server port to 3456.
 
 5. Access the project with 0.0.0.0:3456.
+
+![Screenshot 2023-07-13 111740](https://github.com/justafolk/Consumer-Electronics-Ecommerce-system/assets/65607123/c8a5ea09-bb71-40b6-8e08-bd62b75e4bdb)
